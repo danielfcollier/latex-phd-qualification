@@ -1,0 +1,213 @@
+\documentclass[twoside,a5paper,10pt,fleqn]{book}
+% 
+% adicionar twoside, openright, a5paper e 10pt na versão final do documento
+
+
+% na compilação é comum aparecer 2 Error(s), 1 Warning(s), 0 Bad Box(es)
+
+\usepackage{Formatos/definicoesPG} % configurações gerais
+\usepackage{amsfonts}
+\usepackage[final]{pdfpages}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DADOS DO TRABALHO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ano{2011}
+%\area{Engenharia Elétrica}
+%\areaConcentracao{Eletrônica de Potência e Acionamento Elétrico}
+%\autor{Daniel Augusto Figueirêdo Collier}
+%\bancaA{Prof. Daniel Juan Pagano, Dr.}
+%\bancaAcargo{Co-orientador}
+%\bancaAuniversidade{Universidade Federal de Santa Catarina}
+%\bancaB{Eng. Nelson Zeni Júnior, M. Sc.}
+%\bancaBuniversidade{Universidade Federal de Santa Catarina}
+%\bancaC{Prof. Ivo Barbi, Dr. Ing.}
+%\bancaCuniversidade{Universidade Federal de Santa Catarina}
+%\bancaD{Prof. João Carlos dos Santos Fagundes, Dr.}
+%\bancaDuniversidade{Universidade Federal de Santa Catarina}
+%% editar arquivo formatos/definicoesFolhaDeAprovacao
+%% para remover algum elemento da banca
+%\cidade{Florianópolis}
+%\dia{27}
+%\coordenador{Prof. Patrick Kuo-Peng, Dr.}
+%\coordenadorCargo{Coordenador }
+%\instituicao{Universidade Federal de Santa Catarina}
+%\mes{setembro}
+%\orientador{Prof. Marcelo Lobo Heldwein, Dr. Sc.}
+%\orientadorCargo{Orientador}
+%\coorientador{Prof. Daniel Juan Pagano, Dr.}
+%\coorientadorCargo{Co-orientador}
+%\orientadorUniversidade{Universidade Federal de Santa Catarina}
+%\programa{Programa de Pós-Graduação em Engenharia Elétrica}
+%\tipoTrabalho{Dissertação}
+%\titulacao{Mestre}
+%\titulo{Modelagem e Controle de Retificadores PWM Trifásicos Conectados a Geradores Síncronos a Ímãs Permanentes em Sistemas de Conversão de Energia Eólica}
+
+\ano{2015}
+\area{Engenharia Elétrica}
+\areaConcentracao{Eletrônica de Potência e Acionamento Elétrico}
+\autor{Daniel Augusto Figueirêdo Collier}
+% editar arquivo formatos/definicoesFolhaDeAprovacao
+% para remover algum elemento da banca
+\cidade{Florianópolis}
+\dia{25}
+\coordenador{Prof. Patrick Kuo-Peng, Dr.}
+\coordenadorCargo{Coordenador }
+\instituicao{Universidade Federal de Santa Catarina}
+\mes{outubro}
+\orientador{Prof. Marcelo Lobo Heldwein, Dr. Sc.}
+\orientadorCargo{Orientador}
+\orientadorUniversidade{Universidade Federal de Santa Catarina}
+\programa{Programa de Pós-Graduação em Engenharia Elétrica}
+\tipoTrabalho{Qualificação de Doutorado}
+\titulacao{Doutor em Engenharia Elétrica}
+\titulo{Contribuição ao Estudo de Retificadores Multiníveis PWM Unidirecionais Trifásicos com Interruptores em CA em Delta}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LOGOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\logoUFSC}{ufsc.eps}
+\newcommand{\escalaUFSC}{0.65}
+\newcommand{\logoLAB}{inep.eps}
+\newcommand{\escalaLAB}{0.70}
+
+% New commands
+\newcommand{\figref}[1]{Figura~\ref{#1}}  % Cross-reference of figures
+\newcommand{\tabref}[1]{Tabela~\ref{#1}}  % Cross-reference of tables
+\newcommand{\secref}[1]{Seção~\ref{#1}}  % Cross-reference of equations
+\newcommand{\equref}[1]{(\ref{#1})}  % Cross-reference of equations
+
+\newcommand{\deltavsr}{$\Delta$VSR}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% USO PESSOAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hyphenation{
+  a-pre-sen-ta-dos a-pre-sen-ta-ções a-pre-sen-ta-da a-pro-xi-mar a-na-li-sar a-e-ro-di-nâ-mi-cos 
+    a-na-li-sa-das a-pre-sen-ta a-pro-xi-ma-ção a-xi-al a-e-ro-di-nâ-mi-co a-pre-sen-ta-das
+    a-na-ló-gi-ca a-tu-a-li-za-do a-mor-te-ci-men-to a-na-ló-gi-cos a-mos-tra a-ce-le-rar
+    a-mos-tra-gem a-pre-sen-ta-do al-go-rit-mo a-na-li-sa-do a-li-men-ta-ção
+  ba-lan-ce-a-das
+  con-tro-le con-su-mi-da cor-ren-tes con-du-ção con-ti-nua-ram con-si-de-rar ca-rac-te-ri-za-da
+    con-di-ção com-por-ta-men-to cons-tru-í-das co-mer-ci-ais con-fi-gu-ra-ção cons-tru-ção 
+    con-si-de-ra-ção cor-res-pon-de con-si-de-ra-das clas-si-fi-ca---se cos-se-noi-dais co-mo
+    con-di-ções com-pen-sa-ção cons-tan-te con-si-de-ra-do cons-tru-ir ca-pa-ci-ti-va
+    co-nhe-ci-do ca-rac-te-rís-ti-ca con-si-de-ra---se con-si-de-ra co-mer-ci-al-men-te con-fi-gu-ra-ções
+    ca-rac-te-ri-zan-do ca-rac-te-rís-ti-cas ca-rac-te-ri-za
+  des-co-nhe-ci-das dis-se-mi-na-dos di-fe-ren-ci-ais di-nâ-mi-co dou-to-ra-do di-men-sio-na-men-to
+    di-fe-ren-tes des-cri-ta de-no-mi-na-dor de-ta-lhes des-ta-que des-cri-to di-mi-nu-í-dos do-mí-nio
+    di-nâ-mi-ca de-mos-tran-do---se de-ta-lha-da de-mons-trar di-fe-ren-cial
+  e-ner-gia e-li-mi-nar e-le-va es-tá-ti-cos en-ge-nha-ria es-co-lhi-da e-qui-va-len-tes
+  	es-ta-do en-la-ces e-xem-plo e-lé-tri-ca en-ge-nhei-ro ex-em-pli-fi-car e-ó-li-co es-ta-bi-li-da-de
+  	e-qua-ções e-qui-va-len-te e-xa-ta en-ti-tu-la-do e-le-men-tos
+  fe-de-ral fle-xi-bi-li-da-de fun-ção fun-ções fi-na-li-da-de fo-ram fo-co fa-ci-li-da-de fi-gu-ra
+  ge-ra-do-res ge-ne-ra-li-za-das ge-ra-do ge-ra-das ge-ra-ção ge-ne-ra-li-za-do gran-de
+    gran-des gra-du-a-ção ga-ran-tir
+  held-wein
+  i-lus-tra-do im-por-tan-tes ins-tan-tâ-ne-as im-pos-tas in-du-tân-cias i-ni-ci-al-men-te 
+     i-lus-tra-das i-lus-tra-da i-lus-tra-dos i-guais i-ni-ci-a-li-za-ção ins-ta-bi-li-da-de i-te-ra-ti-vo
+     in-ter-ca-la-da
+  %
+  %
+  la-mi-nar li-ser-re li-mi-tar li-mi-te li-mi-tes li-mi-ta-ção li-mi-ta-da li-ne-a-ri-za-dos li-te-ra-tu-ra
+  li-mi-ta-dos
+  mo-de-lo mo-de-los mo-der-nos má-xi-ma mag-né-ti-co mi-ni-mi-za-ção me-no-res me-câ-ni-ca
+     má-qui-nas ma-te-má-ti-ca mo-du-la-ção mos-tra-do mes-mo ma-xi-mi-zar ma-xi-mi-za-ção me-to-do-lo-gia mar-gem
+     mos-tran-do ma-ry-a-ma me-lho-ria mos-tra-dos mo-no-fá-si-cos me-lhor mo-di-fi-ca-da ma-nu-al múl-ti-plos
+  no-mi-nal ne-nhum nu-mé-ri-ca no-mi-nais nor-ma-li-za-do ma-lha ma-lhas má-xi-mo me-lho-rar ne-ces-sá-rio ne-ces-sá-ria
+  na-tu-ral-men-te na-tu-ral ne-gli-gen-ci-a-das
+  o-pe-ra-vam o-pe-ra-ção o-pe-rar ob-tém---se ou-tras o-ti-mi-za-do o-pe-ra-ci-o-nais
+  pro-gra-ma pro-pos-to pos-si-bi-li-da-de per-ma-nen-tes pro-pos-to po-tên-cias pós---gra-du-a-ção
+    pos-si-bi-li-da-des pro-ble-ma pro-ble-mas pro-pos-ta pro-pos-tos pro-pos-tas  po-tên-cia pa-râ-me-tros pa-râ-me-tro
+    po-pu-lar-men-te pers-pec-ti-vas pos-ti-gli-o-ne pró-xi-ma
+  quan-do qua-li-da-de qua-dra-tu-ra
+  re-qui-si-tos re-no-vá-veis res-tri-ção res-pon-sá-veis re-sul-ta-do res-pei-ta-das re-gu-lar re-qui-si-to
+     re-pre-sen-ta ra-nhu-ra ra-nhu-ras re-pre-sen-ta---se re-ca-pi-tu-la-do re-a-li-za-das res-pec-ti-va-men-te
+     res-tri-ções res-pon-der	re-fe-ren-tes res-pei-ta-dos re-a-li-zan-do rá-pi-da rá-pi-do re-la-ci-o-na-das
+     res-pos-tas res-pos-ta re-fe-rên-cia re-es-cre-vendo re-a-li-za-do re-a-li-za-da res-pon-sá-vel re-a-li-zá-vel re-a-li-za-ções
+  se-noi-dal sa-li-ên-cia sen-ti-do sub-me-ti-da se-me-lhan-te sa-li-ên-cias se-noi-dais
+    sis-te-ma se-ção se-me-lhan-tes sín-cro-nos subs-ti-tu-in-do si-mu-la-ção sis-te-ma-ti-za-da
+	tur-bi-na tri-fá-si-cos trans-for-ma-ção te-se tur-bi-nas tra-ba-lha-rá trans-fe-rên-cia tra-ba-lhos te-nham tor-nan-do---se
+	tri-fá-si-co tem-po tra-ba-lhan-do
+	u-ni-tá-ria
+	va-ri-á-veis  ve-to-ri-al va-ri-á-vel va-lo-res ve-tor ve-to-res ve-ri-fi-ca-da vol-ta-da vo-lu-me ve-ri-fi-car
+	por-ta-bi-li-da-de pro-pi-ciar
+	%
+	%
+	%
+}
+				 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INÍCIO DO DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ELEMENTOS PRÉ-TEXTUAIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Formatos/definicoesPreTextual}
+\capaSimples
+\capa
+%\folhadeaprovacao
+%\include{PreTextual/dedicatoria}
+%\include{PreTextual/agradecimentos}
+%\include{PreTextual/epigrafe}	
+\include{PreTextual/resumo}
+\include{PreTextual/abstract}
+\listoffigures
+\listoftables
+\include{PreTextual/abreviaturasesiglas2}
+%\include{PreTextual/simbolos}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ELEMENTOS TEXTUAIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Formatos/definicoesTextual}
+\include{Textual/introducao}
+\include{Textual/principios02}                   
+\include{Textual/contribuicoes} 
+\include{Textual/nDeltaVSR}
+\include{Textual/conclusoes} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ELEMENTOS PÓS-TEXTUAIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Referências Bibliográficas}
+\bibliography{PosTextual/bibliografia} 
+
+\emph{\appendix}
+\renewcommand{\appendixtocname}{Apêndices}
+\renewcommand{\appendixpagename}{Apêndices}
+\cleardoublepage
+\addappheadtotoc
+\appendixpage
+\renewcommand{\thechapter}{\Roman{chapter}}	
+   
+%\include{PosTextual/ca}   
+\include{PosTextual/controle}
+\include{PosTextual/ondulacao}
+
+\emph{\appendix}
+\renewcommand{\appendixtocname}{Anexos}
+\renewcommand{\appendixname}{Anexos}
+\renewcommand{\appendixpagename}{Anexos}
+\cleardoublepage
+\addappheadtotoc
+\appendixpage
+\renewcommand{\thechapter}{\Roman{chapter}}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{PosTextual/artigo_gCSC}
+\include{PosTextual/artigo_modulacoes}
+\include{PosTextual/artigo_ondulacao}
+\include{PosTextual/artigo_sincronizacao}
+\include{PosTextual/artigo_embarcacoes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FIM DO DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

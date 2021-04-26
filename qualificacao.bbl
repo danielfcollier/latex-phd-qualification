@@ -1,0 +1,687 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{1.45.2.1 }
+
+\bibitem[Alcazar et al. 2013]{Alcazar-01}
+\abntrefinfo{Alcazar et al.}{ALCAZAR et al.}{2013}
+{ALCAZAR, Y. J.~A. et al. Dc-dc nonisolated boost converter based on the
+  three-state switching cell and voltage multiplier cells.
+\emph{IEEE Trans. Ind. Electron.}, v.~60, n.~10, p. 4438--4449, 2013.}
+
+\bibitem[Angulo et al. 2013]{Caballero}
+\abntrefinfo{Angulo et al.}{ANGULO et al.}{2013}
+{ANGULO, M. et al. Active power filter control strategy with implicit
+  closed-loop current control and resonant controller.
+\emph{IEEE Trans. Ind. Electron.}, v.~60, n.~7, p. 2721--2730, 2013.}
+
+\bibitem[Arsov 2010]{Walber-02}
+\abntrefinfo{Arsov}{ARSOV}{2010}
+{ARSOV, G.~L. The sixth decade of the thyristor.
+\emph{Electronics Journal}, v.~14, n.~1, p.~3--7, 2010.}
+
+\bibitem[Arsov 2013]{Walber-01}
+\abntrefinfo{Arsov}{ARSOV}{2013}
+{ARSOV, G.~L. Celebrating 65th anniversary of the transistor.
+\emph{Electronics Journal}, v.~17, n.~2, p. 63--70, 2013.}
+
+\bibitem[Barbi 2006]{Barbi}
+\abntrefinfo{Barbi}{BARBI}{2006}
+{BARBI, I. \emph{Eletr\^onica de Pot\^encia}. Florianopolis, Brazil: Edi{\c
+  c}\~ao do Autor, 2006. 328~p.}
+
+\bibitem[Barbi e Batista 2010]{Batista-02}
+\abntrefinfo{Barbi e Batista}{BARBI; BATISTA}{2010}
+{BARBI, I.; BATISTA, F. A.~B. Space vector modulation for two-level
+  unidirectional pwm rectifiers.
+\emph{IEEE Trans. Power Electron.}, v.~25, n.~1, p. 178--187, 2010.}
+
+\bibitem[Batista 2006]{Batista-03}
+\abntrefinfo{Batista}{BATISTA}{2006}
+{BATISTA, F. A.~B.
+\emph{Modula{\c c}\~ao Vetorial Aplicada a Retificadores PWM Trif\'asicos
+  Unidirecionais}.
+297~p. Tese (Doutorado em Engenharia El\'etrica) --- Instituto de Eletr\^onica
+  de Pot\^encia, Universidade Federal de Santa Catarina, Florianopolis, Brazil,
+  2006.}
+
+\bibitem[Batista e Barbi 2007]{Batista-01}
+\abntrefinfo{Batista e Barbi}{BATISTA; BARBI}{2007}
+{BATISTA, F. A.~B.; BARBI, I. Space vector modulation applied to three-phase
+  three-switch two-level unidirectional pwm rectifier.
+\emph{IEEE Trans. Power Electron.}, v.~22, n.~6, p. 2245--2252, 2007.}
+
+\bibitem[Ben-Yaakov e Zeltser 1998]{CSC-01}
+\abntrefinfo{Ben-Yaakov e Zeltser}{BEN-YAAKOV; ZELTSER}{1998}
+{BEN-YAAKOV, S.; ZELTSER, I. Pwm converters with resistive input.
+\emph{IEEE Trans. Ind. Electron.}, v.~45, n.~3, p. 519--520, 1998.}
+
+\bibitem[Bezerra 2013]{Pedro-02}
+\abntrefinfo{Bezerra}{BEZERRA}{2013}
+{BEZERRA, P. A.~M.
+Mestrado em Engenharia El\'etrica, \emph{Inversor Trif\'asico PWM Fonte de
+  Tens\~ao com Integra{\c c}\~ao de Interruptores em Delta}. Florianopolis,
+  Brazil: Instituto de Eletr\^onica de Pot\^encia, Universidade Federal de
+  Santa Catarina, 2013.
+378~p.}
+
+\bibitem[Bezerra, Ortmman e Heldwein 2013]{Pedro-01}
+\abntrefinfo{Bezerra, Ortmman e Heldwein}{BEZERRA; ORTMMAN; HELDWEIN}{2013}
+{BEZERRA, P. A.~M.; ORTMMAN, M.~S.; HELDWEIN, M.~L. Modulation strategies for
+  the two-level three-phase delta-switch voltage source inverter. In:
+  \emph{Int. Conf. Ind. Technology (ICIT)}. Cape Town, South Africa: IEEE,
+  2013. p. 594--599.}
+
+\bibitem[Boillat e Kolar 2012]{Boillat-01}
+\abntrefinfo{Boillat e Kolar}{BOILLAT; KOLAR}{2012}
+{BOILLAT, D.~O.; KOLAR, J.~W. Modeling and experimental analysis of a coupling
+  inductor employed in a high performance ac power source. In:  \emph{Int.
+  Conf. Renewable Energy Research and Applicat. (ICRERA)}. Nagasaki, Japan:
+  IEEE, 2012. p. 1--18.}
+
+\bibitem[Borgonovo 2005]{Borgonovo-01}
+\abntrefinfo{Borgonovo}{BORGONOVO}{2005}
+{BORGONOVO, D.
+\emph{An\'alise, Modelagem e Controle de Retificadores PWM Trif\'asicos}.
+274~p. Tese (Doutorado em Engenharia El\'etrica) --- Instituto de Eletr\^onica
+  de Pot\^encia, Universidade Federal de Santa Catarina, Florianopolis, Brazil,
+  2005.}
+
+\bibitem[Borgonovo e Mussa 2008]{CSC-04}
+\abntrefinfo{Borgonovo e Mussa}{BORGONOVO; MUSSA}{2008}
+{BORGONOVO, D.; MUSSA, S.~A. Single-phase boost pfc voltage-doubler
+  self-controlled using fpga. In:  \emph{39th Annu. Power Electron. Specialists
+  Conf. (PESC)}. Rhodes, Greece: IEEE, 2008. p. 4457--4463.}
+
+\bibitem[Borgonovo et al. 2005]{CSC-03}
+\abntrefinfo{Borgonovo et al.}{BORGONOVO et al.}{2005}
+{BORGONOVO, D. et al. A self-controlled power factor correction single-phase
+  boost pre-regulator. In:  \emph{36th Annu. Power Electron. Specialists Conf.
+  (PESC)}. Recife, PE, Brazil: IEEE, 2005. p. 2351--2357.}
+
+\bibitem[Buso e Mattavelli 2006]{Buso-01}
+\abntrefinfo{Buso e Mattavelli}{BUSO; MATTAVELLI}{2006}
+{BUSO, S.; MATTAVELLI, P. \emph{Digital Control in Power Electronics}. USA:
+  Morgan \& Claypool, 2006. 151~p.}
+
+\bibitem[Cacau et al. 2014]{Ronny-01}
+\abntrefinfo{Cacau et al.}{CACAU et al.}{2014}
+{CACAU, R. G.~A. et al. Five-level t-type inverter based on multistate
+  switching cell.
+\emph{IEEE Trans. Ind. Applicat.}, v.~50, n.~6, p. 3857--3866, 2014.}
+
+\bibitem[Capella et al. 2015]{Interleaving-02}
+\abntrefinfo{Capella et al.}{CAPELLA et al.}{2015}
+{CAPELLA, G.~J. et al. Current-balancing technique for interleaved voltage
+  source inverters with magnetically coupled legs connected in parallel.
+\emph{IEEE Trans. Ind. Electron.}, v.~62, n.~3, p. 1335--1344, 2015.}
+
+\bibitem[Celanovic e Boroyevich 2000]{Vienna-V02}
+\abntrefinfo{Celanovic e Boroyevich}{CELANOVIC; BOROYEVICH}{2000}
+{CELANOVIC, N.; BOROYEVICH, D. A comprehensive study of neutral-point voltage
+  balancing problem in three-level neutral-point-clamped voltage source pwm
+  inverters.
+\emph{IEEE Trans. Power Electronics}, v.~15, n.~2, p. 242--249, 2000.}
+
+\bibitem[Cichowlas e Kamierkowski 2002]{Kamierkowski-02}
+\abntrefinfo{Cichowlas e Kamierkowski}{CICHOWLAS; KAMIERKOWSKI}{2002}
+{CICHOWLAS, M.; KAMIERKOWSKI, M.~P. Comparison of current control techniques
+  for pwm rectifiers. In:  \emph{Int. Symp. Ind. Electron. (ISIE)}. L'Aquila,
+  Italy: IEEE, 2002. v.~4, p. 1259--1263.}
+
+\bibitem[Collier 2011]{Diss}
+\abntrefinfo{Collier}{COLLIER}{2011}
+{COLLIER, D. A.~F.
+Mestrado em Engenharia El\'etrica, \emph{Modelagem e Controle de Retificadores
+  PWM Trif\'asicos Conectados a Geradores S\'incronos a \'Im\~as Permanentes em
+  Sistemas de Convers\~ao de Energia E\'olica}. Florianopolis, Brazil:
+  Instituto de Eletr\^onica de Pot\^encia, Universidade Federal de Santa
+  Catarina, 2011.
+378~p.}
+
+\bibitem[Collier e Heldwein 2013]{APEC}
+\abntrefinfo{Collier e Heldwein}{COLLIER; HELDWEIN}{2013}
+{COLLIER, D. A.~F.; HELDWEIN, M.~L. Comparison of modulation strategies driving
+  a three-phase pwm delta-switch rectifier in wind energy conversion systems
+  applications. In:  \emph{28th Annu. Applied Power Electron. Conf. and Expo.
+  (APEC)}. Long Beach, CA: IEEE, 2013.}
+
+\bibitem[Collier, Maryama e Heldwein 2011]{PCIM}
+\abntrefinfo{Collier, Maryama e Heldwein}{COLLIER; MARYAMA; HELDWEIN}{2011}
+{COLLIER, D. A.~F.; MARYAMA, V.; HELDWEIN, M.~L. {L}ow conduction losses pwm
+  rectifier for high efficiency wind power micro-generation. In:  \emph{Proc.
+  of the Int. Exhibition Conf. Power Electron., Intelligent Motion and Power
+  Quality}. Shanghai, China: PCIM-Asia, 2011.}
+
+\bibitem[Collier, Ortmann e Heldwein 2012]{ICEM}
+\abntrefinfo{Collier, Ortmann e Heldwein}{COLLIER; ORTMANN; HELDWEIN}{2012}
+{COLLIER, D. A.~F.; ORTMANN, M.~S.; HELDWEIN, M.~L. Current self-control
+  applied to sensorless permanent magnet synchronous generators. In:
+  \emph{Proc. of the XXth Int. Conf. Electrical Machines (ICEM)}. Marseille,
+  France: IEEE, 2012.}
+
+\bibitem[Collier, Ortmann e Heldwein 2014]{COMPEL}
+\abntrefinfo{Collier, Ortmann e Heldwein}{COLLIER; ORTMANN; HELDWEIN}{2014}
+{COLLIER, D. A.~F.; ORTMANN, M.~S.; HELDWEIN, M.~L. Ac currents synchronization
+  technique based on the normalized phase-locked loop for modulation of a
+  three-phase pwm delta-switch rectifier. In:  \emph{15th Workshop on Control
+  and Modeling for Power Electron. (COMPEL)}. Santander, Spain: IEEE, 2014.}
+
+\bibitem[Cortez 2012]{Flores-01}
+\abntrefinfo{Cortez}{CORTEZ}{2012}
+{CORTEZ, D.~F.
+Mestrado em Engenharia El\'etrica, \emph{Inversor Trif\'asico utilizando
+  C\'elula de Comuta{\c c}\~ao de M\'ultiplos Estados para Conex\~ao de um
+  Sistema E\'olico \`a Rede El\'etrica}. Florianopolis, Brazil: Instituto de
+  Eletr\^onica de Pot\^encia, Universidade Federal de Santa Catarina, 2012.
+229~p.}
+
+\bibitem[Cougo 2010]{Cougo-01}
+\abntrefinfo{Cougo}{COUGO}{2010}
+{COUGO, B.
+\emph{Design and Optimization of Intercell Transformers for Parallel Multicell
+  Converters}.
+247~p. Tese (Doctorat en G\'enie \'Electtrique) --- Laboratoire LAPLACE,
+  Institut National Polytechnique de (INP) Toulouse, Toulouse, France, 2010.}
+
+\bibitem[Cougo et al. 2012]{Cougo-05}
+\abntrefinfo{Cougo et al.}{COUGO et al.}{2012a}
+{COUGO, B. et al. Comparative evaluation of individual and coupled inductor
+  arrangements for input filters of pv inverter systems. In:  \emph{7th Int.
+  Conf. Integrated Power Electron. Syst. (CIPS)}. Nuremberg, Germany: IEEE,
+  2012. p.~1--8.}
+
+\bibitem[Cougo et al. 2012]{Cougo-03}
+\abntrefinfo{Cougo et al.}{COUGO et al.}{2012b}
+{COUGO, B. et al. Pd modulation scheme for three-phase parallel multilevel
+  inverters.
+\emph{IEEE Trans. Ind. Electron.}, v.~59, n.~2, p. 690--700, 2012.}
+
+\bibitem[Cougo, Meynard e Gateau 2011]{Cougo-04}
+\abntrefinfo{Cougo, Meynard e Gateau}{COUGO; MEYNARD; GATEAU}{2011}
+{COUGO, B.; MEYNARD, T.; GATEAU, G. Parallel three-phase inverters: Optimal pwm
+  method for flux reduction in intercell transformers.
+\emph{IEEE Trans. Power Electron.}, v.~26, n.~8, p. 2184--2191, 2011.}
+
+\bibitem[Dalessandro, Round e Kolar 2008]{Vienna-V01}
+\abntrefinfo{Dalessandro, Round e Kolar}{DALESSANDRO; ROUND; KOLAR}{2008}
+{DALESSANDRO, L.; ROUND, S.~D.; KOLAR, J.~W. Center-point voltage balancing of
+  hysteresis current controlled three-level pwm rectifiers.
+\emph{IEEE Trans. Power Electron.}, v.~23, n.~5, p. 2477--2488, 2008.}
+
+\bibitem[Drofenik e Kolar 2005]{Drofenik-01}
+\abntrefinfo{Drofenik e Kolar}{DROFENIK; KOLAR}{2005}
+{DROFENIK, U.; KOLAR, J.~W. A general scheme for calculating switching and
+  conduction losses of power semiconductors in numerical circuit simulations of
+  power electronic systems. In:  . Niigata, Japan: IPEC, 2005. p.~4--8.}
+
+\bibitem[Duesterhoeft, Schulz e Clarke 1951]{Clarke}
+\abntrefinfo{Duesterhoeft, Schulz e Clarke}{DUESTERHOEFT; SCHULZ; CLARKE}{1951}
+{DUESTERHOEFT, W.~C.; SCHULZ, M.~W.; CLARKE, E. Determination of instantaneous
+  currents and voltages by means of alpha, beta, and zero components.
+\emph{Trans. Amer. Inst. Elect. Engineers}, v.~70, n.~2, p. 1248--1255, 1951.}
+
+\bibitem[Ewanchuk e Salmon 2013]{Interleaving-04}
+\abntrefinfo{Ewanchuk e Salmon}{EWANCHUK; SALMON}{2013}
+{EWANCHUK, J.; SALMON, J. Three-limb coupled inductor operation for paralleled
+  multi-level three-phase voltage sourced inverters.
+\emph{IEEE Trans. Ind. Electron.}, v.~60, n.~5, p. 1979--1988, 2013.}
+
+\bibitem[Franklin, Powell e Workman 1998]{Franklin-01}
+\abntrefinfo{Franklin, Powell e Workman}{FRANKLIN; POWELL; WORKMAN}{1998}
+{FRANKLIN, G.~F.; POWELL, J.~D.; WORKMAN, M. \emph{Digital Control of Dynamic
+  Systems}. Piscataway, NJ: Ellis-Kagle Press, 1998. 850~p.}
+
+\bibitem[Friedli, Hartmann e Kolar 2014]{Kolar-02}
+\abntrefinfo{Friedli, Hartmann e Kolar}{FRIEDLI; HARTMANN; KOLAR}{2014}
+{FRIEDLI, T.; HARTMANN, M.; KOLAR, J.~W. The essence of three-phase pfc
+  rectifier systems - part ii.
+\emph{IEEE Trans. Power Electron.}, v.~29, n.~2, p. 543--560, 2014.}
+
+\bibitem[Hang et al. 2014]{Vienna-02}
+\abntrefinfo{Hang et al.}{HANG et al.}{2014}
+{HANG, L. et al. Equivalence of svm and carrier-based pwm in
+  three-phase/wire/level vienna rectifier and capability of unbalanced-load
+  control.
+\emph{IEEE Trans. Ind. Electron.}, v.~61, n.~1, p. 20--28, 2014.}
+
+\bibitem[Hartmann 2011]{Hartmann-03}
+\abntrefinfo{Hartmann}{HARTMANN}{2011}
+{HARTMANN, M.
+\emph{Ultra-Compact and Ultra-Efficient Three-Phase PWM Rectifier Systems for
+  More Electric Aircraft}.
+423~p. Tese (Doctor of Sciences) --- Swiss Federal Institue of Technology,
+  Zurich, Switzerland, 2011.}
+
+\bibitem[Hartmann, Ertl e Kolar 2013]{Hartmann-01}
+\abntrefinfo{Hartmann, Ertl e Kolar}{HARTMANN; ERTL; KOLAR}{2013}
+{HARTMANN, M.; ERTL, H.; KOLAR, J.~W. Current control of three-phase rectifier
+  systems using three independent current controllers.
+\emph{IEEE Trans. Power Electron.}, v.~28, n.~8, p. 3988--4000, 2013.}
+
+\bibitem[Hartmann et al. 2012]{Hartmann-02}
+\abntrefinfo{Hartmann et al.}{HARTMANN et al.}{2012}
+{HARTMANN, M. et al. A three-phase delta switch rectifier for use in modern
+  aircraft.
+\emph{IEEE Trans. Ind. Electron.}, v.~59, n.~9, p. 3635--3647, 2012.}
+
+\bibitem[Hartmann, Miniboeck e Kolar 2009]{Hartmann-04}
+\abntrefinfo{Hartmann, Miniboeck e Kolar}{HARTMANN; MINIBOECK; KOLAR}{2009}
+{HARTMANN, M.; MINIBOECK, J.; KOLAR, J.~W. A three-phase delta switch rectifier
+  for more electric aircraft applications employing a novel pwm current control
+  concept. In:  \emph{24th Annu. Applied Power Electron. Conf. and Expo.
+  (APEC)}. Washington, DC: IEEE, 2009. p. 1633--1640.}
+
+\bibitem[Hausmann 2011]{Hausmann-03}
+\abntrefinfo{Hausmann}{HAUSMANN}{2011}
+{HAUSMANN, R.
+\emph{Conversores CC-CA Multin\'iveis com C\'elula de Acoplamento Indutivo}.
+251~p. Tese (Doutorado em Engenharia El\'etrica) --- Instituto de Eletr\^onica
+  de Pot\^encia, Universidade Federal de Santa Catarina, Florianopolis, Brazil,
+  2011.}
+
+\bibitem[Hausmann e Barbi 2011]{Hausmann-02}
+\abntrefinfo{Hausmann e Barbi}{HAUSMANN; BARBI}{2011}
+{HAUSMANN, R.; BARBI, I. Three-phase dc-ac converter using four-state switching
+  cell.
+\emph{IEEE Trans. Power Electron.}, v.~26, n.~7, p. 1857--1867, 2011.}
+
+\bibitem[Hava, Kerkman e Lipo 1998]{Lipo-02}
+\abntrefinfo{Hava, Kerkman e Lipo}{HAVA; KERKMAN; LIPO}{1998}
+{HAVA, A.~M.; KERKMAN, R.~J.; LIPO, T.~A. A high-performance generalized
+  discontinuous pwm algorithm.
+\emph{IEEE Trans. Ind. Appl.}, v.~34, n.~5, p. 1059--1071, 1998.}
+
+\bibitem[Heldwein, Mussa e Barbi 2010]{Heldwein-01}
+\abntrefinfo{Heldwein, Mussa e Barbi}{HELDWEIN; MUSSA; BARBI}{2010}
+{HELDWEIN, M.~L.; MUSSA, S.~A.; BARBI, I. Three-phase multilevel pwm rectifiers
+  based on conventional bidirectional converters.
+\emph{IEEE Trans. Power Electron.}, v.~25, n.~3, p. 545--549, 2010.}
+
+\bibitem[Holmes e Lipo 2003]{Lipo}
+\abntrefinfo{Holmes e Lipo}{HOLMES; LIPO}{2003}
+{HOLMES, D.~G.; LIPO, T.~A. \emph{Pulse Width Modulation for Power Converters
+  (Principles and Practice)}. Piscataway, NJ: John Wiley \& Sons, Inc., 2003.
+  744~p.}
+
+\bibitem[Hu et al. 2014]{Interleaving-03}
+\abntrefinfo{Hu et al.}{HU et al.}{2014}
+{HU, Y. et al. Three-phase interleaved high-step-up converter with
+  coupled-inductor-based voltage quadrupler.
+\emph{IET Power Electronics}, v.~7, n.~7, p. 1841--1849, 2014.}
+
+\bibitem[IEC-EMC.Standards 1995]{IEC-EMC}
+\abntrefinfo{IEC-EMC.Standards}{IEC-EMC.STANDARDS}{1995}
+{IEC-EMC.STANDARDS. Int. electrotechnical commission (iec) - emc standards -
+  part 3: Limits - section 2: Limits for harmonic current emissions (equipament
+  input current lower than 16 a per phase).
+1995.}
+
+\bibitem[IEC-Sec.551-14 1998]{MIPT-IEC}
+\abntrefinfo{IEC-Sec.551-14}{IEC-SEC.551-14}{1998}
+{IEC-SEC.551-14. Int. electrotechnical commission (iec) - power electronics
+  section 551-14: Essencial components of power electronic equipament -
+  interphase transformer.
+1998.}
+
+\bibitem[IEEE-Std.519 1992]{IEEE-519}
+\abntrefinfo{IEEE-Std.519}{IEEE-STD.519}{1992}
+{IEEE-STD.519. Ieee standard 519 - recommended practices and requirements for
+  harmonics control in electric power systems.
+1992.}
+
+\bibitem[IEEE-Std.C57.12.80 2002]{MIPT-IEEE}
+\abntrefinfo{IEEE-Std.C57.12.80}{IEEE-STD.C57.12.80}{2002}
+{IEEE-STD.C57.12.80. Ieee standard terminology for power and distribution
+  transformers (revision of ieee-std.c57.12.80-1978).
+2002.}
+
+\bibitem[Jappe, Mussa e Heldwein 2011]{Jappe-02}
+\abntrefinfo{Jappe, Mussa e Heldwein}{JAPPE; MUSSA; HELDWEIN}{2011}
+{JAPPE, T.~K.; MUSSA, S.~A.; HELDWEIN, M.~L. Analysis of indirect matrix
+  converter topologies in voltage step-up operation mode. In:  \emph{Brazilian
+  Power Electron. Conf. (COBEP)}. Natal, Brazil: IEEE, 2011. p. 930--935.}
+
+\bibitem[Jiang e Wang 2013]{Wang-02}
+\abntrefinfo{Jiang e Wang}{JIANG; WANG}{2013}
+{JIANG, D.; WANG, F. Variable switching frequency pwm for three-phase
+  converters based on current ripple prediction.
+\emph{IEEE Trans. Power Electron.}, v.~28, n.~11, p. 4951--4961, 2013.}
+
+\bibitem[Jiang e Wang 2014]{Wang-03}
+\abntrefinfo{Jiang e Wang}{JIANG; WANG}{2014}
+{JIANG, D.; WANG, F. Current-ripple prediction for three-phase pwm converters.
+\emph{IEEE Trans. Ind. Appl.}, v.~50, n.~1, p. 531--538, 2014.}
+
+\bibitem[Kazmierkowski e Malesani 1998]{Kazmierkowski-01}
+\abntrefinfo{Kazmierkowski e Malesani}{KAZMIERKOWSKI; MALESANI}{1998}
+{KAZMIERKOWSKI, M.~P.; MALESANI, L. Current control techniques for three-phase
+  voltage-source pwm converters: a survey.
+\emph{IEEE Trans. Ind. Electron.}, v.~45, n.~5, p. 691--703, 1998.}
+
+\bibitem[Kolar, Ertl e Zach 1990]{Kolar-03}
+\abntrefinfo{Kolar, Ertl e Zach}{KOLAR; ERTL; ZACH}{1990}
+{KOLAR, J.~W.; ERTL, H.; ZACH, F.~C. Realization considerations for
+  unidirectional three-phase pwm rectifier system with low effects on the
+  mains. In:  \emph{6th Conf. Power Electronics and Motion Control (PEMC)}.
+  Budapest, Hungary: IEEE, 1990.}
+
+\bibitem[Kolar, Ertl e Zach 1991]{Kolar-04}
+\abntrefinfo{Kolar, Ertl e Zach}{KOLAR; ERTL; ZACH}{1991}
+{KOLAR, J.~W.; ERTL, H.; ZACH, F.~C. Influence of the modulation method on the
+  conduction and switching losses of a pwm converter system.
+\emph{IEEE Trans. Ind. Appl.}, v.~27, n.~6, p. 1063--1075, 1991.}
+
+\bibitem[Kolar e Friedli 2013]{Kolar-01}
+\abntrefinfo{Kolar e Friedli}{KOLAR; FRIEDLI}{2013}
+{KOLAR, J.~W.; FRIEDLI, T. The essence of three-phase pfc rectifier systems -
+  part i.
+\emph{IEEE Trans. Power Electron.}, v.~28, n.~1, p. 176--198, 2013.}
+
+\bibitem[Komatsu et al. 2010]{RBIGBT-01}
+\abntrefinfo{Komatsu et al.}{KOMATSU et al.}{2010}
+{KOMATSU, K. et al. New igbt modules for advanced neutral-point-clamped 3-level
+  power converters. In:  \emph{Int. Power Electron. Conf. (IPEC)}. Sapporo,
+  Japan: IEEE, 2010. p. 523--527.}
+
+\bibitem[Labour\'e et al. 2008]{Meynard-01}
+\abntrefinfo{Labour\'e et al.}{LABOUR\'E et al.}{2008}
+{LABOUR\'E, E. et al. A theoretical approach to intercell transformers,
+  application to interleaved converters.
+\emph{IEEE Trans. Power Electron.}, v.~23, n.~1, p. 464--474, 2008.}
+
+\bibitem[Lai et al. 2009]{Vienna-03}
+\abntrefinfo{Lai et al.}{LAI et al.}{2009}
+{LAI, R. et al. Average modeling and control design for vienna-type rectifiers
+  considering the dc-link voltage balance.
+\emph{IEEE Trans. Power Electron.}, v.~24, n.~11, p. 2509--2522, 2009.}
+
+\bibitem[Lange e Heldwein 2011]{Lange-01}
+\abntrefinfo{Lange e Heldwein}{LANGE; HELDWEIN}{2011}
+{LANGE, A. D.~B.; HELDWEIN, M.~L. Light load stability improvement for
+  single-phase boost pfc rectifier using input current self-control technique.
+  In:  \emph{Brazilian Power Electron. Conf. (COBEP)}. Natal, Brazil: IEEE,
+  2011.}
+
+\bibitem[Lee e Lee 2015]{Vienna-01}
+\abntrefinfo{Lee e Lee}{LEE; LEE}{2015}
+{LEE, J.-S.; LEE, K. Carrier-based discontinuous pwm method for vienna
+  rectifiers.
+\emph{IEEE Trans. Power Electron.}, v.~30, n.~6, p. 2896--2900, 2015.}
+
+\bibitem[Liebig, Engler e Lutz 2011]{Lutz-01}
+\abntrefinfo{Liebig, Engler e Lutz}{LIEBIG; ENGLER; LUTZ}{2011}
+{LIEBIG, S.; ENGLER, A.; LUTZ, J. Design and evaluation of state of the art
+  rectifiers dedicated for a 46 kw e-ecs aerospace application with respect to
+  power density and reliability. In:  \emph{14th European Conf. Power Electron.
+  and Applicat. (EPE)}. Birmingham, England: IEEE, 2011. p. 1--10.}
+
+\bibitem[Liu et al. 2001]{Liu-01}
+\abntrefinfo{Liu et al.}{LIU et al.}{2001}
+{LIU, J. et al. Evaluation of power losses in different ccm mode single-phase
+  boost pfc converters via a simulation tool. In:  \emph{36th Conf. Rec. of the
+  Ind. Applicat. Soc. Ann. Meeting}. Chicago, IL: IEEE, 2001. v.~4, p.
+  2455--2459.}
+
+\bibitem[Lu et al. 2015]{Interleaving-01}
+\abntrefinfo{Lu et al.}{LU et al.}{2015}
+{LU, S. et al. Coupled inductors in interleaved multiphase three-level dc-dc
+  converter for high power applications.
+\emph{IEEE Trans. Power Electron.}, PP, n.~99, p.~1--1, 2015.}
+
+\bibitem[Malinowski 2001]{Malinowski-01}
+\abntrefinfo{Malinowski}{MALINOWSKI}{2001}
+{MALINOWSKI, M.
+\emph{Sensorless Control Strategies for Three-Phase PWM Rectifiers}.
+128~p. Tese (Doctor of Philosophy) --- Warsaw University of Technology, Warsaw,
+  Poland, 2001.}
+
+\bibitem[Marchesoni, Segarich e Soressi 2005]{Vienna-V03}
+\abntrefinfo{Marchesoni, Segarich e Soressi}{MARCHESONI; SEGARICH;
+  SORESSI}{2005}
+{MARCHESONI, M.; SEGARICH, P.; SORESSI, E. A new control strategy for
+  neutral-point-clamped active rectifiers.
+\emph{IEEE Trans. Ind. Electron.}, v.~52, n.~2, p. 462--470, 2005.}
+
+\bibitem[Martin et al. 2014]{Villar-01}
+\abntrefinfo{Martin et al.}{MARTIN et al.}{2014}
+{MARTIN, K. et al. Design of a 2.5kw pfc boost full-sic converter based on
+  close-coupled inductors. In:  \emph{15th Workshop on Control and Modeling for
+  Power Electron. (COMPEL)}. Santander, Spain: IEEE, 2014. p.~1--7.}
+
+\bibitem[Mather e Maksimovic 2011]{CSC-05}
+\abntrefinfo{Mather e Maksimovic}{MATHER; MAKSIMOVIC}{2011}
+{MATHER, B.~A.; MAKSIMOVIC, D. A simple digital power-factor correction
+  rectifier controller.
+\emph{IEEE Trans. Power Electron.}, v.~26, n.~1, p. 9--19, 2011.}
+
+\bibitem[Meynard et al. 2010]{Cougo-02}
+\abntrefinfo{Meynard et al.}{MEYNARD et al.}{2010}
+{MEYNARD, T. et al. Parallel multicell converters for high current: Design of
+  intercell transformers. In:  \emph{Int. Conf. Ind. Technology (ICIT)}. Vi a
+  del Mar, Chile: IEEE, 2010. p. 1359--1364.}
+
+\bibitem[Miller 2008]{Miller-01}
+\abntrefinfo{Miller}{MILLER}{2008}
+{MILLER, S. K.~T.
+\emph{Analysis of Three-Phase Rectifiers with AC-Side Switches and Interleaved
+  Three-Phase Voltage-Source Converters}.
+266~p. Tese (Ph.D. dissertation) --- Faculty of Rensselaer Polytechnic
+  Institute, Troy, NY, 2008.}
+
+\bibitem[Miller e Sun 2006]{Miller-02}
+\abntrefinfo{Miller e Sun}{MILLER; SUN}{2006}
+{MILLER, S. K.~T.; SUN, J. Comparative study of three-phase pwm rectifiers for
+  wind energy conversion. In:  \emph{21th Annu. Applied Power Electron. Conf.
+  and Expo. (APEC)}. Dallas, TX: IEEE, 2006. p. 937--943.}
+
+\bibitem[Neacsu 1999]{Neacsu-01}
+\abntrefinfo{Neacsu}{NEACSU}{1999}
+{NEACSU, D. Vectorial current control techniques for three-phase ac/dc boost
+  converters. In:  \emph{Int. Symp. Ind. Electron. (ISIE)}. Bled, Slovenia:
+  IEEE, 1999. v.~2, p. 527--532.}
+
+\bibitem[Ortmann 2012]{Ortmann-01}
+\abntrefinfo{Ortmann}{ORTMANN}{2012}
+{ORTMANN, M.~S.
+\emph{Retificadores Multin\'iveis PWM Unidirecionais de Alto Fator de
+  Pot\^encia com C\'elula de Comuta{\c c}\~ao de M\'ultiplos Estados}.
+288~p. Tese (Doutorado em Engenharia El\'etrica) --- Instituto de Eletr\^onica
+  de Pot\^encia, Universidade Federal de Santa Catarina, Florianopolis, Brazil,
+  2012.}
+
+\bibitem[ORTMANN, COLLIER e HELDWEIN 2011]{Patente}
+\abntrefinfo{ORTMANN, COLLIER e HELDWEIN}{ORTMANN; COLLIER; HELDWEIN}{2011}
+{ORTMANN, M.~S.; COLLIER, D. A.~F.; HELDWEIN, M.~L. Auto-controle de corrente
+  para geradores el\'etricos trif\'asicos conectados a retificadores
+  auto-comutados.
+\emph{Pedido de Dep\'osisto de Patente ou Modelo de Utilidade PI1102756-8},
+  DTI/PRPE/UFSC, 2011.}
+
+\bibitem[Ortmann, Mussa e Heldwein 2011]{Ortmann-04}
+\abntrefinfo{Ortmann, Mussa e Heldwein}{ORTMANN; MUSSA; HELDWEIN}{2011}
+{ORTMANN, M.~S.; MUSSA, S.~A.; HELDWEIN, M.~L. Evaluation of carrier-based pwm
+  strategies for multi-state switching cells-based multilevel three-phase
+  rectifiers. In:  \emph{Brazilian Power Electron. Conf. (COBEP)}. Natal,
+  Brazil: IEEE, 2011. p. 903--910.}
+
+\bibitem[Ortmann, Mussa e Heldwein 2012]{Ortmann-03}
+\abntrefinfo{Ortmann, Mussa e Heldwein}{ORTMANN; MUSSA; HELDWEIN}{2012}
+{ORTMANN, M.~S.; MUSSA, S.~A.; HELDWEIN, M.~L. Generalized analysis of a
+  multistate switching cells-based single-phase multilevel pfc rectifier.
+\emph{IEEE Trans. Power Electron.}, v.~27, n.~1, p. 46--56, 2012.}
+
+\bibitem[Ortmann, Mussa e Heldwein 2015]{Ortmann-02}
+\abntrefinfo{Ortmann, Mussa e Heldwein}{ORTMANN; MUSSA; HELDWEIN}{2015}
+{ORTMANN, M.~S.; MUSSA, S.~A.; HELDWEIN, M.~L. Three-phase multilevel pfc
+  rectifier based on multistate switching cells.
+\emph{IEEE Trans. Power Electron.}, v.~30, n.~4, p. 1843--1854, 2015.}
+
+\bibitem[Postiglione et al. 2012]{ESARS}
+\abntrefinfo{Postiglione et al.}{POSTIGLIONE et al.}{2012}
+{POSTIGLIONE, C.~S. et al. Propulsion system for an all electric passenger boat
+  employing permanent magnet synchronous motors and modern power electronics.
+  In:  \emph{Elect. Syst. for Aircraft, Railway and Ship Propulsion (ESARS)}.
+  Bologna, Italy: IEEE, 2012. p.~1--6.}
+
+\bibitem[Rajagopalan, Lee e Nora 1999]{CSC-02}
+\abntrefinfo{Rajagopalan, Lee e Nora}{RAJAGOPALAN; LEE; NORA}{1999}
+{RAJAGOPALAN, J.; LEE, F.~C.; NORA, P. A general technique for derivation of
+  average current mode control laws for single-phase power-factor-correction
+  circuits without input voltage sensing.
+\emph{IEEE Trans. Power Electron.}, v.~14, n.~4, p. 663--672, 1999.}
+
+\bibitem[Riordan 2004]{Transistor}
+\abntrefinfo{Riordan}{RIORDAN}{2004}
+{RIORDAN, M. The lost history of the transistor.
+\emph{IEEE Spectrum}, v.~41, n.~5, p. 44--49, 2004.}
+
+\bibitem[Salmon 1994]{Salmon-03}
+\abntrefinfo{Salmon}{SALMON}{1994a}
+{SALMON, J.~C. Comparative evaluation of circuit topologies for 1-phase and
+  3-phase boost rectifiers operated with a low current distortion. In:
+  \emph{Proc. of the Canadian Conf. Elect. and Comput. Eng.} Halifax, Canada:
+  IEEE, 1994. v.~1, p. 30--33.}
+
+\bibitem[Salmon 1994]{Salmon-01}
+\abntrefinfo{Salmon}{SALMON}{1994b}
+{SALMON, J.~C. Reliable 3-phase pwm boost rectifiers employing a
+  series-connected dual boost converter sub-topology. In:  \emph{Conf. Rec. of
+  the Ind. Applicat. Soc. Ann. Meeting}. Denver, CO: IEEE, 1994. p. 781--788.}
+
+\bibitem[Salmon 1995]{Salmon-02}
+\abntrefinfo{Salmon}{SALMON}{1995}
+{SALMON, J.~C. Circuit topologies for pwm boost rectifiers operated from
+  1-phase and 3-phase ac supplies and using either single or split dc rail
+  voltage outputs. In:  \emph{10th Annu. Applied Power Electron. Conf. and
+  Expo. (APEC)}. Dallas, TX: IEEE, 1995. v.~1, p. 473--479.}
+
+\bibitem[Salmon 1996]{Salmon-04}
+\abntrefinfo{Salmon}{SALMON}{1996}
+{SALMON, J.~C. Reliable 3-phase pwm boost rectifiers employing a stacked dual
+  boost converter subtopology.
+\emph{IEEE Trans. Ind. Applicat.}, v.~32, n.~3, p. 542--551, 1996.}
+
+\bibitem[Schweizer et al. 2010]{Schweizer-01}
+\abntrefinfo{Schweizer et al.}{SCHWEIZER et al.}{2010}
+{SCHWEIZER, M. et al. Comparison of the chip area usage of 2-level and 3-level
+  voltage source converter topologies. In:  \emph{36th Ann. Conf. Ind.
+  Electron., Control and Instrumentation (IECON)}. Glendale, AZ: IEEE, 2010. p.
+  391--396.}
+
+\bibitem[Shin et al. 2005]{Interleaving-05}
+\abntrefinfo{Shin et al.}{SHIN et al.}{2005}
+{SHIN, H.~B. et al. Generalised steady-state analysis of multiphase interleaved
+  boost converter with coupled inductors.
+\emph{IEEE Proc. Electric Power Applicat.}, v.~152, n.~3, p. 584--594, 2005.}
+
+\bibitem[Singh et al. 2003]{Singh-02}
+\abntrefinfo{Singh et al.}{SINGH et al.}{2003}
+{SINGH, B. et al. A review of single-phase improved power quality ac-dc
+  converters.
+\emph{IEEE Trans. Ind. Electron.}, v.~50, n.~5, p. 962--981, 2003.}
+
+\bibitem[Singh et al. 2004]{Singh-01}
+\abntrefinfo{Singh et al.}{SINGH et al.}{2004}
+{SINGH, B.~N. et al. A review of three-phase improved power quality ac-dc
+  converters.
+\emph{IEEE Trans. Ind. Electron.}, v.~51, n.~3, p. 641--660, 2004.}
+
+\bibitem[Soeiro et al. 2011]{Soeiro-01}
+\abntrefinfo{Soeiro et al.}{SOEIRO et al.}{2011a}
+{SOEIRO, T.~B. et al. New unidirectional hybrid delta-switch rectifier. In:
+  \emph{37th Ann. Conf. Ind. Electron., Control and Instrumentation (IECON)}.
+  Melbourne, VIC: IEEE, 2011. p. 1474--1479.}
+
+\bibitem[Soeiro et al. 2011]{Soeiro-03}
+\abntrefinfo{Soeiro et al.}{SOEIRO et al.}{2011b}
+{SOEIRO, T.~B. et al. Comparison of electrostatic precipitator power supplies
+  with low effects on the mains. In:  \emph{8th Int. Conf. Power Electron.
+  (ICEP and ECCE Asia)}. Jeju, South Korea: IEEE, 2011. p. 2382--2389.}
+
+\bibitem[Soeiro e Heldwein 2013]{Soeiro-05}
+\abntrefinfo{Soeiro e Heldwein}{SOEIRO; HELDWEIN}{2013}
+{SOEIRO, T.~B.; HELDWEIN, M.~L. High efficiency indirect matrix converter
+  topologies. In:  \emph{39th Ann. Conf. Ind. Electron., Control and
+  Instrumentation (IECON)}. Vienna, Austria: IEEE, 2013. p. 4856--4861.}
+
+\bibitem[Soeiro et al. 2013]{Jappe-01}
+\abntrefinfo{Soeiro et al.}{SOEIRO et al.}{2013}
+{SOEIRO, T.~B. et al. Bidirectional delta-switch indirect matrix converter:
+  Topologies and modulation strategies. In:  \emph{Int. Conf. Ind. Technology
+  (ICIT)}. Cape Town, South Africa: IEEE, 2013. p. 1880--1885.}
+
+\bibitem[Soeiro e Kolar 2013]{Soeiro-02}
+\abntrefinfo{Soeiro e Kolar}{SOEIRO; KOLAR}{2013}
+{SOEIRO, T.~B.; KOLAR, J.~W. Analysis of high-efficiency three-phase two- and
+  three-level unidirectional hybrid rectifiers.
+\emph{IEEE Trans. Ind. Electron.}, v.~60, n.~9, p. 3589--3601, 2013.}
+
+\bibitem[Soeiro, Ortmann e Heldwein 2015]{EPE}
+\abntrefinfo{Soeiro, Ortmann e Heldwein}{SOEIRO; ORTMANN; HELDWEIN}{2015}
+{SOEIRO, T.~B.; ORTMANN, M.~S.; HELDWEIN, M.~L. Three-phase unidirectional
+  delta-switch multistate switching cells-based multilevel rectifier (to be
+  published). In:  \emph{17th European Conf. Power Electron. and Applicat.
+  (EPE)}. Geneva, Switzerland: IEEE, 2015.}
+
+\bibitem[Sulzberger 2003]{BattleOfCurrents-01}
+\abntrefinfo{Sulzberger}{SULZBERGER}{2003a}
+{SULZBERGER, C.~L. Triumph of ac, part i - from pearl street to niagara.
+\emph{IEEE Power and Energy Mag.}, v.~99, n.~3, p. 64--67, 2003.}
+
+\bibitem[Sulzberger 2003]{BattleOfCurrents-02}
+\abntrefinfo{Sulzberger}{SULZBERGER}{2003b}
+{SULZBERGER, C.~L. Triumph of ac, part ii - the battle of the currents.
+\emph{IEEE Power and Energy Mag.}, v.~1, n.~4, p. 70--73, 2003.}
+
+\bibitem[Tu e Chen 1994]{Tu-01}
+\abntrefinfo{Tu e Chen}{TU; CHEN}{1994}
+{TU, R.-J.; CHEN, C.-L. A new three-phase space-vector-modulated power factor
+  corrector. In:  \emph{9th Annu. Applied Power Electron. Conf. and Expo.
+  (APEC)}. Orlando, FL: IEEE, 1994. p. 725--730.}
+
+\bibitem[Tu e Chen 1998]{Tu-02}
+\abntrefinfo{Tu e Chen}{TU; CHEN}{1998}
+{TU, R.-J.; CHEN, C.-L. A new space-vector-modulated control for a
+  unidirectional three-phase switch-mode rectifier.
+\emph{IEEE Trans. Ind. Electron.}, v.~45, n.~2, p. 256--262, 1998.}
+
+\bibitem[Viitanen e Tuusa 2003]{Tuusa-01}
+\abntrefinfo{Viitanen e Tuusa}{VIITANEN; TUUSA}{2003}
+{VIITANEN, T.; TUUSA, H. Space vector modulation and control of a
+  unidirectional three-phase/level/switch vienna i rectifier with lcl-type ac
+  filter. In:  \emph{34th Annu. Power Electron. Specialists Conf. (PESC)}.
+  Acapulco, Mexico: IEEE, 2003. v.~3, p. 1063--1068.}
+
+\bibitem[Viitanen e Tuusa 2004]{Tuusa-02}
+\abntrefinfo{Viitanen e Tuusa}{VIITANEN; TUUSA}{2004}
+{VIITANEN, T.; TUUSA, H. Experimental results of vector controlled and vector
+  modulated vienna i rectifier. In:  \emph{35th Annu. Power Electron.
+  Specialists Conf. (PESC)}. Aachen, Germany: IEEE, 2004. v.~6, p. 4637--4643.}
+
+\bibitem[Wang et al. 2015]{Boroyevich-01}
+\abntrefinfo{Wang et al.}{WANG et al.}{2015}
+{WANG, Q. et al. Design and implementation of interleaved vienna rectifier with
+  greater than 99\% efficiency. In:  \emph{30th Annu. Applied Power Electron.
+  Conf. and Expo. (APEC)}. Charlotte, NC: IEEE, 2015. p. 72--78.}
+
+\bibitem[Wu 2006]{Wu-01}
+\abntrefinfo{Wu}{WU}{2006}
+{WU, B. \emph{High-Power Converters and AC Drives}. Hoboken, NJ: John Wiley \&
+  Sons, Inc., 2006. 450~p.}
+
+\bibitem[Zhang et al. 2011]{Interleaving-06}
+\abntrefinfo{Zhang et al.}{ZHANG et al.}{2011}
+{ZHANG, D. et al. Dc-link ripple current reduction for paralleled three-phase
+  voltage-source converters with interleaving.
+\emph{IEEE Trans. Power Electron.}, v.~26, n.~6, p. 1741--1753, 2011.}
+
+\bibitem[Zhao, Li e Lipo 1995]{DeltaiRect-01}
+\abntrefinfo{Zhao, Li e Lipo}{ZHAO; LI; LIPO}{1995}
+{ZHAO, Y.; LI, T.; LIPO, T.~A. Force commutated three level boost type
+  rectifier.
+\emph{IEEE Trans.Ind. Applicat.}, v.~31, n.~1, p. 155--161, 1995.}
+
+\end{thebibliography}

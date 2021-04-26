@@ -1,0 +1,115 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter[Estudos Iniciais do Retificador PWM 3ph MLMSR-$n\Delta$VSR]{Estudos Iniciais do Retificador PWM Trifásico MLMSR-$n\Delta$VSR} \label{chapter-DeltaMLMSR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Neste capítulo são apresentados estudos iniciais do MLMSR-$n\Delta$VSR considerando a operação com um transformador de multi-interfase de 2 enrolamentos. Uma breve comparação com o MLMSR-$n$VSC fornece um indicativo que a topologia apresenta melhores possibilidades para redução do MIPT, além das perdas reduzidas frente à mesma topologia. Esses resultados são apresentados por meio de simulações numéricas empregando o programa PSIM\textregistered~versão 9.0.3 de 32~bits. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estudos Iniciais por Simulação Numérica}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A partir dos resultados apresentados em \cite{EPE}, que empregou a modulação mSVM~II, verificou-se que algumas assimetrias foram apresentadas no funcionamento da estrutura. Estas não são prejudicias para o funcionamento normal do retificador, visto que há simetria de meia onda, o que elimina a possiblidade do surgimento de harmônicas pares de baixa ordem. No entanto, há assimetria em quarto de onda, resultando no surgimento de harmônicas pares da frequência de comutação \cite{Wu-01}. Visando verificar a possibilidade do MLMSR-$n\Delta$VSR operar sem assimetrias, são investigadas algumas novas estratégias de modulação. 
+
+Como plataforma de simulação, considerou-se um MLMSR-$2\Delta$VSR com filtro de entrada conforme ilustrado na \figref{fig:setup}, cujos parâmetros são também apresentados \cite{EPE}. Como estratégia de controle empregou-se o autocontrole de corrente com um ganho tal que o valor de pico da corrente no indutor \emph{boost} $L_b$ seja igual a 10~A, além disso, considerou-se uma tensão constante no barramento em CC. Dessa forma, deseja-se operar com correção do fator de potência.
+
+A título de reprodução e comparação, inicialmente foi considerada a estratégia mSVM~II, cujos resultados são apresentados na parte esquerda da \figref{fig:sim01}. As correntes na fase \emph{a} são apresentadas no item~(a), em que a corrente no indutor \emph{boost} é $i_a$ e as correntes nos enrolamentos do MIPT, nesse caso ilustradas em oposição de fase para facilitar a visualização, são $i_{a1}$ e $i_{a2}$.  A operação com PFC é verificada a partir da visualização da tensão da rede ($v_A$) e da corrente da rede da fase ($i_A$) \emph{a} no item~(b), comprovando a eficácia da estratégia de controle empregada. No item~(c) verifica-se a corrente de modo diferencial do MIPT da fase \emph{a}, $i_{a,\textrm{DM}}\!=\!(i_{a1}\!-\!i_{a2})/2$, que é imagem do fluxo concatenado no núcleo do transformador de interfase e, portanto, importante que apresente picos reduzidos e baixo valor RMS. É fornecida de base comparativa entre as estratégias de modulação. Os perfis de tensões sintetizados são apresentados por meio dos itens (d) e (e), em que verificam-se a tensão de linha $v_{ab}$ do retificador e a tensão de linha entre um dos enrolamentos do MIPT $v_{ab1}$, respectivamente. Ambas apresentam apenas simetria de meia onda. No item (f) são mostradas as funções de razão cíclica para a realização de modulador apresentada na \figref{fig:setup}, em que verifica-se $d'_{ab}$ indica a função de razão cíclica caso fosse empregada apenas as estratégias ótimas e a outra função de razão cíclica, $d''_{ab}$, indica os momentos em que um vetor ativo poderia estar sendo sintetizado sem o acionamento de $S_{ab}$.
+
+Como a modulação mSVM~I apresentaria resultados muito similares à mSVM~II, visto que as diferenças são no acionamento e na divisão de corrente nos interruptores controlados, empregou-se uma versão modificada que foi apenas comentada no Anexo~\ref{APEC-2013}. Esta seria ideal para a operação do retificador com cargas que naturalmente decrescem com o ângulo de entrada $\delta_i$ à medida que a carga aumenta ou operam nesta condição. Dessa forma, na parte direita da \figref{fig:sim01} são apresentados os resultados da sua utilização. De maneira geral, verificam-se que as assimetrias de quarto de onda são opostas com relação à estratégia para ângulos crescentes empregadas na modulação mSVM~II. Ademais, verifica-se no item (f) por meio de $d'_{ab}$ que em alguns períodos de $\pi/3$ o interruptor $S_{ab}$ poderia não ser acionado para conduzir, no entanto, o mesmo é acionado ($d''_{ab}$) para evitar a identificação dos setores de corrente por meio de estratégias/algoritmos de sincronização.
+
+\begin{landscape}
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/simulacao/setup.eps}
+	\caption{Esquemático do estágio de potência, circuito de controle e parâmetros (idênticos entre fases) empregados na simulação. Observa-se que, como indicado, as portadoras dos moduladores ($V_{tri1}$ e $V_{tri2}$) estão em oposição de fase.}
+	\label{fig:setup}
+\end{figure}
+\end{landscape}
+
+\begin{figure}[tbp!]
+	\centering
+	\includegraphics{Figuras/simulacao/sim01.eps}
+	\caption{Resultados de simulação para as modulações mSVM II (esquerda) e mSVM I (direita), em que: (a) corrente no indutor \emph{boost} e nos enrolamentos do MIPT da fase \emph{a}; (b) tensão e corrente da rede; (c) corrente de modo diferencial do MIPT da fase \emph{a}; (d) tensão de linha entre os terminais \emph{a} e {b}; (e) tensão de linha entre os terminais \emph{a}1 e \emph{b}1; e, (f) funções de razão cíclica. Observa-se que a estratégia mSVM~I foi adaptada para operar melhor com ângulos de entrada descrecentes com a carga. }
+	\label{fig:sim01}
+\end{figure}
+
+Visto que ambos os resultados da \figref{fig:sim01} apresentaram assimetrias em quarto de onda, optou-se por comparar o desempenho do MLMSR-$2\Delta$VSR  e do MLMSR-2VSC ao se empregar estratégias de modulação com a mesma característica externa, isto é, sequência de vetores. Para tanto, considerou-se a estratégia de modulação DPWM~1 do VSC, visto que no estudo apresentado no Anexo~\ref{ESARS-2012} está foi a que proporcionou uma maior redução nas perdas do sistema investigado como um todo, esta estratégia foi denominada de $\Delta$DPWM~1. Os resultados da simulação de ambos os conversores são apresentados na \figref{fig:sim02} com o MLMSR-$2\Delta$VSR na parte esquerda e o MLMSR-2VSC na parte direita, comprovando a premissa de que as características externas são as mesmas ($i_a$, $v_{ab}$ e $v_{ab1}$). Diferenças são apresentadas apenas nas correntes dos enrolamentos do MIPT no item (a), na corrente de modo diferencial do item (c) e nas funções de razão cíclica no item (f). O resultado mais relevante, nesse momento, é a redução dos valores pico a pico ($\Delta i_{a,\textrm{DM}}$) e RMS da corrente $i_{a,\textrm{DM}}$ obtidos ao se empregar o MLMSR-$2\Delta$VSR, cujos valores são apresentados na \tabref{tab:iadm}. Verifica-se uma redução de cerca de 39$\%$ no valor pico a pico e de 32$\%$ no RMS, isso se deve a menor geração de tensão de modo comum na estrutura do $\Delta$VSR frente ao VSC, conforme ilustrado na \figref{fig:vcm} as tensões de modo comum total $v_\textrm{CM}$  e a tensão de modo comum entre um ``módulo'' $v_\textrm{CM1}$. Estas foram obtidas a partir das médias entre ($v_{a,o}$, $v_{b,o}$ e $v_{c,o}$)  e ($v_{a1,o}$, $v_{b1,o}$ e $v_{c1,o}$), respectivamente. Os valores RMS das correntes nos enrolamentos do MIPT apresentam algumas pequenas diferenças entre as estratégias de modulação, mas, como todos foram muito próximos, estes não serão apresentados.
+
+\begin{table}[!b]
+\small
+\caption{Valores pico a pico e RMS da corrente de modo diferencial do MIPT da fase \emph{a} para diferentes estratégias de modulação}
+\label{tab:iadm}
+
+\centering
+
+\begin{center}
+\begin{tabular}{ c | c | c}
+\hline
+\hline
+{Modulação PWM} & {$\Delta i_{a,\textrm{DM}}$} & {$I_{a,\textrm{DM,RMS}}$} \\
+\hline
+\hline
+
+mSVM I & 0,40 A & 2,41 A \\
+\hline
+
+mSVM II & 0,40 A & 2,41 A \\
+\hline
+
+subSVM II & 0,44 A & 2,41 A \\
+\hline
+
+subSVM III & 0,45 A & 2,41 A \\
+\hline
+
+$\Delta$DPWM 1 & 0,44 A & 2,41 A \\
+\hline
+
+DPWM 1 & 0,72 A & 3,57 A \\
+\hline
+
+SVM & 0,61 A & 3,56 A \\
+\hline
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/simulacao/sim02.eps}
+	\caption{Resultados de simulação para a modulação DPWM 1 no MLMSR-$2\Delta$VSR (esquerda) e no MLMSR-2VSC (direita), em que: (a) corrente no indutor \emph{boost} e nos enrolamentos do MIPT da fase \emph{a}; (b) tensão e corrente da rede; (c) corrente de modo diferencial do MIPT da fase \emph{a}; (d) tensão de linha entre os terminais \emph{a} e {b}; (e) tensão de linha entre os terminais \emph{a}1 e \emph{b}1; e, (f) funções de razão cíclica.}
+	\label{fig:sim02}
+\end{figure}
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics[scale=1]{Figuras/simulacao/vcm.eps}
+	\caption{Tensões de modo comum para a modulação DPWM~1 considerando a operação de um MLMSR-$2\Delta$VSR (esquerda) e de um MLMSR-2VSC (direita), em que: (a) tensão de modo comum total; e, (b) tensão de modo comum do ``módulo'' 1.}
+	\label{fig:vcm}
+\end{figure}
+
+Com o experimento da estratégia de modulação DPWM~1 aplicada ao MLMSR-$2\Delta$VSR, identificou-se a possibilidade de empregar com maior liberdade estratégias de modulação no $\Delta$VSR. De fato, a única restrição é que durante a operação o ângulo de entrada não ultrapasse os limites operacionais. Dessa forma, é possível empregar qualquer estratégia para a escolha de vetores, geralmente de 5 ou 7 segmentos, empregadas em conversores de dois níveis trifásicos. Como a modulação SVM~II apresenta reduzidas perdas de condução, decidiu-se adaptá-la para uma divisão fixa entre os setores de tensão, isto é, decidiu-se considerar $\delta_i$ constante. Por questões de simetria, operação como PFC e estratégia de controle empregadas, a escolha mais óbvia é $\delta_i\!=\!0$ e identificação dos setores por meio do próprio sinal modulante (como é o caso das estratégias de modulação vetorial para o VSC), cuja estratégia é denominada subSVM~II. Verifica-se que, em termos de características externas, essa apresenta os mesmos resultados do emprego da modulação DPWM~1 conforme ilustrado na parte esquerda da \figref{fig:sim03}. Apenas as funções de razão cíclica ilustradas no item~(f) é que são distintas, o que irá resultar numa melhor distruibuição e minimização das perdas em condução. 
+
+Por fim, na parte direita da \figref{fig:sim03} são apresentados os resultados para uma estratégia que visa melhorar a simetria (subSVM~III), em que uma melhor distribuição dos níveis da tensão $v_{ab}$ do item~(d) foi observada. Entretanto, não há uma completa simetria visto que nos setores $S_{II}$ e $S_{V}$ não foi possível impor essa condição. Em termos de esforços na corrente de modo diferencial essa apresenta uma característica intermedária como mostrado na \tabref{tab:iadm}. Maiores detalhes não serão apresentados, visto que ainda são necessárias mais investigações para melhorar essa condição operacional e um estudo comparativo mais aprofundado das estratégias de modulação para o MLMSR-$n\Delta$VSR.
+
+Adicionalmente às simulações, são apresentados na \tabref{tab:iadm} os resultados para a corrente $i_{a,\textrm{DM}}$ nas mesmas condições de simulação de um MLMSR-2VSC empregando a modulação SVM \cite{Lipo}. Verifica-se que a mesma apresenta tanto o valor pico a pico como o valor eficaz da corrente maiores que os resultados para o MLMSR-$2\Delta$VSR. Os resultados frente à modulação DPWM~1 são melhores, mas não justificam, em geral, o seu emprego, visto que a modulação descontínua tem indícios de que é possível obter melhores resultados do sistema como um todo \cite{ESARS}.
+
+\begin{figure}[p!]
+	\centering
+	\includegraphics[scale=1]{Figuras/simulacao/sim03.eps}
+	\caption{Resultados de simulação para as modulações subSVM II (esquerda) e subSVM III (direita), em que: (a) corrente no indutor \emph{boost} e nos enrolamentos do MIPT da fase \emph{a}; (b) tensão e corrente da rede; (c) corrente de modo diferencial do MIPT da fase \emph{a}; (d) tensão de linha entre os terminais \emph{a} e {b}; (e) tensão de linha entre os terminais \emph{a}1 e \emph{b}1; e, (f) funções de razão cíclica. }
+	\label{fig:sim03}
+\end{figure}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusão}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A partir desse estudo inicial verifica-se que há vantagens na operação do MLMSR-$n\Delta$VSR frente ao MLMSR-nVSC. Além das perdas reduzidas e da robustez, há também a redução dos requisistos de elementos magnéticos devido à redução das emissões de modo comum do retificador. Essa redução se dá por meio da diminuição do valor pico a pico e dos esforços nas correntes do transformador de multi-interfase. Ademais, observou-se que novas estratégias de modulação podem ser propostas, não sendo a identificação dos setores de corrente um requisito essencial para a operação do retificador. No entanto, ainda são necessários estudos mais aprofundados para propostas de estratégias que visem otimizar índices de desempenho específicos ou que possuam características híbridas. 

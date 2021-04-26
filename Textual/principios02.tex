@@ -1,0 +1,173 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Princípios do $\Delta$VSR} \label{chapter-principios}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+É objeto de estudo deste capítulo os princípios de funcionamento do retificador PWM trifásico $\Delta$VSR. Será dada uma perspectiva histórica, revisando as principais referências bibliográficas que permitem compreender o estado da arte no que se refere às tecnologias empregadas para a operação, por meio de técnicas de modelagem, modulação e controle, do $\Delta$VSR.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Retificador PWM 3ph $\Delta$VSR]{Retificador PWM Trifásico $\Delta$VSR} \label{sec:princ-deltavsr}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Uma vasta quantidade de topologias de retificadores unidirecionais trifásicos pode ser encontrada na literatura \cite{Salmon-01,Singh-01,Heldwein-01,Kolar-01}. No entanto, dentre as topologias unidirecionais de dois níveis o $\Delta$VSR tem se consagrado como a mais forte candidata às aplicações industriais \cite{Kolar-01}. Ademais, conforme discutido no Capítulo~\ref{introducao}, diversos trabalhos têm empregado esta topologia ou suas características principais para o desenvolvimento de outras famílias e vertentes de retificadores e conversores trifásicos.
+
+A seguir é apresentado um histórico e aplicações da topologia, destacando aspectos práticos envolvidos na sua implementação. Na sequência serão apresentados seus princípios de funcionamento, em que se há muito em comum com outras topologias de retificadores unidirecionais trifásicos, servindo, portanto, de base para o estudo de outros retificadores. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Histórico}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A proposição para se empregar interruptores em CA em delta surge como uma variação topológica da realização com interruptores em estrela em \cite{Kolar-03}. Esse surge como uma alternativa mais viável do que a versão em estrela, visto que esta sempre possui um número maior de interruptores em CA no caminho da corrente, o que resulta em maiores perdas em condução. No entanto, devido aos maiores esforços comparáveis à solução bidirecional, isto é, o VSC, considera-se na época que o seu emprego não é justificável tanto economicamente quanto tecnicamente.  
+
+Apenas com \cite{Tu-01,Tu-02} é que se tem uma análise mais aprofundada e experimentações do $\Delta$VSR. Seu princípio básico de funcionamento é descrito a partir das polaridades das tensões de fase e propõe-se uma estratégia de modulação vetorial (SVM $-$ \emph{space vector modulation}) em conjunto com um controle de corrente por histere. A escolha dos vetores para a modulação é realizada desligando um interruptor por setor de tensão, de forma a reduzir o número de comutações, no entanto, não há uma escolha dos estados topológicos que permita explorar de forma ótima as comutações. A modulação vetorial empregada permite explorar toda a sua faixa de operação, embora o seu desempenho é sacrificado para certas condições. A técnica de controle proposta é para a operação com PFC. 
+
+Aspectos da realização dos interruptores bidirecionais em tensão e em corrente ($S_{ab}$, $S_{bc}$ e $S_{ca}$) são também discutidos em \cite{Tu-02}, cujas possibilidades são apresentadas na \figref{fig:deltavsr-detalhes} adicionando uma possibilidade extra ilustrada no item (c) desta figura.  Uma breve discussão das possíveis realizações de interruptores é apresentada em \cite{Salmon-02}. O menor número de dispositivos semicondutores no caminho da corrente é realizável pela configuração de IGBTs (\emph{insulated gate bipolar transitors}) em antiparalelo do item (b), sendo a única possibilidade que não pode ser feita com MOSFETs (\emph{metal oxide semiconductor field effect transistors}). Estes precisam de um diodo extra no caminho da corrente como mostrado no item (c). No entanto, para o emprego de IGBTs os mesmos devem ser do tipo \emph{reverse blocking} (RB-IGBT), isto é, capacidade de bloquear tensões no sentido reverso, que embora apresentem reduzidas perdas em condução \cite{RBIGBT-01}, não foram considerados em aplicações recentes por possuir elevadas perdas em comutação causadas por elevados valores de correntes de recuperação reversa \cite{Pedro-02} Ademais, tais configurações, (b) e (c), requerem o emprego de circuitos de comandos isolados, aumentando a complexidade de implementação. No item (d) tem-se uma configuração mais simples de ser realizável, com MOSFETs em antisérie, do que (b) ou (c) e com menos semicondutores no caminho da corrente do que (e), que tem apenas um interruptor controlado. Portanto, a configuração do item (d) é a mais preferível nas realizações práticas \cite{Hartmann-01,APEC,Tu-02}.
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/principios/deltavsr.eps}
+	\caption{Possíves configurações do interruptor bidirecional do $\Delta$VSR destacado em (a), tem-se: (b) IGBTs em antiparalelo; (c) MOSFET e diodo em antiparalelo; (d) MOSFETs em antisérie; e, (e) ponte de diodos com MOSFET para reversibilidade de corrente.}
+	\label{fig:deltavsr-detalhes}
+\end{figure} 
+
+Trabalhos posteriores exploram melhor os princípios de funcionamento e de modulação vetorial da topologia. Detalhes dos limites operacionais do retificador são analisados em  \cite{Miller-02}. Já \cite{Batista-02} apresenta uma análise mais intuitiva dos limites operacionais e da relação das polaridades da correntes trifásicas no funcionamento do retificador baseado nos conceitos sobre retificadores PWM trifásicos apresentados em \cite{Borgonovo-01}. 
+
+A primeira estratégia de modulação vetorial baseada em portadoras para o $\Delta$VSR, denominada neste trabalho de SVM~I, foi proposta por \cite{Batista-03,Batista-02}. Esta minimiza o número de comutações, no entanto, tal característica sobre essa modulação só é explorada em \cite{Hartmann-04,Hartmann-02}. Com o objetivo de minimizar as perdas em condução é proposta a estratégia denominada de SVM~II  \cite{PCIM}, em que, adicionalmente, é empregada uma estratégia de identificação dos setores de corrente visto que a modulação é dependente das polaridades de corrente para otimizar o funcionamento do retificador. 
+
+Com relação às técnicas de controle, modelos e controladores similares aos empregados em retificadores PWM trifásicos podem ser utilizados. Em \cite{Hartmann-01} é considerada uma técnica de controle no sistema estacionário (\emph{abc}) para garantir a operação do retificador em caso de faltas de uma das fases. Já o controle vetorial (\emph{dq0}) é empregado por  \cite{Diss} para a aplicação em sistemas de conversão de energia eólica. Este também emprega a técnica de autocontrole de corrente e uma adaptação proposta para garantir desempenho equivalente à técnica de controle vetorial \cite{ICEM}. O autocontrole de corrente será empregado nos controladores de corrente deste trabalho e maiores detalhes são apresentados no Apêndice~\ref{apendice:controle}.
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics{Figuras/principios/definitions.eps}
+	\caption{Ferramentas gráficas empregadas para análise vetorial do $\Delta$VSR: (a) mapa vetorial de um conversor trifásico de dois níveis; (b) mapa vetorial de um retificador unidirecional trifásico de dois níveis; e, (c) definição dos setores de tensão e dos setores de corrente no domínio do tempo.}
+	\label{fig:deltavsr-definitions}
+\end{figure} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Princípios de Funcionamento}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A compreensão e análise de retificadores trifásicos, seja qual for a quantidade de níveis de tensão, seguindo os fundamentos da análise vetorial se apresenta como uma forma bem estruturada para uma análise sistematizada e extensiva de diversas topologias \cite{Lipo,Wu-01}.  No entanto, como outros retificadores unidirecionais trifásicos, o $\Delta$VSR é dependente das polaridades das correntes e estas devem ser levadas em consideração nesta análise \cite{Batista-01,Batista-02,Tuusa-02,Tuusa-01}. 
+
+O mapa vetorial de um conversor trifásico de dois níveis está ilustrado na \figref{fig:deltavsr-definitions}(a). Os vetores de tensão são determinados por
+%
+\begin{equation}
+\vec{V}_k=\dfrac{2}{3}V_{dc}e^{j(k-1)(\pi/3)},
+\end{equation} em que $k\in\{1,2,\cdots,6\}$ e $\vec{V}_0\!=\!0$. Um vetor de tensão de referência se relaciona com as variáveis do plano $\alpha\beta$ por meio de 
+%
+\begin{equation}
+\vec{V}^*=v^*_\alpha+jv^*_\beta=|\vec{V}^*|e^{j\theta_v^*},
+\end{equation} onde as componentes $\alpha\beta$ são determinadas a partir da aplicação da Transformada de Clarke\footnote{Esta é a transformação original empregada por Edith Clarke \cite{Clarke}, em que a tensão de sequência zero ($v_0$) foi omitida, visto que a mesma não tem influência nos vetores resultantes.} nas tensões dada por 
+%
+\begin{equation}
+\label{eq:clarke}
+\left[\begin{matrix}
+ v^*_{\alpha}\\
+ v^*_{\beta}
+\end{matrix}\right]=\dfrac{2}{3}\left[
+\begin{matrix}
+ 1 & -1/2 & -1/2 \\
+ 0 & \sqrt{3}/2 & -\sqrt{3}/2  
+\end{matrix}\right]\left[\begin{matrix}
+ v_{ao}\\
+ v_{bo}\\
+ v_{co}
+\end{matrix}\right]=\dfrac{1}{3}\left[
+\begin{matrix}
+ 1 & 0 & -1 \\
+ 0 & \sqrt{3} & 0 
+\end{matrix}\right]\left[\begin{matrix}
+ v_{ab}\\
+ v_{bc}\\
+ v_{ca}
+\end{matrix}\right].
+\end{equation} Para uma maior comodidade esta é empregada também nas tensões de linha, visto que estas surgem com maior naturalidade ao se analisar esse retificador. Estão ilustrados também os setores de tensão ($S_\textrm{I}$, $S_\textrm{II}$, $S_\textrm{III}$, $S_\textrm{IV}$, $S_\textrm{V}$ e $S_\textrm{VI}$), em que estes são formados por vetores adjacentes. O círculo circunscrito ao hexagóno determina o limite da região de modulação linear, isto é, operação sem geração inerente de harmônicas de baixa ordem, cujo limite é dado pelo valor máximo do índice de modulação ($M\!=\!1$). Este é definido por $M\!=\!\sqrt{3}V_{pk}/V_{dc}$, em que $V_{pk}$ é o módulo da tensão fundamental de fase sintetizada pelo conversor, isto é, $V_{pk}\!=\!|\vec{V}^*|$.
+
+
+Já para retificadores unidirecionais trifásicos o mapa vetorial é conforme o ilustrado na \figref{fig:deltavsr-definitions}(b) \cite{Batista-01}, que depende das polaridades das correntes. Uma maneira simples de demonstrar essa dependência é considerar o funcionamento natural da ponte retificadora a diodos, sem a operação dos interruptores em CA em delta como mostrado na \figref{fig:deltavsr-ponte}. Neste caso, considera-se no item (a) que a polaridade das correntes é tal que $i_a\!>\!0$, $i_b\!<\!0$ e $i_c\!<\!0$, portanto, os diodos $D_{ap}$, $D_{bn}$ e $D_{cn}$ conduzem as correntes e entre os terminais do retificador são impressas as tensões $v_{ab}\!=\!V_{dc}$, $v_{bc}\!=\!0$ e $v_{ca}\!=\!-V_{dc}$. Analisando de maneira análoga, mas considerando polaridades opostas para as correntes como no item (b), verifica-se que são impressas as tensões $v_{ab}\!=\!-V_{dc}$, $v_{bc}\!=\!0$ e $v_{ca}\!=\!V_{dc}$, isto é, foram geradas tensões com polaridades opostas, que são os vetores opostos $\vec{V}_1$ e $\vec{V}_4$, respectivamente. Essa análise pode se estender para todas as combinações de polaridades e de comandos dos interruptores bidirecionais que definem todos os vetores de tensão do $\Delta$VSR, cujo resultados estão sumarizados na \tabref{tab:all}. Observa-se que sempre é possível gerar vetores nulos ($\vec{V}_0$), no entanto, os vetores ativos ($\vec{V}_k$ com $k\!\neq\!0$) só podem ser gerados para certas polaridades de corrente, comprovando a dependência dos vetores com as polaridades das correntes em toda a faixa de funcionamento do retificador.
+
+\begin{figure}[tbp!]
+	\centering
+	\includegraphics{Figuras/principios/ponte.eps}
+	\caption{Funcionamento do $\Delta$VSR considerando apenas a operação da ponte retificadora com: (a) $i_a\!>\!0$, $i_b\!<\!0$ e $i_c\!<\!0$; e, (b) $i_a\!<\!0$, $i_b\!>\!0$ e $i_c\!>\!0$.}
+	\label{fig:deltavsr-ponte}
+\end{figure} 
+
+\begin{table}[!tb]
+\small
+\caption{Vetores de Tensão gerados pelo $\Delta$VSR a partir dos Comandos dos Interruptores e das Polaridades das Correntes}
+\label{tab:all}
+
+\centering
+
+\begin{center}
+\begin{tabular}{c c c | c  c  c | c}
+\hline
+\multicolumn{3}{c|}{Comandos} & \multicolumn{3}{|c|}{Correntes} & \multirow{2}{*}{Vetor} \\
+\cline{1-6}
+$S_{ab}$ & $S_{bc}$ & $S_{ca}$ & $i_{a}$ & $i_{b}$& $i_{c}$ & \\
+\hline
+\hline
+
+$0$& $1$& $1$& $+,-$& $+,-$& $+,-$ & \multirow{4}{*}{$\vec{V}_0$}\\
+
+$1$& $0$& $1$& $+,-$& $+,-$& $+,-$ & \\
+
+$1$& $1$& $0$& $+,-$& $+,-$& $+,-$ & \\
+
+$1$& $1$& $1$& $+,-$& $+,-$& $+,-$ & \\
+\hline
+
+$0$& $1$& $0$& $+$& $+,-$& $+,-$ & \multirow{2}{*}{$\vec{V}_1$}\\
+
+$0$& $0$& $0$& $+$& $-$& $-$ & \\
+\hline
+
+$1$& $0$& $0$& $+,-$& $+,-$& $-$ & \multirow{2}{*}{$\vec{V}_2$}\\
+
+$0$& $0$& $0$& $+$& $+$& $-$ & \\
+\hline
+
+$0$& $0$& $1$& $+,-$& $+$& $+,-$ & \multirow{2}{*}{$\vec{V}_3$}\\
+
+$0$& $0$& $0$& $-$& $+$& $-$ & \\
+\hline
+
+$0$& $1$& $0$& $-$& $+,-$& $+,-$ & \multirow{2}{*}{$\vec{V}_4$}\\
+
+$0$& $0$& $0$& $-$& $+$& $+$ & \\
+\hline
+
+$1$& $0$& $0$& $+,-$& $+,-$& $+$ & \multirow{2}{*}{$\vec{V}_5$}\\
+
+$0$& $0$& $0$& $-$& $-$& $+$ & \\
+\hline
+
+$0$& $0$& $1$& $+,-$& $-$& $+,-$ & \multirow{2}{*}{$\vec{V}_6$}\\
+
+$0$& $0$& $0$& $+$& $-$& $+$ & \\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+O mapa vetorial da \figref{fig:deltavsr-definitions}(b) pode ser melhor compreendido com as definições dos setores de corrente ($A+$, $C-$, $B+$, $A-$, $C+$ e $B-$) mostrada na parte inferior da \figref{fig:deltavsr-definitions}(c), em que, por exemplo, $A+$ indica que $i_a\!>\!0$, $i_b\!<\!0$ e $i_c\!<\!0$, isto é, a fase e a polaridade da corrente de maior amplitude. A intersecção entre os setores de tensão e os setores de corrente formam os subsetores, indicados pelas informações de ambos. O ângulo de entrada ($\delta_i$) é a defasagem angular entre a tensão fundamental sintetizada pelo retificador ($v_{ao}$) e a corrente de entrada ($i_a$) considerando a operação de um sistema trifásico equilibrado. Para a operação com tensões de entrada senoidais e correntes senoidais, esse deve ser limitado em $\pm\pi/6$ \cite{Miller-02,Kolar-01}.
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/principios/analise.eps}
+	\caption{Vetores disponíveis durante a operação no setor de corrente $A+$.}
+	\label{fig:deltavsr-analise}
+\end{figure}
+
+Dessa forma, para sintetizar um vetor de tensão de referência $\vec{V}^*$ é preciso garantir que o ângulo de entrada esteja dentro dos seus limites, isto deve ser realizado em nível de projeto ao se analisar os pontos de operação da aplicação. Caso contrário, não se pode garantir que ao comandar os interruptores bidirecionais, a tensão desejada estará sendo sintetizada. Essa condição está demonstrada para o setor de corrente $A+$ na \figref{fig:deltavsr-analise}, em que só são possíveis de serem sintetizados os vetores $\vec{V}_0$, $\vec{V}_1$, $\vec{V}_2$ e $\vec{V}_6$ com destaque para os casos limites de ângulo de entrada. Os comandos que geram cada vetor para esse setor de corrente estão indicados entre parênteses. Verica-se que há uma grande quantidade, quatro, de comandos que geram vetores nulos  e que o vetor $\vec{V}_1$ pode ser sintetizado sem a necessidade de comandos, isto é, por meio de ($S_{ab},S_{bc},S_{ca}$)=(0,0,0). Essas características devem ser levadas em consideração ao se avaliar e propor estratégias de modulação e controle para o $\Delta$VSR.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusão}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Uma vez verificado o histórico e o estado-da-arte no que se refere às modulações, controle e aplicações do $\Delta$VSR é possível compreender as limitações e as possiblidades ao se trabalhar com esta topologia. Foram apresentados os princípios básicos de funcionamento da estrutura, que muito se assemelha a outros retificadores trifásicos quanto à análise e à modelagem. Características especifícas foram mostradas por meio dos princípios da modulação vetorial, o que permite o desenvolvimento de novas estratégias de modulação visando desempenhar outras funções, além das quais já foram propostas. O próximo capítulo trata dessas questões.

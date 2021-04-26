@@ -1,0 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter[Análise da Ondulação de Corrente em Retificadores 3phs]{Análise Detalhada da Ondulação de Corrente em Retificadores PWM Trifásicos} \label{apendice:ondulacao}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A escolha de topologias, estratégias de modulação e de dispositivos semicondutores é um processo que requer ferramentas apropriadas para o projeto do conversor e para a avaliação da tecnologia a ser empregada na sua construção. Tipicamente, simulações são empregadas para aumentar a precisão durante o processo de análise dos conversores \cite{Drofenik-01,Schweizer-01,Liu-01}. No entanto, algumas das ferramentas teóricas empregadas na análise de conversores, como do VSC \cite{Kolar-04,Lipo-02}, são baseadas em simplificações e resultados melhores ainda podem ser determinados. 
+
+O estudo da ondulação de corrente do VSC realizado com base em algumas simplicações em \cite{Wang-03}, se mostrou útil para a predição do valor eficaz da ondulação de corrente em tempo real. Dessa forma, estratégias de controle foram propostas com base nessa predição para a redução das emissões eletromagnéticas por meio da variação da frequência de comutação, de forma diminuir a geração de EMI  \cite{Wang-02}.
+
+Uma análise mais detalhada da ondulação de corrente é, portanto, pertinente e suas implicações podem ser empregadas não só para operação diferenciada do conversor, como também para uma análise mais detalhada das perdas nos dispositivos semicondutores e o projeto otimizado dos elementos magnéticos. Para tanto, consideram-se as defasagens angulares causadas em diferentes condições operacionais, as perdas resistivas em condutores e as ondulações de corrente. 
+
+Com esse intuito, estudos iniciais das perdas em condução nos dispositivos semicondutores foram realizados considerando a operação do VSC para diferentes estratégias de modulação PWM. Esse trabalho é apresentado no Anexo~\ref{COBEP-2015}, em que é apresentada a versão preliminar do artigo submetido no 13$^\circ$ Congresso Brasileiro de Eletrônica de Potência, cuja versão final está sendo elaborada e tem prazo de submissão até o dia 28/08/2015. Nesta versão é apresentada a metodologia de cálculo da ondulação de corrente, considerando defasagens angulares e resistências nos condutores, e uma análise das perdas nos dispositivos semicondutores considerando duas estratégias de modulação. Para tanto, foi considerada a implementação dos semicondutores por meio de MOSFETs de carbeto de silício (SiC MOSFET) e as estratégias de modulação SVM e DPWM~1 \cite{Lipo}, em que a comparação frente a resultados de simulação se mostraram dentro de uma margem de erro de cerca de 0,6$\%$. Uma melhora significativa, principalmente no caso mais evidente que ocorreu para a modulação DPWM~1 com um erro máximo de 11,5$\%$ sem a consideração da contribuição devida à ondulação de corrente.
+
+Pretende-se prosseguir esse trabalho com a consideração de outras estratégias de modulação PWM (SPWM, DPWM~0, DPWM~2 e DPWM~3) e da implementação dos semicondutores por meio de IGBTs. Ademais, em trabalhos futuros para serem utilizados no contexto da tese de doutorado, pretende-se aplicar tal metodologia de cálculo para o $\Delta$VSR e avaliar as implicações ao se considerar o projeto dos semicondutores e dos elementos magnéticos do MLMSR-$n\Delta$VSR.
+
+   
+
+
+

@@ -1,0 +1,216 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introdução Geral} \label{introducao}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setcounter{secnumdepth}{6}
+%\pagenumbering{arabic}
+%\Author{Daniel Augusto Figueirêdo Collier}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivação para o Tema}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Dentre os pilares no desenvolvimento histórico da humanidade, pode-se citar a constante busca pela \emph{melhoria} como um dos fatores preponderantes nesse desenvolvimento. Sociedades e ferramentas, de uma maneira geral, evoluem pelo compartilhamento de conhecimentos e métodos, cuja evolução se dá pelo aprendizado constante frente às, não só iminentes, adversidades. 
+
+O advento do domínio da eletricidade no final do século XIX, mais notoriamente com Thomas Edison, com as redes em corrente contínua (CC), e George Westhinghouse, com as redes em corrente alternada (CA), deu outras dimensões para a Revolução Industrial na qual se encontravam. No entanto, com o trabalho desenvolvido por Nikola Tesla em máquinas elétricas e sistemas trifásicos é que se tem um marco na adoção e comercialização das redes elétricas em CA. Isso se deve ao emprego de transformadores para transmissão de energia em altas tensões, estas cada vez mais elevadas, com perdas reduzidas frente aos sistemas em CC \cite{BattleOfCurrents-01,BattleOfCurrents-02}. 
+
+A disseminação dos sistemas em CA é marcante no século seguinte, seja pelo aumento da industrialização, com aumento dos benefícios oriundos do domínio e do desenvolvimento de tecnologias, seja pelo aumento populacional marcante gerado pela melhoria da qualidade de vida. Dentre essas tecnologias, o início da produção industrial do transistor, um dispositivo semicondutor, pela Bell Labs em 1952, marca de fato\footnote{Oficialmente a Eletrônica de Potência surge com a invenção dos retificadores valvulados a arco de mercúrio em 1901 por Peter C. Hewitt \cite{Walber-01,Walber-02}.} o surgimento do processamento eletrônico de energia, cujo campo denomina-se Eletrônica de Potência \cite{Transistor}. Esta se caracteriza pelo uso de dispositivos semicondutores como forma de transformar e adaptar a energia elétrica de diferentes redes, isto é, entre redes de CA para CC, CA-CC, (retificação), CC-CA (inversão), CC-CC, CA-CA, em que as adaptações podem ter distintos requisitos técnicos (tensão, corrente, frequência, isolamento galvânico, entre outros) \cite{Barbi}.
+
+Com isso, equipamentos industriais e equipamentos domésticos são beneficiados tanto pelo uso de redes em CA quanto em CC, hora pela facilidade de geração, transmissão e distribuição em CA, hora pela portabilidade e controlabilidade em CC. Dentre esses, os retificadores trifásicos são comumentes empregados para realizar a retificação em elevadas potências na geração de energia, sendo esta geralmente invertida e transmitida para o sistema de transmissão/distribuição, ou para o fornecimento de energia de cargas em CC, como fontes de alimentação, bancos de bateria, entre outras.
+
+Entretanto, as primeiras topologias de retificadores trifásicos, como as pontes retificadoras a diodo e a tiristor, caracterizam-se pela baixa qualidade no processamento de energia. Ademais, a grande inserção de tais dispositivos nas redes elétricas causou e causa outros problemas, como o deterioramento das tensões e correntes nos sistemas de transmissão/distribuição. O que, por sua vez, causa interferências em outros equipamentos, aumentando as perdas, entre outros problemas oriundos da má qualidade da energia drenada \cite{Singh-01,Singh-02}.
+
+Na busca por \emph{melhorias}, diversos índices de desempenho podem ser quantificados para tratar de tais problemas. Entre eles, pode-se citar a operação com correção do fator de potência (PFC $-$ \emph{power factor correction}), caracterizando, em geral, o emprego de unidades retificadoras com processamento ativo do fluxo de energia, isto é, retificadores ativos trifásicos.  Dentre as técnicas ativas, destaca-se a modulação por largura de pulso (PWM $-$ \emph{pulse width modulation}) \cite{Lipo}. 
+
+Não obstante, outras características como redução de volume e perdas reduzidas, isto é, menos materais/componentes e maximização da eficiência energética, se tornam requisitos cada vez mais importantes numa sociedade que visa a melhor utilização dos recursos naturais e das fontes energéticas. Nesse contexto, visando mitigar tais problemas e avançar em tais melhorias, as topologias elevadoras (\emph{boost}) de retificadores PWM unidirecionais trifásicos são empregadas por propiciar, adicionalmente, elevado fator de potência, alta controlabilidade e baixo conteúdo harmônico das correntes de entrada e, regulação da tensão de saída \cite{Singh-01,Singh-02}. Visando assim atender as cada vez mais restritivas normas reguladoras de instalações elétricas e de equipamentos eletro-eletrônicos, como por exemplo a \cite{IEEE-519} e as \cite{IEC-EMC}.
+  
+Para as aplicações em baixa tensão, verifica-se que dentre as topologias de retificadores PWM trifásicos há três fortes candidatas \cite{Kolar-01}. Estas são o conversor\footnote{Para todos os efeitos, a partir de agora, neste trabalho, considera-se que conversor e retificador denotam dispositivos com fluxo bidirecional e unidirecional de energia, respectivamente.} PWM trifásico em ponte completa (VSC $-$ \emph{voltage source converter}), o retificador PWM trifásico do tipo Vienna (VIENNA) e  o retificador PWM trifásico com interruptores em CA em delta (\deltavsr~$-$ \emph{delta voltage source rectifier}). Estas topologias estão ilustradas nas \figref{fig:vsc}, \figref{fig:vienna} e \figref{fig:delta-vsr}, respectivamente. 
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics{Figuras/introducao/vsc.eps}
+	\caption{Conversor trifásico em ponte completa (VSC). O interruptor controlado em destaque é unidirecional em tensão e bidirecional em corrente.}
+	\label{fig:vsc}
+\end{figure} 
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics{Figuras/introducao/vienna.eps}
+	\caption{Retificador trifásico do tipo Vienna (VIENNA). O interruptor controlado em destaque é bidirecional em tensão e bidirecional em corrente.}
+	\label{fig:vienna}
+\end{figure}
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/introducao/delta-vsr.eps}
+	\caption{Retificador trifásico com interruptores em CA em delta (\deltavsr). O interruptor controlado em destaque é bidirecional em tensão e bidirecional em corrente.}
+	\label{fig:delta-vsr}
+\end{figure}
+  
+O VSC é uma estrutura que imprime na saída uma tensão de dois níveis. O mesmo é capaz de processar energia nos dois sentidos com correntes controladas, lidar com faltas de uma maneira extremamente flexível e operar com alto fator de potência, caso seja requisitado. Esta é a solução mais difundida na indústria, sendo disponibilizado comercialmente como uma unidade em um módulo de potência (\emph{``sixpack'' power module}) \cite{Kolar-01}. No entanto, o mesmo está susceptível a curtos de ``braço'', em que o barramento em CC é curto circuitado devido a um mal funcionamento dos interruptores. Além disso, é necessário a implementação de tempo morto (\emph{dead time}) para evitar os curtos de braço durante sua operação normal, o que diminui o desempenho da estrutura como um todo. Dentre as topologias citadas é a que apresenta os maiores níveis de tensão de modo comum ($v_{dc}/6$ e $v_{dc}/2$). Ainda assim, o interesse nessa topologia é extramente alto e a mesma serve de base para estudos comparativos \cite{Kolar-01}.
+
+A conexão do interruptores controlados com o ponto médio \emph{o} do barramento em CC no VIENNA permite a impressão na entrada uma tensão de três níveis, dessa forma, caracterizando-o como um retificador de três níveis. Dentre as topologias apresentadas, é a única na qual os interruptores controlados estão submetidos à metade dos esforços de tensão, isto é, $v_{dc}/2$ \cite{Kolar-01}. Isso permite operá-lo em níveis de tensões mais elevados empregando a mesma tecnologia de semicondutores que os retificadores VSC e \deltavsr. Devido à presença da ponte de diodos não há possibilidades de curtos de braço, além de ser desnecessário o emprego de tempo morto nos comandos dos interruptores. Adicionalmente, devido ao maior  número de níveis, uma menor ondulação de corrente é gerada, resultando em menores emissões eletromagnéticas, as quais podem gerar interferência eletromagnética (EMI $-$ \emph{electromagnetic interference}), e, por sua vez, em menores requisitos para os filtros de entrada para compatibilidade eletromagnética (EMC $-$ \emph{electromagnetic compatibility}) \cite{Kolar-01}. Pode-se citar como desvantagens à sua operação uma elevação das perdas em condução para alguns estados topológicos por haver um maior número de semicondutores no caminho da corrente e a necessidade do controle independente das tensões dos capacitores do barramento em CC, o que, por sua vez, requer uma modulação e controle apropriados para evitar uma distribuição assimétrica das perdas entre os interruptores \cite{Vienna-V01,Vienna-V02,Vienna-V03}.
+
+O $\Delta$VSR se caracteriza por possuir reduzidas perdas frente ao VSC, além de uma maior robustez dada a impossibilidades de curtos de braço, de não serem necessários tempo morto nos comandos dos interruptores e tensão de modo comum nula\footnote{Na prática, essa será definida pelos elementos parasitas do circuito, mas tende a zero, principalmente se semicondutores com mesmas caracterísiticas tecnológicas forem empregados \cite{Hartmann-02,Miller-01}.} na operação com vetor nulo, o que reduz os requisitos de filtros EMC. O aumento da complexidade do modulador com a necessidade de sincronismo aplicado às correntes trifásicas para a operação de estratégias otimizadas estão entre as desvantagens apresentadas por essa estrutura \cite{Hartmann-02,PCIM}. Em relação ao VIENNA este possui uma maior faixa de processamento de energia reativa, fator limitante em retificadores unidirecionais, que no VIENNA é enfatizado caso se deseje empregar modulações sem grandes variações nos níveis das tensões \cite{DeltaiRect-01}, além de possibilitar uma operação com menores perdas para certos estados topológicos. Portanto, a escolha da topologia adequada deve se basear nos requisitos da aplicação. O $\Delta$VSR  já foi aplicado à geração de energia eólica e sistemas de aviação \cite{APEC,Miller-02,Diss,Lutz-01,Hartmann-02,Hartmann-03}
+
+As características atrativas do retificador trifásico com interruptores em CA em delta levaram a sua topologia a ser empregada não só da forma como foi concebida. Esta pode ser encontrada em aplicações de retificadores trifásicos híbridos conforme ilustrado na \figref{fig:delta-hybrid} o retificador PWM trifásico híbrido baseado no \deltavsr~($\Delta$HYBRID) aplicado a precipitadores eletrostáticos \cite{Soeiro-01,Soeiro-03}. Verifica-se que em relação a outras topologias de híbridos, dentre elas híbridos com o VIENNA, este apresentou um rendimento (projeto de 10~kW) similar para baixas frequências de comutação (em torno de 5~kHz) e cerca de 1\% a menos de rendimento (97\% de rendimento) em frequência mais elevadas (em torno de 50~kHz) \cite{Soeiro-02}. Observa-se que apenas um tipo de modulação foi empregado nesta análise do $\Delta$HYBRID. Outro nicho considerado é a conversão de CA-CA por meio de conversores matriciais, em que um conversor PWM indireto matricial unidirecional ultra-esparso com o $\Delta$VSR no estágio de retificação ($\Delta$USMC) como mostrado na \figref{fig:delta-usmc} proposto em \cite{Jappe-02}. Um estudo comparativo entre o $\Delta$USMC e outros conversores matriciais considerando o projeto de um conversor de 10~kW  é apresentado em \cite{Soeiro-05}, em que o estágio com o $\Delta$VSR proporciona uma redução das perdas (cerca de 5\%) frente a um estágio com o VSC.  
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/introducao/delta-hybrid.eps}
+	\caption{Retificador trifásico híbrido baseado no $\Delta$VSR ($\Delta$HYBRID).}
+	\label{fig:delta-hybrid}
+\end{figure}
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/introducao/delta-usmc.eps}
+	\caption{Conversor indireto matricial unidirecional ultra-esparso com o $\Delta$VSR no estágio de retificação ($\Delta$USMC).}
+	\label{fig:delta-usmc}
+\end{figure}
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/introducao/delta-vsc.eps}
+	\caption{Conversor trifásico em ponte completa com interruptores em CA em delta ($\Delta$VSC).}
+	\label{fig:delta-vsc}
+\end{figure}
+
+O conceito dos interruptores em CA em delta foi também aplicado para aumentar a controlabilidade e para redução das perdas e da tensão de modo comum ao se empregar o VSC como representado na \figref{fig:delta-vsc} o conversor PWM trifásico em ponte completa com interruptores em CA em delta ($\Delta$VSC) \cite{Pedro-01}. De maneira similar, esta topologia foi empregada para CA-CA resultando na topologia de conversor PWM indireto matricial baseada no $\Delta$VSC ($\Delta$IMC) conforme a  \figref{fig:delta-imc}, em que obteu-se um rendimento de cerca de 97\% no projeto de um conversor de 10~kW \cite{Jappe-01}. 
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics{Figuras/introducao/delta-imc.eps}
+	\caption{Conversor indireto matricial baseado no $\Delta$VSC ($\Delta$IMC).}
+	\label{fig:delta-imc}
+\end{figure}
+
+Verifica-se, portanto, que o $\Delta$VSR é não só uma tecnologia promissora, mas que seus conceitos podem ser empregados para melhorar a características de tecnologias já existentes. No entanto, requisitos de EMC podem comprometer sua utilização quando se compara seu desempenho ao VIENNA, por exemplo, além de certas características como perdas e controlabilidade, que devem ser comparadas em nível de projeto. 
+
+Visando mitigar tais desvantagens e realçar suas qualidades, \cite{EPE} utiliza o $\Delta$VSR e emprega o conceito de células de comutação de múltiplos estados para a operação simultânea ``múltiplos'' conversores, em que a conexão é feita através de um transformador de multi-interfase (MIPT $-$ \emph{multi-interphase transformer}) conforme ilustrado na \figref{fig:mlmsr-2delta-01}. Observa-se que é obtido um retificador multinível baseado em células de comutação de múltiplos estados (MLMSR - \emph{multistate switching cells-based multilevel rectifiers}), em que, neste trabalho, considera-se a nomenclatura MLMSR adicionando o número de enrolamentos do MIPT e o nome da topologia em que é baseado o novo conversor multinível, como na \figref{fig:mlmsr-2delta-01} em que se tem o MLMSR-2$\Delta$VSR. A viabilidade do retificador é comprovada experimentalmente com um protótipo de 3,5~kW e comparativamente frente aos seus concorrentes imediatos, o MLMSR-2VSC e o MLMSR-2VIENNA. Para a potência de projeto e a frequência de comutação empregada de 20~kHz, o MLMSR-2$\Delta$VSR se mostra como a topologia mais atrativa para toda a faixa de operação do índice de modulação.
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/introducao/2lmsr-delta-01.eps}
+	\caption{Retificador trifásico MLMSR baseado no emprego de um MIPT de dois enrolamentos e do $\Delta$VSR (MLMSR-2$\Delta$VSR).}
+	\label{fig:mlmsr-2delta-01}
+\end{figure}
+
+Além disso, o emprego de conversores estáticos baseados em células de comutação de múltiplos estados tem se tornado um solução atrativa para a elevação da potência diante de limitações tecnológicas, de regulamentações restritivas e de soluções cada vez mais otimizadas \cite{Ortmann-02,Ronny-01,Alcazar-01,Ortmann-03,Cougo-03,Boillat-01,Hausmann-02,Ortmann-01,Flores-01,Cougo-01,Hausmann-03}. Embora outras vertentes empregem uma solução similar com a operação intercalada de múltiplos conversores por meio de indutores acoplados\footnote{Observa-se que não há um consenso na literatura sobre o emprego da terminologia de indutores acoplados, podendo ser possível encontrar trabalhos recentes sobre MIPTs com essa outra nomenclatura \cite{Boroyevich-01,Villar-01,Boillat-01}. No entanto, neste trabalho considera-se que ambos são dispositos distintos segundo a linha de pesquisa apresentada, não exclusivamente, em \cite{Ortmann-01} e de forma similar em \cite{Cougo-01}, entre outros trabalhos  citados no decorrer do texto. Dessa forma, segue-se de acordo com definições estabelecidas anteriormente, sobre qual a função essencial de um transformador de multi-interfase \cite{MIPT-IEEE, MIPT-IEC}, em que estes são o caso especial de indutores acoplados empregados para obter a operação paralela entre dois ou mais retificadores com oscilação de tensão que estão fora de fase. } \cite{Interleaving-01,Interleaving-02,Interleaving-03,Interleaving-04,Interleaving-06,Interleaving-05}, verifica-se que o emprego de MLMSR é uma tecnologia mais promissora. Isso se deve a maior liberdade que se obtém para a otimização dos indutores e dos MIPTs que operam em baixa frequência e alta frequência, respectivamente. Enquanto os indutores acoplados devem ser projetados para garatirem certas restrições em ambas as faixas de frequência \cite{Cougo-05}.  
+
+Trabalhos recentes demonstram que a operação dos conversores MLMSR vai além da simples conexão de múltiplos conversores por meio de MIPTs  \cite{Ortmann-02,Cougo-02,Boillat-01,Hausmann-02,Cougo-04,Meynard-01}. Foram pesquisados os aspectos operacionais, para diferentes números $n$ de enrolamentos, do MLMSR-$n$VSC e do\footnote{Embora a topologia apresentada do MLMSR-$n$VIENNA contemple outros retificadores além dos casos particulares de implementação de interruptores que geram as topologias VIENNA, considera-se, neste trabalho, que a abrangência da nomenclatura VIENNA para descrever tal família de retificadores é grande o sufiente para justificar o seu emprego \cite{Vienna-01,Kolar-02,Vienna-02,Vienna-03}. } MLMSR-$n$VIENNA ilustrados nas \figref{fig:mlmsr-vsc} e \figref{fig:mlmsr-vienna}, respectivamente. Características distintas são obtidas que dependem não só da quantidade de enrolamentos do transformador de multi-interfase como das estratégias de modulação empregadas. 
+
+\begin{figure}[p!]
+	\centering
+	\includegraphics{Figuras/introducao/mlmsr-vsc.eps}
+	\caption{Conversor trifásico MLMSR baseado no emprego de um MIPT de $n$ enrolamentos e do VSC (MLMSR-$n$VSC).}
+	\label{fig:mlmsr-vsc}
+\end{figure}
+
+\begin{figure}[p!]
+	\centering
+	\includegraphics{Figuras/introducao/mlmsr-vienna.eps}
+	\caption{Retificador trifásico MLMSR baseado no emprego de um MIPT de $n$ enrolamentos e do VIENNA (MLMSR-$n$VIENNA).}
+	\label{fig:mlmsr-vienna}
+\end{figure}
+
+\clearpage
+
+Ordenando convenientemente o circuito do MLMSR-2$\Delta$VSR da \figref{fig:mlmsr-2delta-01}, verifica-se que um novo retificador de estágio único é obtido conforme ilustrado na \figref{fig:mlmsr-2delta-02}. A generalização para $n$ enrolamentos é apresentada na \figref{fig:mlmsr-delta}, em que a conexão dos interruptores em CA é realizada a partir dos arranjos $\{\textbf{S}_1,\ldots,\textbf{S}_n\}$, cujo retificador recebe a denominação de MLMSR-$n\Delta$VSR. 
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics{Figuras/introducao/2lmsr-delta-02.eps}
+	\caption{Topologia do MLMSR-2$\Delta$VSR em estágio único.}
+	\label{fig:mlmsr-2delta-02}
+\end{figure}
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics{Figuras/introducao/mlmsr-delta.eps}
+	\caption{Retificador trifásico MLMSR baseado no emprego de um MIPT de $n$ enrolamentos e do $\Delta$VSR (MLMSR-$n\Delta$VSR). A realização de interruptores em CA $\textbf{S}_j$ é deixada de maneira generalizada para análise posterior.}
+	\label{fig:mlmsr-delta}
+\end{figure}
+
+Essa omissão da forma em que os interruptores em CA estão conectados é proposital, visto que novas formas de conexão podem ser empregadas conforme ilustrado na \figref{fig:acswitches} \cite{Salmon-03,Salmon-02,Salmon-04}. No entanto, uma análise mais apronfundada ainda é necessária, pois a escolha da conexão em delta é baseada na premissa que esta teria as menores perdas em condução caso interruptores bidirecionais em tensão e em corrente se torne comercialmente disponíveis e devido à menor complexidade frente à realização em ponte completa. Portanto, uma análise detalhada não só do funcionamento e projeto do MLMSR-$n\Delta$VSR é relevante como também questões de realização dos interruptores em CA para otimização da topologia em questão. A escolha da realização de interruptores irá influenciar a escolha das técnicas de modulação, as perdas do retificador, projeto dos elementos magnéticos e níveis de tensão de modo diferencial (DM $-$ \emph{differential mode}) e de modo comum (CM $-$ \emph{common mode}), fatores imprencidíveis que irão determinar o suceso da topologia frente a outras possiblidades.
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics{Figuras/introducao/acswitches.eps}
+	\caption{Possíveis configurações de interruptores em CA no arranjo $\textbf{S}_j$: (a) em $\Delta$; (b) em estrela (Y); e, (c) em ponte completa.}
+	\label{fig:acswitches}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objetivos da Tese de Doutorado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Pode-se dividir os objetivos desta tese de doutorado em três vertentes, em que as duas primeiras estão relacionadas as principais contribuições que se deseja alcançar ao final da tese de doutorado. Estas são a melhoria do desempenho do $\Delta$VSR e o estudo do MLMSR-$n\Delta$VSR, em que destacam-se os principais objetivos relacionados a ambas:
+%
+\begin{itemize}
+
+\item analisar as possíveis realizações dos interruptores em CA para determinar as suas características operacionais;  
+
+\item analisar e propor novas técnicas de modulação e sincronização das correntes trifásicas visando melhorar o desempenho do $\Delta$VSR;
+
+\item estudar o MLMSR-$n\Delta$VSR com o enfoque na integração das ferramentas disponibilizadas pela análise do $\Delta$VSR;
+
+\item desenvolver e disponibilizar ferramentas para o projeto otimizado dos elementos magnéticos, indutores e transformadores de multi-interfase, e dos dispositivos semicondutores, diodos de retificação e interruptores controlados, do MLMSR-$n\Delta$VSR.
+
+\end{itemize} Um estudo experimental é inerente à concepção e comprovação das análises e metodologias de projeto que serão realizadas. Ademais, deseja-se realizar um estudo comparativo com as topologias MLMSR-$n$VSC e MLMSR-$n$VIENNA, de forma a dar uma maior projeção da importância da topologia frente a outras mais consagradas.
+
+A última vertente de objetivos deste trabalho está relacionada ao controle de retificadores PWM trifásicos. Neste âmbito, o autocontrole de corrente (CSC $-$ \emph{current self-control}) surge na aplicação para retificadores monofásicos e retificadores trifásicos permitindo que as correntes trifásicas naturalmente sigam o formato das tensões da rede elétrica, sem o emprego de sensores (\emph{sensorless}) de tensão para realização de sincronismo ou geração de referências de correntes \cite{Borgonovo-01,CSC-02,CSC-01}. No entanto, existe sempre um defasamento entre as tensões e as correntes, limitando o fator de potência em certas aplicações. Com o intuito de estender a aplicação da técnica para o controle de geradores síncronos a ímãs permanentes (GSIP) em sistemas de conversão de energia eólica (WECS $-$ \emph{wind energy conversion systems}), em \cite{ICEM} foi proposta uma técnica de compensação de forma a mitigar e garantir a operação com fator de potência unitário visto pela fonte de alimentação. 
+
+No entanto, ainda há muitos fatores que contribuem para que a técnica não seja amplamente empregada como uma alternativa a outras técnicas \emph{sensorless}. Dentre estes, pode-se citar soluções para controle de tensão do barramento em CC, problemas de estabilidade em baixa carga, estudo da robustez e da sensibilidade paramétrica, eliminação de componentes harmônicas das correntes, entre outros. 
+
+Dessa forma, dando continuidade à linha de trabalho desenvolvida em \cite{Diss}, tem-se como objetivo empregar e estender o emprego do autocontrole de corrente, e suas variações propostas, nos retificadores que serão empregados neste trabalho. Será dado enfoque nas melhorias que possam garantir a operação completa, isto é, em toda a faixa de carga, de retificadores unidirecionais trifásicos e nas condições de contorno para tanto, isto é, análise das sensibilidades paramétricas.
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Contribuições da Qualificação de Doutorado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As principais contruibuições desenvolvidas\footnote{São citados trabalhos relacionados ao tema desenvolvido durante o período da bolsa de doutorado, mas que não foram desenvolvidos completamente no contexto dessa Qualificação de Doutorado. Isso se deve à continuidade de alguns trabalhos desenvolvidos em \cite{Diss} que estão relacionados ao tema proposto. Maiores detalhes são apresentados ao longo deste trabalho.} até o momento de acordo com a ordem e a temática da estrutura do trabalho são listadas a seguir:
+%
+\begin{itemize}  
+
+\item a técnica de autocontrole de corrente aplicada ao gerador síncrono a ímãs permanentes foi introduzida à comunidade científica\footnote{No ano anterior, em 2011, foi realizado um pedido de depósito de Patente de Invenção ou Modelo de Utilidade denominada ``Auto-controle de Corrente para Geradores Elétricos Trifásicos Conectados a Retificadores Auto-comutados'' no Departamento de Inovação Tecnológica DIT/PRPE/UFSC \cite{Patente}} com a publicação e apresentação do trabalho em congresso internacional a partir de \cite{ICEM}. Com o intuito de apresentar mais detalhes operacionais da técnica está sendo desenvolvida uma extensão a ser publicada em revista\footnote{Já foi realizada uma submissão deste artigo, no entanto, ainda se está trabalhando em uma nova versão a partir das sugestões dos revisores da \emph{IEEE Trans. Ind. Electron.} e de novas contribuições/contextualização. Dessa forma, prentende-se realizar uma nova submissão na \emph{IEEE Trans. Power Electron.}}, cujo título preliminar é ``\emph{Permanent Magnet Synchronous Generator Sensorless Control based on a Current Self-Control Strategy in a Wind Energy Conversion System}'' e o artigo até então desenvolvido/revisado se encontra no Anexo~\ref{TPEL-CSC};
+
+\item proposição de novas estratégias de modulação para o $\Delta$VSR, cujo trabalho foi publicado e apresentado em congresso internacional \cite{APEC}. O título do artigo é ``\emph{Comparison of Modulation Strategies Driving a Three-Phase PWM Delta-Switch Rectifier in Wind Energy Conversion Systems Applications}'' e o mesmo é apresentado no Anexo~\ref{APEC-2013};
+
+\item elaboração de um estudo detalhado da ondulação de corrente do VSC para melhoria da predição de valores teóricos no cálculo de perdas em condução nos dispositivos semicondutores. O trabalho ainda em fase de conclusão, tendo sido submetido em congresso internacional sob o título de ``\emph{Semiconductor Conduction Losses Prediction Considering the Current Ripple in a Three-Phase Two-Level Voltage Source Converter Driven by Different PWM Strategies}''. O documento submetido pode ser encontrado no Anexo~\ref{COBEP-2015};
+
+\item o emprego de estratégias de modulação ótimas no $\Delta$VSR requer que técnicas de sincronização das correntes trifásicas sejam utilizadas. Em ``\emph{AC Currents Synchronization Technique Based on the Normalized Phase-Locked Loop for Modulation of a Three-Phase PWM Delta-Switch Rectifier}'' é proposta uma técnica de sincronização baseada em um PLL normalizado (N-PLL), cujo artigo foi publicado e apresentado em congresso internacional \cite{COMPEL}. Este encontra-se no Anexo~\ref{COMPEL-2014};
+
+\item estudo de conversores, \emph{boost} cc-cc bidirecional (MLMSR-2\emph{boost}) e MLMSR-2VSC, empregando célula de comutações de múltiplos estados e diferentes estratégias de modulação PWM aplicados a embarcações elétricas, cujo trabalho é entitulado de ``\emph{Propulsion System for an All Electric Passenger Boat employing Permanent Magnet Synchronous Motors and Modern Power Electronics}'' publicado em congresso internacional conforme \cite{ESARS}. Este artigo é apresentado no Anexo~\ref{ESARS-2012}.
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estrutura deste Trabalho}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Este trabalho está organizado da seguinte maneira:
+
+\begin{itemize}
+
+\item uma revisão bibliográfica do $\Delta$VSR é apresentada no Capítulo~\ref{chapter-principios}. É dado um enfoque nos aspectos históricos, aplicações e princípios de funcionamento;
+
+\item algumas contribuições à operação do $\Delta$VSR são apresentadas no Capítulo~\ref{chapter-DeltaVSR}. Essas contruibuições são apenas sumarizadas neste capítulo, enquanto as principais análises e equacionamentos são apresentados por meio de artigos em anexo;
+
+\item estudos iniciais por meio de simulações numéricas do MLMSR-$n\Delta$VSR são apresentados no Capítulo~\ref{chapter-DeltaMLMSR}. A viabilidade de contribuições para a topologia estudada nessa proposta de tese de doutorado são verificadas ao se empregarem novas estratégias de modulação.
+
+\end{itemize}
+
+Algumas partes e análises complementares à estrutura do trabalho são apresentadas por meio de apêndices:
+
+\begin{itemize}
+
+\item a técnica de autocontrole de corrente é apresentada por meio do Apêndice~\ref{apendice:controle}, no entanto, uma detalhes de equacionamento, modelos e análises são apresentados por meio de um artigo em anexo;
+
+\item uma análise detalhada da ondulação de corrente para cálculo de perdas em condução nos semicondutores é apresentada no Apêndice~\ref{apendice:ondulacao}, em que destaca-se resultados no VSC de uma versão preliminar de artigo submetida recente para publicação em congresso.
+
+\end{itemize}
+
+Ademais, em anexos, são apresentados os trabalhos citados como contribuições relacionadas a este trabalho de qualificação de doutorado.

@@ -1,0 +1,139 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage[brazil]{babel}
+\RequirePackage[pdftex]{hyperref} 
+\RequirePackage{setspace}
+\RequirePackage{graphicx}
+\RequirePackage{epstopdf}
+\RequirePackage{subfigure}
+\RequirePackage{color}
+\RequirePackage{pdflscape}
+\RequirePackage{amsmath}
+\RequirePackage{amsbsy}
+\RequirePackage{mathrsfs}
+\RequirePackage{nomencl} 
+\RequirePackage{multirow}
+\RequirePackage{listings}
+\RequirePackage{verbatim}
+\RequirePackage{supertabular}
+\RequirePackage{ifthen}
+\RequirePackage{ifpdf}
+\RequirePackage{lastpage}
+\RequirePackage[overload]{textcase}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{appendix}
+
+\RequirePackage[font=small]{caption}
+
+\RequirePackage[titles]{tocloft}
+\setlength{\cftbeforechapskip}{2ex}
+\setlength{\cftbeforesecskip}{0.5ex}
+\renewcommand{\cftchapfont}{\small}
+\renewcommand{\cftsecfont}{\small}
+\renewcommand{\cftsubsecfont}{\small}
+\renewcommand{\cftsubsubsecfont}{\small}
+\renewcommand{\cftfigfont}{\small}
+\renewcommand{\cfttabfont}{\small}
+
+\definecolor{gray}{rgb}{0.44,0.44,0.44}
+
+% --- FORMATAÇÃO abnt (autor,data) 
+\RequirePackage[alf,bibjustif,recuo=1cm]{abntcite} 
+\bibliographystyle{abnt-alf}  % formato (autor,data) 
+
+% --- FORMATAÇÃO numérica [número]
+%\RequirePackage[num,bibjustif,recuo=1cm]{abntcite}
+%\RequirePackage{colchetesrefs}
+%\citebrackets{[}{]}  \bibliographystyle{abnt-num}   % formato [numéro]
+%
+% OPÇÃO A5 ------------------------------------------------------------------------------------------------------------
+
+% --- geometria do papel
+\RequirePackage[top=2cm,left=2.5cm,right=1.5cm,bottom=1.5cm,foot=0.7cm,footnotesep=0.23cm,head=1.27cm,headsep=0.73cm]{geometry}
+
+% --- espaçamento entre linhas
+\newcommand{\espacamento}{1.0}
+
+% OPÇÃO A4 ------------------------------------------------------------------------------------------------------------
+
+% --- geometria do papel
+%\RequirePackage[top=2cm,left=2.5cm,right=2cm,bottom=2cm,foot=0.7cm,footnotesep=0.23cm,head=1.6cm,headsep=0.4cm]{geometry}
+
+% --- espaçamento entre linhas
+%\newcommand{\espacamento}{1.5}
+
+%------------------------------------------------------------------------------------------------------------------------
+\linespread{\espacamento}
+
+%------------------------------------------------------------------------------------------------------------------------
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+%------------------------------------------------------------------------------------------------------------------------
+\setlength{\mathindent}{0cm}	
+
+%------------------------------------------------------------------------------------------------------------------------
+\titleformat{\chapter}[display]{\bfseries\Large}{\filright {\huge\chaptertitlename} {\huge\thechapter}}{1ex}{\filright}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}  
+
+\titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{} 
+
+% COMANDOS -----------------------------------------------------------------------------------------------------------
+\input{formatos/definicoesComandos}
+
+% CAPA ---------------------------------------------------------------------------------------------------------------
+\input{formatos/definicoesCapa}
+
+% FOLHA DE APROVAÇÃO -------------------------------------------------------------------------------------------------
+\input{formatos/definicoesFolhaDeAprovacao}
+
+% LISTA DE SÍMBOLOS (VERSÃO ALPHA) -----------------------------------------------------------------------------------
+\newlength{\siglawidth}
+\newlength{\siglamaxwidth}
+\newlength{\simbwidth}
+\newlength{\simbmaxwidth}
+
+\newcommand{\simb}[2][]{%
+	\settowidth{\simbwidth}{\ensuremath{#2}}\ignorespaces
+	\ifthenelse{\lengthtest{\simbwidth > \simbmaxwidth}} % Se a nova sigla é maior,
+		{\settowidth{\simbmaxwidth}{\ensuremath{#2}}} % seta o valor da maior com o tamanho da atual.
+		{}\ignorespaces
+	\ifthenelse{\equal{#1}{}}
+		{\addcontentsline{los}{simbolo}{\protect\parbox[t]{\protect\simbmaxwidth}{\ensuremath{#2}}}}
+		{\addcontentsline{los}{simbolo}{\protect\parbox[t]{\protect\simbmaxwidth}{\ensuremath{#2}} \protect\parbox[t]{\protect\textwidth - \protect\simbmaxwidth}{#1}}}\ignorespaces
+	\ensuremath{#2}}
+
+% \listadesimbolos: comando que imprime a lista de simbolos
+\newcommand{\listadesimbolos}{
+	\pretextualchapter{Lista de S\'imbolos}
+	{\setlength{\parindent}{0cm}
+	 % Abrindo arquivo para leitura e verificando se ele existe:
+		 \newread\instream
+		 \immediate\openin\instream= \jobname.tmp
+		 \ifeof\instream 
+		 	\message{\jobname.tmp nao existe ainda. Rode o latex novamente.} % Na primeira vez.
+       \else 
+       	\immediate\read\instream to \auxcommand % O comando no arquivo temporario é salvo em \auxcommand.
+       	\immediate\closein\instream % Fechando o arquivo.
+       	\auxcommand % Executando o comando lido.
+       \fi
+	
+	 \addtolength{\simbmaxwidth}{1em}
+	 \@starttoc{los}}}
+% como a entrada ser´a impressa
+\newcommand\l@simbolo[2]{
+	\parbox[b]{\textwidth}{#1}
+}
+
+%------------------------------------------------------------------------------------------------------------------------
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{4}

@@ -1,0 +1,36 @@
+\chapter*{}
+\thispagestyle{empty}
+\newpage
+
+{\color{white}{página em branco}}
+
+\thispagestyle{empty}
+
+\newpage
+\pagestyle{fancy}
+
+\fancyhead{} % clear all fields
+\fancyfoot{} % clear all fields
+
+\newcommand{\capitulo}{\chaptermark}
+\newcommand{\secao}{\sectionmark}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\plainheadrulewidth}{0pt}
+\renewcommand{\plainfootrulewidth}{0pt}
+
+\renewcommand{\chaptermark}[1]{
+\markboth{\uppercase{#1}}{}}
+
+% --- cabeçalho \color{blue}
+\fancyhead[LO]{\footnotesize  \let\uppercase\relax\rightmark}
+\fancyhead[RE]{\footnotesize   \let\uppercase\relax\leftmark}
+\fancyhead[RO]{{\includegraphics[scale=\escalaUFSC]{\logoUFSC}}}
+\fancyhead[LE]{{\includegraphics[scale=\escalaLAB]{\logoLAB}}}
+
+% --- rodapé
+\fancyfoot[C]{\thepage}
+
+% --- numeração das páginas em algarismos arábicos
+\pagenumbering{arabic}

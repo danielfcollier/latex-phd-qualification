@@ -1,0 +1,49 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Contribuições à Operação do $\Delta$VSR} \label{chapter-DeltaVSR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Para uma maior disseminação e um melhor entendimento da topologia do $\Delta$VSR estão sendo realizados alguns estudos adicionais que visão contribuir com a sua operação. Dentre estes, pode-se destacar a proposição de novas estratégias de modulação, estudos comparativos das estratégias de modulação, por meio de esforços de corrente e perdas, e o estudo de técnicas de identificação dos setores de corrente. Dessa forma, nesse capítulo são apresentadas contribuições realizadas e o que se pretende continuar como linha de trabalho no âmbito da tese de doutorado.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Novas Estratégias de Modulação}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Conforme discutido no Capítulo~\ref{chapter-principios}, as modulações empregadas para o $\Delta$VSR são estratégias otimizadas, com relação ao número de comutações, SVM~I, e com relação às perdas em condução, SVM~II. Ambas requerem o emprego de técnicas de identificação dos setores de corrente, o que adiciona uma maior complexidade ao modulador. Com o intuito de desenvolver um modulador mais simples, a identificação dos setores de corrente foi deixada de lado e, para tanto, optou-se operar com estratégias de modulação subótimas.  
+
+Nesse sentido, observa-se que a realização de um vetor ativo é possível de ser realizada de duas maneiras conforme mostrado na \tabref{tab:all}, uma sem acionar os interruptores e outra acionando um dos interruptores. Na primeira, é necessário saber completamente o sentido das correntes de fase, como, por exemplo, no caso  em que $i_a>0$, $i_b<0$ e $i_c<0$ o não acionamento dos interruptores resulta no vetor $\vec{V}_1$. Na segunda, desde que o ângulo de entrada $\delta_i$ encontre-se dentro dos limites operacionais, o acionamento de um interruptor irá gerar o vetor desejado, como, por exemplo, no caso de uma corrente positiva na fase \emph{a} e acionando $S_{bc}$, $\vec{V}_1$ sempre será gerado. 
+
+Com base nessa análise, os padrões de pulsos das estratégias SVM~I e SVM~II foram modificados de forma a contemplar o acionamento dos interruptores para gerar todos os vetores. No entanto, uma escolha ainda deve ser feita, visto que ambas empregam dois padrões de pulsos por setor, cuja divisão é determinada pelo algortimo de identificação dos setores de corrente. Verifica-se que cada padrão de pulsos é mais indicado para uma determinada condição operacional do retificador, pois, embora a condição de ângulo não seja mais determinada em tempo real, essa pode ser prevista de acordo com a aplicação. Dessa forma, para cada estratégia de modulação otimizada, duas novas estratégias de modulação subótimas podem ser produzidas, denominadas de mSVM~I e mSVM~II em referência a estratégia ótima da qual foi gerada. 
+
+Uma versão completa dessa investigação e proposta de modulações é apresentada no Anexo~\ref{APEC-2013}, cujo trabalho é um artigo publicado na conferência internacional APEC \cite{APEC}. Este consta também com informações referentes à implementação das estratégias de modulação a partir dos sinais modulantes (sinais de controle) em $\alpha\beta$ e portadoras triangulares. Ademais, são apresentadas fórmulas para o cálculo dos esforços nos semicondutores, das perdas em condução e das perdas em comutação. Assim, é avaliada a viabilidade da aplicação das técnicas em um sistema de conversão de energia eólica, cujo ângulo de entrada tende a crescer com o aumento da potência gerada, levando as estratégias propostas a terem um comportamente semelhante às estratégias otimizadas. Resultados experimentais são também apresentados em um protótipo de laboratório operando com potência de 2~kW, em que a estratégia mSVM~II obteve os melhores resultados quanto ao valor da distorção harmônica total (THD $-$ \emph{total harmonic distortion}) das correntes de fase. Houve uma redução da THD da corrente maior que 50$\%$ entre a SVM~II e a mSVM~II, visto que a identificação de setores de corrente também influencia na qualidade das correntes sintetizadas pelo $\Delta$VSR.
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comparação das Estratégias de Modulação }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Um estudo comparativo entre estratégias de modulação requer a avaliação de diversos índices de desempenho. Dentre estes, pode-se citar esforços de corrente, perdas em condução, perdas em comutação, emissões de modo comum e de modo diferencial. Visando desenvolver melhores ferramentas para o cálculo dos esforços de corrente, um estudo inicial detalhado da ondulação de corrente é apresentado no Apêndice~\ref{apendice:ondulacao}. 
+
+Com base nesse estudo, pretende-se, em nível de projeto, se ter uma melhor dimensão das reais perdas nos dispositivos semicondutores e elementos magnéticos, de forma a realizar comparações mais criteriosas das estratégias de modulação. Sendo assim, ao se realizar experimentos práticos com o $\Delta$VSR pretende-se verificar se as suposições e as metodologias abordadas vão de encontro às condições previstas a partir das análises teóricas. Um estudo comparativo de perdas em condução e em comutação, para as estratégias até então apresentadas do $\Delta$VSR aplicado em um sistema de conversão de energia eólica, com as ferramentas de análise mais difundidas na literatura aplica pode ser encontrado no Anexo~\ref{APEC-2013} \cite{APEC}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Identificação dos Setores de Corrente}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A partir da análise da depedência das polaridades das correntes e dos estados topológicos do $\Delta$VSR no Capítulo~\ref{chapter-principios}, verifica-se que os estados topológicos que apresentam as menores perdas em condução para um gerar um dado vetor ativo é dependente do sentido das correntes. Dessa forma, são propostas as estratégias otimizadas, SVM~I e SVM~II, que dependem dos setores de corrente para o $\Delta$VSR, o que implica no emprego de alguma estratégia para a identificação dos setores de corrente. Observa-se que outros retificadores trifásicos também podem se beneficiar dessas estratégias, visto que sempre há a dependência do sentido das correntes ao se verificar os estados topológicos de retificadores unidirecionais trifásicos \cite{Tuusa-01,Heldwein-01}
+
+
+Uma possibilidade empregada por \cite{Hartmann-02} foi aplicar a identificação de setores nas tensões de entrada da rede elétrica, visto que essas estão sempre presentes durante o funcionamento do retificador e não apresentam  
+
+citar \cite{COMPEL} para o PLL Anexo~\ref{COMPEL-2014}
+-> extensão para artigo de revista
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusão}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+sfasf

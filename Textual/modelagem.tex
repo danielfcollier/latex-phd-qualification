@@ -1,0 +1,1088 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter[Retificadores PWM Trifásicos em Aplicações Industrais] {Contextualização das Aplicações Industriais de Retificadores PWM Trifásicos com Característica do Tipo Fonte de Tensão} \label{chapter-contexto}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{flushright}
+%{\it \small Keep it simple, stupid!}
+%\end{flushright}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Os objetivos deste capítulo são descrever e modelar os principais componentes do WECS para fins de análise em regime transitório e permanente. Esses componentes estão ilustrados na Fig.~\ref{modelagem}, em que se observa a turbina eólica, o GSIP e o retificador ativo trifásico.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/modelagem.eps}
+	\caption{Componentes do WECS que serão estudados nesse capítulo.}
+	\label{modelagem}
+\end{figure}
+
+Serão expostos os principais mecanismos das turbinas eólicas responsáveis pela conversão da energia cinética dos ventos em energia mecânica no eixo do gerador, seu modelo, formas de controlar e proteger a turbina quando se atinge os limites mecânicos para operação segura.  Em seguida, o GSIP será abordado, os seus aspectos construtivos, as principais topologias empregadas em geração de energia eólica, os seus modelos nos sistemas de referência estacionário (\textit{abc}) e síncrono (\textit{dq0}), e as limitações impostas no seu funcionamento. Assim como para o GSIP, são apresentados os modelos do retificador ativo trifásico utilizado neste trabalho e as restrições que devem ser impostas para seu funcionamento com correntes de entrada senoidais. Por fim, será proposta uma metodologia para dimensionamento desses componentes a partir das suas características de funcionamento em regime permanente.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Retificadores PWM Trifásicos} \label{sec:turbina}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Escolha da Topologia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A topologia de retificador ativo trifásico que será estudada foi proposta em \cite{Artigos-03-25,Artigos-05-10}. Trata-se de uma variação topológica do retificador bidirecional trifásico \textit{boost} (será referido como VSR - \textit{voltage source rectifier}) ilustrado na Fig. \ref{retificador:boost-ideal}, em que os interruptores são reposicionados entre as fases (formando uma conexão em delta) no caminho entre os indutores e a ponte de diodos, conforme ilustrado na Fig.~\ref{retificador:conversor}. A ponte de diodos garante que o fluxo de potência é unidirecional e pelo formato da conexão dos interruptores ativos este retificador é conhecido como retificador unidirecional trifásico com interruptores CA em delta e será refererido como $\textrm{VSR}_{\Delta}$. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/boost3ph-ideal.eps}
+	\caption{Retificador trifásico bidirecional.}
+	\label{retificador:boost-ideal}
+\end{figure}
+
+Na Fig.~\ref{retificador:etapaboost} estão ilustradas duas etapas de operação do $\textrm{VSR}_{\Delta}$ para a condição em que $i_b=-i_a$ e $i_c=0$ com $i_a>0$, sendo uma etapa de acumulação de energia (Fig.~\ref{retificador:etapa01}) e outra de transferência de energia (Fig.~\ref{retificador:etapa02}). Nota-se que o funcionamento do conversor é do tipo \textit{boost}.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/conversor.eps}
+	\caption{Retificador trifásico unidirecional em delta.}
+	\label{retificador:conversor}
+\end{figure}
+
+\begin{figure}[!htbp]
+	\centering
+		
+	\subfigure[]{
+	\label{retificador:etapa01}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/etapa01.eps}}
+	
+	\subfigure[]{
+	\label{retificador:etapa02}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/etapa02.eps}}
+		
+	\caption{Possíveis etapas de operação do $\textrm{VSR}_{\Delta}$.}
+	\label{retificador:etapaboost}
+\end{figure}
+
+Os interruptores do $\textrm{VSR}_{\Delta}$ devem ser bidirecionais em corrente e em tensão por processarem correntes alternadas e serem submetidos a tensões alternadas. O $\textrm{VSR}_{\Delta}$ tem como características baixas perdas em condução e em comutação, principalmente se ``verdadeiros'' interruptores bidirecionais forem produzidos \cite{Artigos-03-06}. Estes podem ser implementados pelas configurações apresentadas na Fig.~\ref{retificador:interruptores} \cite{Artigos-03-25,Artigos-05-05,Artigos-03-16}, em que há possibilidades que podem ser implementadas com MOSFETs (\textit{metal oxide semiconductor field effect transistor}) e todas podem ser implementadas com IGBTs (\textit{insulated gate bipolar transitor}). A configuração de IGBTs em anti-paralelo da Fig~\ref{retificador:int-a} é a que possibilita as menores perdas em condução e é a única não pode ser implementada com MOSFETs. No entanto, nessa configuração os circuitos de comando devem ser isolados e os IGBTs devem ser do tipo \textit{reverse blocking}, ou seja, ter capacidade de bloquear tensão no sentido reverso. A configuração de MOSFETs em anti-série da Fig.~\ref{retificador:int-c} é mais simples de ser implementada do que a configuração da Fig.~\ref{retificador:int-b} e apresenta perdas menores que a configuração de MOSFET com ponte de diodos da Fig.~\ref{retificador:int-d}, devido ao número de semicondutores na passagem da corrente ser menor (dois semicondutores).
+
+\begin{figure}[!htb]
+	\centering
+	
+	\mbox{
+	\subfigure[]{
+	\label{retificador:int-a}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/int-a.eps}}
+	
+	\subfigure[]{
+	\label{retificador:int-b}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/int-b.eps}}
+	}
+	
+	\mbox{
+	\subfigure[]{
+	\label{retificador:int-c}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/int-c.eps}}
+	
+	\subfigure[]{
+	\label{retificador:int-d}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/int-d.eps}}
+	}
+	\caption[Configurações para implementação do interruptor bidirecional.]{Configurações possíveis para implementação do interruptor bidirecional.}
+	\label{retificador:interruptores}
+\end{figure}
+
+Como vantagens com relação ao VSR pode-se citar a grande robustez da estrutura, pois não há possibilidade de curto de braço e, portanto, não há necessidade de implementação de tempo-morto (\textit{dead-time}). Como desvantagens estão o fluxo unidirecional de energia, limitação do processamento de energia reativa e aumento da complexidade da estratégia de modulação, questões que serão analisadas mais adiante neste capítulo. As técnicas de modulação serão analisadas no Capítulo~\ref{chapter-modulacao}.
+
+Uma vasta quantidade de topologias de retificadores trifásicos unidirecionais podem ser encontradas na literatura. Em \cite{Artigos-Kolar-Y} também é proposta uma implementação com interruptores CA em estrela. No entanto, nessa estrutura as perdas em condução são maiores porque na etapa de acumulação de energia há sempre dois interruptores bidirecionais no caminho da corrente \cite{Artigos-05-05}. Um estudo do funcionamento de diversas topologias de retificadores trifásicos de dois níveis e três níveis é apresentada em \cite{Artigos-03-17,Artigos-03-06,Artigos-03-16} e mais recentemente em \cite{Teses-05-01} há uma revisão das principais topologias de retificadores trifásicos unidirecionais de dois níveis. Quando comparado ao VSR ou a outros retificadores trifásicos com interruptores do lado CA \cite{Artigos-03-23,Teses-03-14}, concluiu-se que a melhor escolha é o $\textrm{VSR}_{\Delta}$. E, para os níveis de tensão e potência utilizados neste projeto e dada a grande robustez, baixo custo e baixa complexidade \cite{Artigos-05-01}, o $\textrm{VSR}_{\Delta}$ aparenta ser a melhor topologia para o acionamento do GSIP utilizado neste trabalho. Os interruptores bidirecionais foram implementados com MOSFETs e na configuração em anti-série. A primeira aplicação desta topologia em geração de energia eólica foi realizada em \cite{Artigos-03-23}, em que é proposta uma estratégia de modulação e são apresentadas vantagens da topologia frente a outras topologias de retificadores ativos trifásicos com interruptores CA.
+
+Uma vez que foram apresentadas as justificativas para a escolha da topologia, será estudada a modelagem de retificadores trifásicos para a obtenção das equações diferenciais que regem o seu comportamento dinâmico. O estudo será introduzido apresentando a modelagem do VSR pelas facilidades que se encontram ao analisar esse conversor e por esta já ser bem conhecida na literatura \cite{Artigos-03-14,Teses-03-05}. Em seguida, são apresentadas as particularidades para o caso unidirecional já estudadas em \cite{Teses-03-06} e aplicadas aqui ao $\textrm{VSR}_{\Delta}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modelagem do VSR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Modelagem no Sistema \textit{abc}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Inicialmente, supõe-se que os interruptores são ideais, comutações instantâneas e as variáveis do circuito definidas conforme apresentado na Fig.~\ref{retificador:boost-ideal}. As funções de comutação dos interruptores $S_{xy}$ são definidas de acordo com (\ref{eq:Sxy}) e (\ref{eq:Sabc}). Para garantir que não haja curto-circuito de braço deve-se fazer com que os comandos dos interruptores de um mesmo braço sejam complementares e isto é expresso em (\ref{eq:Sxpn}).  
+
+\begin{equation}
+\label{eq:Sxy}
+s_{xy}=\left\{
+\begin{array}{c l}
+ 1 & \textrm{, $S_{xy}$ fechado }\\
+ 0 & \textrm{, $S_{xy}$ aberto } \quad \raisebox{1.1ex}[1.1ex][1.1ex]{com $x\in\{a,b,c\}$ e  $y\in\{p,n\}$}
+\end{array}\right.
+\end{equation}
+
+\begin{equation}
+\label{eq:Sabc}
+ s_{xy} =  s_{xy}(t) \quad \text{, com } x\in\{a,b,c\} \text{ e }  y\in\{p,n\}
+\end{equation} 
+
+\begin{equation}
+\label{eq:Sxpn}
+s_{xp}+s_{xn}=1 \quad \text{, com } x\in\{a,b,c\}
+\end{equation}
+
+Como em (\ref{eq:Sxpn}) garante-se que não haverão dois interruptores em condução no mesmo instante, pode-se redefinir as funções de comutações dos interruptores conforme apresentado em (\ref{eq:Sx}). Então, circuito equivalente do VSR é representado, sem perdas de generalidade, de forma simplificada na Fig.~\ref{retificador:circuito-modelagem}.
+
+\begin{equation}
+\label{eq:Sx}
+s_x=s_{xp}=1-s_{xn} \qquad \text{, com } x\in\{a,b,c\}
+\end{equation}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/boost3ph-modelagem.eps}
+	\caption{Circuito equivalente para modelagem do VSR.}
+	\label{retificador:circuito-modelagem}
+\end{figure}
+
+As tensões entre os terminais $x$ e $n$ são dadas por (\ref{eq:Vabcn}).
+
+\begin{equation}
+\label{eq:Vabcn}
+ v_{xn} =  s_xv_{dc} \qquad \text{, com } x\in\{a,b,c\}
+\end{equation} 
+
+Onde:
+\nopagebreak
+
+$s_x$: é a função de comutação da fase $x$, com $x\in\{a,b,c\}$.
+
+Aplicando a Lei de Kirchoff das tensões e expressando as variáveis por valores de linha obtém-se (\ref{eq:eL}).
+
+\begin{equation}
+\label{eq:eL}
+ \vec{e}_{L} =  3r\vec{i}_L+3L\dfrac{d\vec{i}_L}{dt} + \vec{v}_L
+\end{equation} 
+
+Onde:
+\nopagebreak
+
+$\vec{e}_L$: é o vetor de tensões de linha  da rede elétrica, definido por (\ref{eq:vetor-eL});
+
+$\vec{i}_L$: é o vetor de correntes de linha, definido por (\ref{eq:vetor-iL});
+
+$\vec{v}_L$: é o vetor de tensões de linha nos terminais do retificador, definido por (\ref{eq:vetor-vL});
+
+$L$: é a indutância $boost$;
+
+$r$: é a soma das resistências do ramo.
+
+\begin{flalign}
+\label{eq:vetor-eL}
+ \vec{e}_{L} &=  \left[\begin{matrix}e_{ab} & e_{bc} & e_{ca}\end{matrix}\right]^T \nonumber \\
+ & =\left[\begin{matrix}e_{a}-e_b & e_{b}-e_c & e_{c}-e_a\end{matrix}\right]^T
+\end{flalign} 
+
+\begin{flalign}
+\label{eq:vetor-iL}
+ \vec{i}_{L} &=  \left[\begin{matrix}i_{ab} & i_{bc} & i_{ca}\end{matrix}\right]^T \nonumber\\
+ &= \dfrac{1}{3}\left[\begin{matrix}i_{a}-i_b & i_{b}-i_c & i_{c}-i_a\end{matrix}\right]^T
+\end{flalign} 
+
+\begin{flalign}
+\label{eq:vetor-vL}
+ \vec{v}_{L}&=  \left[\begin{matrix}v_{ab} & v_{bc} & v_{ca}\end{matrix}\right]^T \nonumber\\
+ &= \left[\begin{matrix}v_{an}-v_{bn} & v_{bn}-v_{cn} & v_{cn}-v_{an}\end{matrix}\right]^T\nonumber\\
+ &= \left[\begin{matrix}(s_a-s_b)v_{dc} & (s_b-s_c)v_{dc} &(s_c-s_a)v_{dc}\end{matrix}\right]^T\nonumber\\
+ &= \vec{s}_L v_{dc}  
+\end{flalign} 
+
+Onde:
+\nopagebreak
+
+$\vec{s}_L$ : o vetor de funções de comutação definido segundo (\ref{eq:sL});
+
+$v_{dc}$: é a tensão do barramento CC.
+
+\begin{flalign}
+\label{eq:sL}
+ \vec{s}_{L} &=  \left[\begin{matrix}s_a-s_b & s_b-s_c & s_c-s_a\end{matrix}\right]^T \nonumber\\
+ 						&=	\left[\begin{matrix}s_{ab} & s_{bc} & s_{ca}\end{matrix}\right]^T
+\end{flalign}
+
+E, aplicando-se a Lei de Kirchoff das correntes no nó $p$ obtém-se a expressão da corrente no barramento CC $i_{dc}$ em função das variáveis do lado CC (\ref{eq:Vdc}) e em função das variáveis do lado CA (\ref{eq:Idc}). Essa pode ser reescrita em termos das variáveis de linha (\ref{eq:IdcL}). Observa-se que foi desprezada a resistência série equivalente (RSE) do capacitor.
+
+\begin{equation}
+\label{eq:Vdc}
+ i_{dc} =  C\dfrac{dv_{dc}}{dt} + i_{Lo}
+\end{equation} 
+
+Onde:
+\nopagebreak
+
+$C$: é a capacitância do barramento CC;
+
+$i_{Lo}$: é a corrente de carga.
+
+\begin{equation}
+\label{eq:Idc}
+ i_{dc} =  s_ai_a+s_bi_b+s_ci_c
+\end{equation} 
+
+\begin{equation}
+\label{eq:IdcL}
+ i_{dc} =  s_{ab}i_{ab}+s_{bc}i_{bc}+s_{ca}i_{ca}=(\vec{s}_L)^T(\vec{i}_L)
+\end{equation} 
+
+Assim, a partir de (\ref{eq:eL}), (\ref{eq:vetor-vL}), (\ref{eq:Vdc}) e (\ref{eq:IdcL}) obtém-se o modelo instantâneo do VSR conectado à rede elétrica através de um indutor $boost$ dado por (\ref{eq:boost-instantaneo}).
+
+\begin{equation}
+\label{eq:boost-instantaneo}
+\left\{
+\begin{array}{c l}
+ 3L\dfrac{d\vec{i}_L}{dt}&=\vec{e}_{L} - 3r\vec{i}_L - \vec{s}_Lv_{dc}\\
+ \\
+ C\dfrac{dv_{dc}}{dt}&= (\vec{s}_L)^T(\vec{i}_L) - i_{Lo}
+ \end{array}
+ \right.
+\end{equation} 
+
+Utilizar o modelo (\ref{eq:boost-instantaneo}) requer o conhecimento instantâneo do estado topológico do VSR e do tempo de duração do mesmo, o que, em geral, é uma tarefa muito difícil devido aos pequenos períodos de comutação utilizados em eletrônica de potência. Para conversores operando por modulação PWM é comum então, para fins de análise dinâmica e estática, aproximar os valores do modelo instantâneo pela média dos valores em um\footnote{No caso de conversores PWM com portadora triangular pode-se utilizar meio período de comutação. Mais adiante serão apresentadas as diferenças entre modular o conversor por portadora dente-de-serra e por portadora triangular.} período de comutação (\ref{eq:xTs}), técnica esta conhecida (localmente) como \textit{modelagem por valores médios quase-instantâneos} \cite{Livros-Erickson}. Portanto, definem-se as funções de razão cíclica pelos valores médios quase-instantâneos (VMQI) das funções de comutação segundo (\ref{eq:duty-cycles}). 
+
+\begin{equation}
+\label{eq:xTs}
+ \left\langle x \right\rangle_{T_s} = \dfrac{1}{T_s} \int_{t-T_s}^{t} x(\tau)d\tau
+\end{equation} 
+
+\begin{equation}
+\label{eq:duty-cycles}
+ d_x=\left\langle s_x \right\rangle_{T_s} = \dfrac{1}{T_s} \int_{t-T_s}^{t} s_x(\tau) d\tau \qquad \text{, com } x\in\{a,b,c\}
+\end{equation} 
+
+Onde:
+\nopagebreak
+
+$T_s$: é o período de comutação.
+
+Para manter a simplicidade, evita-se a notação de (\ref{eq:xTs}) e adota-se que nas equações em que se utilizam funções de razão cíclica para descrever o comportamento médio do conversor, as variáveis do conversor também expressam VMQI. O modelo não linear (\ref{eq:boost-nl}) é obtido aplicando (\ref{eq:xTs}) nas variáveis do VSR e considerando que as aproximações (\ref{eq:vlTs}) e (\ref{eq:ilTs}) são válidas, pois o conteúdo harmônico da tensão do barramento CC $v_{dc}$ e das correntes de linha $\vec{i}_L$ está predominantemente bem abaixo da frequência de comutação \cite{Livros-Erickson}. 
+
+\begin{equation}
+\label{eq:boost-nl}
+\left\{
+\begin{array}{c l}
+ 3L\dfrac{d\vec{i}_L}{dt}=&\vec{e}_{L} - 3r\vec{i}_L - \vec{d}_Lv_{dc} \\
+ \\
+ C\dfrac{dv_{dc}}{dt}= &(\vec{d}_L)^T(\vec{i}_L) - i_{Lo}
+ \end{array}
+ \right.
+\end{equation} 
+
+Onde:
+\nopagebreak
+
+$\vec{d}_L$: é o vetor funções de razão cíclica de linha, definido conforme (\ref{eq:vetordL}).
+
+\begin{flalign}
+\label{eq:vetordL}
+ \vec{d}_{L} &= \left[\begin{matrix}d_{ab} & d_{bc} & d_{ca}\end{matrix}\right]^T \nonumber \\
+ &= \left[\begin{matrix}d_{a}-d_b & d_{b}-d_c & d_{c}-d_a\end{matrix}\right]^T
+\end{flalign}
+
+\begin{equation}
+\label{eq:vlTs}
+ \dfrac{1}{T_s} \int_{t-T_s}^{t} \vec{s}_L v_{dc} d\tau \approx \left\langle \vec{s}_L \right\rangle_{T_s} \left\langle v_{dc} \right\rangle_{T_s} = \vec{d}_L v_{dc}
+\end{equation} 
+
+\begin{equation}
+\label{eq:ilTs}
+ \dfrac{1}{T_s} \int_{t-T_s}^{t} (\vec{s}_L)^T (\vec{i}_{L}) d\tau \approx \left(\langle \vec{s}_L \rangle_{T_s}\right)^T \langle \vec{i}_{L} \rangle_{T_s} = (\vec{d}_L)^T (\vec{i}_{L})
+\end{equation} 
+
+Esse modelo não linear também é conhecido como modelo de grandes sinais e pode ser utilizado para análise, simulação e projeto de controladores independentemente da estratégia de modulação que será utilizada. O modelo é de 4ª ordem, não linear e é válido para frequências abaixo da frequência de comutação \cite{Livros-Erickson}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Validade do Modelo de Grandes Sinais}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A partir do tipo de portadora utilizada na modulação do conversor PWM pode-se deduzir a frequência máxima para qual o modelo de grandes sinais é válido. Para demonstrar de maneira intuitiva esse limite, considera-se primeiramente o caso da portadora dente-de-serra $V_{ds}$ ilustrado na Fig.~\ref{modulacao:dente-de-serra}.
+
+\begin{figure}[!htb]
+  	
+  \centering
+	\mbox{
+	
+	\subfigure[Portadora dente-de-serra]{
+	\label{modulacao:dente-de-serra}
+	\includegraphics[scale=\escalasim]{Figuras/retificador/dente-de-serra.eps}}
+	
+	\subfigure[Portadora triangular]{
+	\label{modulacao:triangular}
+	\includegraphics[scale=\escalasim]{Figuras/retificador/triangular.eps}}
+	}
+	\caption{Efeitos das portadoras sobre os VMQI.}
+	\label{modulacao:portadoras-analogico}
+\end{figure}
+
+A partir de (\ref{eq:xTs}) sabe-se que o efeito da modelagem é equivalente a ter um VMQI por período de comutação, ou seja, amostra-se os VMQIs na mesma taxa que a frequência de comutação. Portanto, pelo teorema da amostragem de Shannon-Nyquist (\ref{eq:amostragem}) tem-se que a frequência máxima do sinal é metade da frequência de comutação.
+
+\begin{equation}
+\label{eq:amostragem}
+f_a\geq 2B_{{max}}
+\end{equation} 
+
+Onde:
+\nopagebreak
+
+$f_a$: é a frequência de amostragem;
+
+$B_{{max}}$: é a frequência máxima do sinal.
+ 
+No caso da portadora triangular da Fig.~\ref{modulacao:triangular} é possível diminuir o tempo de amostragem do VMQI para meio período de comutação. Isso se deve à simetria nos comandos a cada meio período, que não existe com portadora dente-de-serra. Portanto, nesse caso a frequência máxima é igual à frequência de comutação. 
+
+Na Fig.~\ref{modulacao:portadoras-analogico} estão também ilustrados o sinal de controle $d$, a corrente instantânea $i$ e o seu VMQI $\left\langle i \right\rangle_{T_s}$ obtidos na simulação de um conversor $boost$ (o VMQI foi obtido a partir da simulação do modelo de grandes sinais). É importante ressaltar que no caso da portadora triangular a corrente instantânea é igual ao VMQI a cada meio período de comutação e que exatamente a cada meio período de comutação o VMQI é igual à corrente instantânea. Enquanto que na portadora dente-de-serra seria necessário esperar todo o período de comutação para calcular o VMQI a partir de (\ref{eq:xTs}), pois a posição em que a corrente instantânea é igual ao VMQI não se repete devido à natureza assimétrica do comando.
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Modelo no Sistema \textit{dq0}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Assim como no GSIP, é conveniente transformar as variáveis do sistema~$abc$ para um sistema de referência cuja velocidade angular, nesse caso, escolhida é tal que as variáveis em regime permanente senoidal balanceado são grandezas constantes. Para esse fim, utiliza-se a velocidade angular elétrica no sistema de referência síncrono, cujos resultados facilitam a análise do sistema e o projeto de sistemas de controle \cite{Artigos-03-15,Teses-03-05}.
+
+Aplicando a transformação $dq0$ com $\omega=\omega_e$ e $\theta_e(t_0)$ igual ao ângulo inicial da tensão\footnote{$E_{pk}$ é o valor de pico da tensão de linha da rede elétrica.} $e_{ab}=E_{pk}cos(\omega_e t)$ em (\ref{eq:boost-nl}), é obtido o modelo do VSR no plano $dq0$ (\ref{eq:boost-dq0}). O sobrescrito $e$ denota que as variáveis estão no sistema de referência síncrono.
+
+\begin{equation}
+\label{eq:boost-dq0}
+\left\{
+\begin{array}{c l}
+ 3L\dfrac{d\vec{i}^e_{dq0}}{dt}&=\vec{e^e}_{dq0} - 3r\vec{i}^e_{dq0} - 3\omega_e L \vec{i}^e_{qd} - \vec{d}^e_{dq0}v_{dc}\\
+ C\dfrac{dv_{dc}}{dt} &=  (\vec{d}^e_{dq0})^T\left[\begin{matrix}3/2 &0 &0\\ 0 &3/2 &0 \\ 0 &0 & 3 \end{matrix}\right](\vec{i}^e_{dq0}) - i_{Lo}
+ \end{array}
+ \right.	
+\end{equation} 
+
+Onde:
+\nopagebreak
+
+$\vec{i}_{qd}^e$: é definido por (\ref{eq:vetor-iqd}).
+
+\begin{equation}
+\label{eq:vetor-iqd}
+ \vec{i}^e_{qd} =  \left[\begin{matrix}-i^e_{q} & i^e_{d} & 0\end{matrix}\right]^T
+\end{equation}
+
+Observa-se, assim como no GSIP, o aparecimento da tensão de velocidade $3 \omega_e L \vec{i}^e_{qd}$. De fato, o modelo obtido do VSR é semelhante ao do GSIP como pode ser observado no circuito equivalente\footnote{As parcelas referentes à sequência ``zero'' da Fig.~\ref{retificador:circuito-dq0} foram omitidas, pois não apresentam significado físico e são todas nulas. Isto se deve ao fato da transformação $dq0$ ter sido aplicada nas variáveis de linha do VSR, em que uma informação é redundante, pois $f_{ab}+f_{bc}+f_{ca}=0$. A verdadeira sequência zero será obtida mais adiante neste capítulo.}  da Fig.~\ref{retificador:circuito-dq0} (para tensões de entrada senoidais e equilibradas: $e_d^e=0$ e $e_q^e=E_{pk}$). 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/boost3ph-modelo.eps}
+	\caption{Circuito equivalente do VSR no plano $dq0$.}
+	\label{retificador:circuito-dq0}
+\end{figure}
+
+Nesse ponto, é interessante comparar o modelo obtido do VSR com o modelo do GSIP. Devem ser observadas as seguintes diferenças entre os modelos:
+
+\begin{enumerate}
+
+\item O modelo no plano $dq0$ do GSIP foi obtido a partir de variáveis de fase, enquanto que o modelo do VSR foi obtido a partir de variáveis de linha;
+
+\item O modelo do VSR na verdade é composto de dois modelos: o modelo da rede e o do VSR propriamente dito. O modelo da rede é equivalente ao modelo do GSIP; 
+
+\item As tensões da rede são equivalentes às tensões internas do GSIP. No entanto, no gerador não é possível medir esses valores;
+
+\item As correntes do GSIP estão na convenção motor, enquanto no VSR na convenção gerador.
+\end{enumerate}
+
+A diferença mais significativa para o que se pretende analisar é o primeiro item. Não é possível substituir diretamente o modelo do GSIP  pelo modelo da rede, pois existe a diferença na forma que foram obtidos os modelos $dq0$. Para tanto, é necessário entender as relações para obtenção do modelo em variáveis de fase. Este pode ser obtido redesenhando o circuito do VSR com a inserção de um ponto médio $MP$ virtual no barramento CC, conforme ilustrado na Fig.~\ref{retificador:boost-ideal-MP}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/boost3ph-ideal-MP.eps}
+	\caption{VSR com ponto médio servindo como referência.}
+	\label{retificador:boost-ideal-MP}
+\end{figure}
+
+A tensão entre o terminal $x$ e o ponto médio virtual $MP$ é dada por (\ref{eq:vxr-abc}), em que $x\!=\!\{a,b,c\}$. Dessa forma, aplicando a lei de Kirchoff das tensões no circuito descrito por variáveis de fase obtém-se (\ref{eq:vf-abc}). Observa-se que, $v_{sr}$ é a tensão entre os pontos $n_s$ e $n_r$ (\ref{eq:vsr-MP}) e $\vec{u}$ é um vetor em que todas as componentes são unitárias dado por (\ref{eq:vsr}). A corrente do barramento CC em variáveis de fase é dada por (\ref{eq:Idc}). Portanto, o modelo instantâneo do VSR em variáveis de fase é dado por (\ref{eq:vsr-abc}). 
+
+\begin{equation}
+\label{eq:vsr-MP}
+ v_{sr}=v_{n_s}-v_{n_r}
+\end{equation}
+
+\begin{equation}
+\label{eq:vxr-abc}
+ v_{x,r}=s_x v_{dc}-\dfrac{v_{dc}}{2}
+\end{equation}
+
+\begin{equation}
+\label{eq:vf-abc}
+ L\dfrac{d\vec{i}_{abc}}{dt}=\vec{e}_{abc}-r\vec{i}_{abc}-\vec{v}_{abc,r}+v_{sr}\vec{u}
+\end{equation}
+
+\begin{equation}
+\label{eq:vsr}
+\vec{u}=[\begin{matrix} 1 & 1 & 1 \end{matrix}]^T
+\end{equation}
+
+\begin{equation}
+\label{eq:vsr-abc}
+\left\{
+\begin{array}{c l}
+ L\dfrac{d\vec{i}_{abc}}{dt}=&\vec{e}_{abc} - r\vec{i}_{abc} - \vec{s}_{abc}v_{dc}+\dfrac{v_{dc}}{2}\vec{u} + v_{sr}\vec{u} \\
+ \\
+ C\dfrac{dv_{dc}}{dt}= &(\vec{s}_{abc})^T(\vec{i}_{abc}) - i_{Lo}
+ \end{array}
+ \right.
+\end{equation}
+
+Dessa forma, aplicando o conceito de VMQI em (\ref{eq:vsr-abc}), obtém-se o modelo de grandes sinais do VSR em variáveis de fase, dado por (\ref{eq:vsr-abc-vmqi}). 
+
+\begin{equation}
+\label{eq:vsr-abc-vmqi}
+\left\{
+\begin{array}{c l}
+ L\dfrac{d\vec{i}_{abc}}{dt}=&\vec{e}_{abc} - r\vec{i}_{abc} - \vec{d}_{abc}v_{dc}+\dfrac{v_{dc}}{2}\vec{u} + v_{sr}\vec{u} \\
+ \\
+ C\dfrac{dv_{dc}}{dt}= &(\vec{d}_{abc})^T(\vec{i}_{abc}) - i_{Lo}
+ \end{array}
+ \right.
+\end{equation}
+
+Onde:
+\nopagebreak
+
+$\vec{d}_{abc}$: é o vetor de funções de razão cíclica de fase. Caso se deseje um conjunto de equações que não tenha a componente contínua $v_{dc}/2\vec{u}$, o vetor de funções de razão cíclica pode ser substituído pelo vetor de funções de modulação de fase $\vec{m}_{abc}$, uma vez que (\ref{eq:d-m}).
+
+\begin{equation}
+\label{eq:d-m}
+\vec{m}_{abc} = \vec{d}_{abc} - \dfrac{1}{2} \vec{u}
+\end{equation} 
+
+E, aplicando a transformada $dq0$ no modelo (\ref{eq:vsr-abc-vmqi}) com $\omega\!=\!\omega_e$ e $\theta_e(t_0)$ igual ao ângulo inicial da tensão\footnote{$E_{pk,f}$ é o valor de pico da tensão de fase da rede elétrica.} de fase ($e_a=E_{pk,f}\cos(\omega_e t)$), obtém-se o modelo do VSR em variáveis de fase no plano $dq0$ (\ref{eq:vsr-dq0}). Deste modelo obtém-se o circuito equivalente de fase do VSR conectado à rede apresentado na Fig.~\ref{retificador:vsr-fase}. Nota-se que esse é muito semelhante ao obtido para variáveis de linha. O que difere as variáveis $dq0$ de cada modelo são os limites das variáveis, a posição inicial do eixo síncrono do sistema de referência e o significado físico de cada componente.
+
+\begin{equation}
+\label{eq:vsr-dq0}
+\left\{
+\begin{array}{c l}
+ L\dfrac{d\vec{i}^e_{dq0}}{dt}=&\vec{e}^e_{dq0} - r\vec{i}^e_{dq0} -\omega_e L i_{qd}^e - \vec{d}^e_{dq0}v_{dc}+\dfrac{v_{dc}}{2}\vec{u}_{dq0}^e + v_{sr}\vec{u}_{dq0}^e \\
+ \\
+ C\dfrac{dv_{dc}}{dt}= &(\vec{d}^e_{dq0})^T \left[\begin{matrix}3/2 &0 &0\\ 0 &3/2 &0 \\ 0 &0 & 3 \end{matrix}\right] (\vec{i}^e_{dq0}) - i_{Lo}
+ \end{array}
+ \right.
+\end{equation}
+
+Onde:
+\nopagebreak
+
+$\vec{u}_{dq0}^e$: é o resultado da multiplicação de (\ref{eq:Ks}) por (\ref{eq:vsr}). Este resultado é apresentado em (\ref{eq:u-dq0}).
+
+\begin{equation}
+\label{eq:u-dq0}
+\vec{u}^e_{dq0}=[\mathbf{K}^e_s]\vec{u}=[\begin{matrix} 0 & 0 & 1 \end{matrix}]^T
+\end{equation}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/vsr-fase.eps}
+	\caption{Circuito equivalente do VSR conectado à rede elétrica no plano $dq0$ obtido a partir de variáveis de fase.}
+	\label{retificador:vsr-fase}
+\end{figure}
+
+Do circuito equivalente do VSR no plano $dq0$ da Fig.~\ref{retificador:vsr-fase} e de (\ref{eq:u-dq0}), verifica-se uma propriedade da transformada $dq0$, que é a capacidade de rejeição das componentes de modo comum nos circuitos de eixo direto e de eixo em quadratura. E, como o sistema é a três condutores, a tensão de modo comum gerada pelo VSR não interfere no comportamento das correntes do VSR, que são de modo diferencial, pois, $i_a\!+\!i_b\!+i_c\!=\!0$. Portanto, desde que o valor da tensão de modo comum gerada pelo conversor não diminua o valor do máximo índice de modulação que pode ser sintetizado pelo conversor, não há limitações impostas ao controle do VSR \cite{Teses-Jack}. Dessa forma, como a corrente de sequência zero $i^e_0$ é sempre nula, não serão mais ilustradas ou apresentadas equações relativas à sequência zero no modelo do VSR e do GSIP. Assim, substituindo a parcela do VSR no modelo $dq$ do GSIP e observando a convenção das correntes, obtém-se o circuito equivalente ilustrado na Fig.~\ref{msip:msip-conversor}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/msip/msip-conversor.eps}
+	\caption{Circuito equivalente do GSIP conectado ao VSR no plano $dq$.}
+	\label{msip:msip-conversor}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Limites Operacionais}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph*{Limite para a Tensão do Barramento CC}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Para que seja possível controlar as correntes no VSR, deve-se garantir que é possível impor as derivadas de corrente necessárias sobre os indutores \cite{Teses-03-06}. 
+
+Seja (\ref{eq:eL}) que descreve o comportamento instantâneo do VSR, reescrevendo a parcela referente à corrente $i_{ab}$ e desprezando as resistências do ramo obtém-se (\ref{eq:eab}).
+
+\begin{equation}
+\label{eq:eab}
+3L\dfrac{di_{ab}}{dt} = e_{ab}-s_{ab} v_{dc}	
+\end{equation}
+
+Como $s_{ab}$ pode assumir os valores -1, 0 e 1, a condição (\ref{eq:inequacao-vdc-boost}) deve ser atendida para impor quaisquer derivadas sobre o indutor.
+
+\begin{equation}
+\label{eq:inequacao-vdc-boost}
+\left|e_{ab}\right|-v_{dc}<0
+\end{equation}
+
+Conclui-se que $v_{dc}$ deve ser maior que o valor máximo tensão de linha da entrada $E_{pk}$ (\ref{eq:limite-vdc-boost}). 
+
+\begin{equation}
+\label{eq:limite-vdc-boost}
+v_{dc}>E_{pk}
+\end{equation}
+
+Realizando este procedimento para outras fases obtém-se o mesmo resultado. Observa-se que desprezar as resistências do ramo na análise é benéfico, pois sempre haverá uma queda de tensão sobre o resistor e, portanto, o limite em (\ref{eq:limite-vdc-boost}) seria inferior.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph*{Limites para o Processamento de Energia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Como demonstrado anteriormente, desde que se garanta que (\ref{eq:limite-vdc-boost}) seja satisfeito pode-se impor as derivadas de corrente do VSR. Portanto, desde que sejam respeitados os limites físicos dos componentes não há nenhuma limitação para o processamento de energia ativa ou reativa no VSR.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph*{Limites para as Funções de Razão Cíclica}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Pela definição das funções de comutação (\ref{eq:Sxy}), conclui-se que os limites das funções de razão cíclica de linha são os mesmos e expressos por (\ref{eq:dL-limite}). No entanto, como se deseja controlar o VSR para obter correntes senoidais e com conteúdo harmônico somente em alta frequência, não é possível atender esse requisito apenas limitando os valores das razões cíclicas para que estejam dentro dos limites (\ref{eq:dL-limite}). Será apresentada a condição adicional para satisfazer esse requisito.
+
+\begin{equation}
+\label{eq:dL-limite}
+\left[\begin{matrix} -1 \\-1 \\-1 \end{matrix}\right] \leq \vec{d}_L\leq \left[\begin{matrix} 1 \\1 \\1 \end{matrix}\right]
+\end{equation}
+
+Para gerar correntes senoidais livre de harmônicas de baixa ordem o VSR deve operar na chamada região de modulação linear, caracterizada pela relação linear entre a amplitude da tensão fundamental e a amplitude da função de modulação \cite{Artigos-05-14,Artigos-05-20}. A relação algébrica que determina o limite da região de modulação linear pode ser obtido a partir de relações vetoriais no plano $\alpha\beta$\footnote{Maiores detalhes da análise no plano $\alpha\beta$ serão apresentados no Capítulo~\ref{chapter-modulacao}.}. Na região de sobremodulação é possível aumentar o valor da tensão fundamental de forma não linear, pois ao tentar gerar tensões senoidais que ultrapassam o círculo inscrito há uma saturação do vetor de tensão e consequente distorção da tensão de saída. Essa distorção irá causar o surgimento de harmônicas de baixa ordem nas correntes, comprometendo o controle e aumentando as perdas no gerador \cite{Artigos-05-14,Artigos-05-20}.
+
+Na Fig.~\ref{retificador:limite-mdq} está ilustrado o plano $\alpha\beta$, o vetor de tensões do VSR $\vec{v}^*_{\alpha\beta}=v^*_\alpha+jv^*_\beta$ e as regiões de modulação linear e de sobremodulação. Pode-se mostrar que a amplitude (isto é, a norma euclidiana) do vetor $\vec{v}^*_{\alpha\beta}$ pode ser expressa em termos das variáveis $dq$ conforme (\ref{eq:vref_dq0}). É importante ressaltar que esta amplitude é independente do valor da componente de sequência zero ($d^{e*}_0$), isto é, o valor instantâneo da tensão de modo comum, que é inerente ao processo de modulação.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/limite_mdq.eps}
+	\caption{Plano das tensões $\alpha\beta$ e regiões de modulação.}
+	\label{retificador:limite-mdq}
+\end{figure}
+
+\begin{equation}
+\label{eq:vref_dq0}
+\left|\!|\vec{v}^*_{\alpha\beta}|\!\right|\!=\!\sqrt{(v^*_\alpha)^{2}\!+\!(v^*_\beta)^{2}}\!=\!\sqrt{(v^{e*}_d)^{2}\!+\!(v_q^{e*})^2}\!=\!v_{dc}\sqrt{(d_d^{e*})^2\!+\!(d_q^{e*})^2}
+\end{equation}
+
+O limite da região de modulação linear é o círculo inscrito ao hexágono, cujas arestas representam os limites de tensão do VSR. Esse limite independe da estratégia de modulação e tem valor igual a $V_{dc}$ para tensões de linha e $V_{dc}/\sqrt{3}$ para tensões de fase. Definindo o índice de modulação $M$ por (\ref{eq:M}), em que as variáveis $dq$ foram obtidas do modelo em variáveis de fase do VSR, conclui-se que o seu valor máximo é um.  No entanto, a condição de limitar o índice de modulação não permite o controle independente do vetor funções de razão cíclica. Deve-se, portanto, derivar uma expressão geral para essa condição. Aplicando o limite do índice de modulação obtém-se (\ref{eq:mref-limite}).
+
+\begin{equation}
+\label{eq:M}
+M=\sqrt{3}\dfrac{|\!|\vec{v}^*_{\alpha\beta}|\!|}{v_{dc}}=(\sqrt{3})\sqrt{(d_d^{e*})^2+(d_q^{e*})^2}
+\end{equation}
+
+\begin{equation}
+\label{eq:mref-limite}
+\sqrt{(d_d^{e*})^2+(d_q^{e*})^2}\leq\dfrac{M}{\sqrt{3}}=\dfrac{1}{\sqrt{3}}
+\end{equation}
+
+Pode-se expressar (\ref{eq:mref-limite}) em termos de variáveis de fase aplicando a inversa da transformada $dq0$, cujo resultado é (\ref{eq:mabc-limite}). 
+
+\begin{equation}
+\label{eq:mabc-limite}
+\sqrt{(d_a^*)^{2} + (d_b^*)^{2} + (d_c^*)^{2} - d_a^* d_b^* - d_a^* d_c^* - d_b^* d_c^*}\leq\dfrac{\sqrt{3}}{2}
+\end{equation}
+
+Para entender melhor esse limite, consideram-se funções de razão cíclica cossenoidais para as tensões de linha expressas por (\ref{eq:mL-senoides}). As funções de razão cíclica de fase são dadas por (\ref{eq:mabc-senoides}).
+
+\begin{equation}
+\label{eq:mL-senoides}
+\begin{array}{c l}
+d_{ab}^*=&M \cos\left(\theta_d\right) \\
+d_{bc}^*=&M \cos\left(\theta_d -\frac{2\pi}{3}\right) \\
+d_{ca}^*=&M \cos\left(\theta_d +\frac{2\pi}{3}\right)
+\end{array}
+\end{equation}
+
+\begin{equation}
+\label{eq:mabc-senoides}
+\begin{array}{c l}
+d_{a}^*=&\dfrac{M}{\sqrt{3}} \cos\left(\theta_d - \frac{\pi}{6}\right) +\dfrac{1}{2} \\
+\\
+d_{b}^*=&\dfrac{M}{\sqrt{3}} \cos\left(\theta_d -\frac{5\pi}{6}\right) +\dfrac{1}{2} \\
+\\
+d_{c}^*=&\dfrac{M}{\sqrt{3}} \cos\left(\theta_d +\frac{\pi}{2}\right)  +\dfrac{1}{2} 
+\end{array}
+\end{equation}
+
+Onde:
+\nopagebreak
+
+$\theta_d$: é o ângulo da função de razão cíclica de linha $d_{ab}^*$, definido de acordo com (\ref{eq:thetaM}).
+
+\begin{equation}
+\label{eq:thetaM}
+\theta_d=\int _{t_0}^t\omega_e (\tau )d\tau +\theta_d \left(t_0\right)
+\end{equation}
+
+Aplicando (\ref{eq:mabc-senoides}) em (\ref{eq:mabc-limite}) obtém-se o limite do índice de modulação\footnote{Por definição o índice de modulação é maior ou igual a zero.} em (\ref{eq:M-limite}) que já era esperado pela sua definição em (\ref{eq:M}).
+
+\begin{equation}
+\label{eq:M-limite}
+M \leq 1
+\end{equation}
+
+É interessante notar que com modulação PWM senoidal no VSR não é possível operar com o máximo índice de modulação, pois as funções de razão cíclica devem estar entre 0 e 1, cujo limite é atingido com $M=\sqrt{3}/2$. Isso significa que é possível utilizar estratégias de modulação para elevar o limite da modulação senoidal em cerca de $15,6\%$, resultado este já bem difundido na literatura técnica como, por exemplo, tratado em \cite{Livros-07}. Observa-se que é possível ter modulação senoidal em convesores em que o comando é feito diretamente em variáveis de linha, como é o caso do VSR$_{\Delta}$ estudado nesse trabalho. A sua modulação senoidal foi tratada em \cite{Artigos-05-01} e será comprovada que a aplicação de uma modulação vetorial gera uma equivalente à mesma.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection[Modelagem do VSR Delta]{Modelagem do VSR$_\Delta$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Análise dos Estados Topológicos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Devido à presença da ponte trifásica de diodos, os sentidos das correntes são fundamentais para a determinação do modo de funcionamento do  VSR$_\Delta$. Na Fig.~\ref{retificador:sentidos} estão ilustradas duas situações em que se observa a influência dos sentidos das correntes, pois ao aplicar os comandos de conduzir ($=1$) no interruptor $S_{ab}$, e bloquear ($=0$) em $S_{bc}$ e $S_{ca}$ não foi possível impor as mesmas tensões de linha nos terminais da máquina. No caso da Fig.~\ref{retificador:+100} tem-se que $v_{ab}\!=\!0$, $v_{bc}\!=\!+V_{dc}$ e $v_{ca}\!=-\!V_{dc}$, enquanto que na Fig.~\ref{retificador:-100} tem-se que $v_{ab}\!=\!0$, $v_{bc}\!=\!-V_{dc}$ e $v_{ca}\!=\!+V_{dc}$, ou seja, foram gerados comandos completamente opostos.
+
+\begin{figure}[!htb]
+	\centering
+	
+	\subfigure[]{
+	\label{retificador:+100}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/setorA+100.eps}}
+	
+	\subfigure[]{
+	\label{retificador:-100}
+	\includegraphics[scale=\escalafig]{Figuras/retificador/setorA-100.eps}}
+	
+	\caption{Estados toplógicos do VSR$_\Delta$ para duas condições de corrente e com mesmo comando.}
+	\label{retificador:sentidos}
+\end{figure}
+
+É então necessário definir uma metodologia de análise que leva em consideração os sentidos das correntes. Na Fig.~\ref{retificador:setores} estão ilustrados todas as combinações possíveis entre os sentidos das correntes, em que cada combinação recebe a denominação de  ``setor e corrente de maior amplitude'' como em \cite{Teses-05-01}. Para entender o funcionamento da topologia do VSR$_\Delta$ é necessária apenas análise de um setor de corrente, podendo suas implicações serem generalizadas para os outros setores \cite{Teses-03-06}. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/setoresI.eps}
+	\caption{Definição dos setores de corrente.}
+	\label{retificador:setores}
+\end{figure}
+
+Seja então o  VSR$_\Delta$ operando no setor $A_+$ e seus estados topológicos possíveis ilustrados na Fig.~\ref{retificador:estados} e na Tabela \ref{tab:estados} as tensões de linha obtidas em cada estado. Observa-se que:
+
+\begin{itemize}
+\item Quatro comandos implicam em tensões nulas nos terminais do gerador;
+\item É possível aplicar apenas tensão positiva ou nula entre os terminais $a$ e $b$;
+\item É possível aplicar qualquer tensão entre os terminais $b$ e $c$;
+\item É possível aplicar apenas tensão negativa ou nula entre os terminais $c$ e $a$.
+\end{itemize}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/estados.eps}
+	\caption{Estados topógicos do VSR$_\Delta$ no setor $A_+$.}
+	\label{retificador:estados}
+\end{figure}
+
+\begin{table}[!htbp]
+\caption{Informação dos estados topológicos no setor $A_+$}
+\label{tab:estados}	
+\centering
+
+\begin{center}
+\begin{tabular}{c | c c c | c c c}
+\hline
+Estado & \multicolumn{3}{c|}{Comandos} & \multicolumn{3}{|c}{Tensões de Linha}  \\
+\cline{2-7}
+Topológico & $S_{ab}$ & $S_{bc}$ & $S_{ca}$ & $v_{ab}$ & $v_{bc}$& $v_{ca}$ \\
+\hline
+\hline
+
+$1^{\circ}$& $0$& $0$& $0$& $+V_{dc}$& $0$& $-V_{dc}$\\
+\hline
+
+$2^{\circ}$& $0$& $0$& $1$& $+V_{dc}$& $-V_{dc}$& $0$\\
+\hline
+
+$3^{\circ}$& $0$& $1$& $0$& $+V_{dc}$& $0$& $-V_{dc}$\\
+\hline
+
+$4^{\circ}$& $0$& $1$& $1$& $0$& $0$& $0$\\
+\hline
+
+$5^{\circ}$& $1$& $0$& $0$& $0$& $+V_{dc}$& $-V_{dc}$\\
+\hline
+
+$6^{\circ}$& $1$& $0$& $1$& $0$& $0$& $0$\\
+\hline
+
+$7^{\circ}$& $1$& $1$& $0$& $0$& $0$& $0$\\
+\hline
+
+$8^{\circ}$& $1$& $1$& $1$& $0$& $0$& $0$\\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+%\begin{table}[!htb]
+%\caption{Informação dos estados topológicos no setor $A_+$}
+%\centering
+%
+%\begin{center}
+%\begin{tabular}{c c c | c c c}
+%\hline
+%\multicolumn{3}{c|}{Switching States} & \multicolumn{3}{|c}{Line Voltages}  \\
+%\hline
+% $S_{ab}$ & $S_{bc}$ & $S_{ca}$ & $v_{ab}$ & $v_{bc}$& $v_{ca}$ \\
+%\hline
+%\hline
+%
+% $0$& $0$& $0$& $+V_{dc}$& $0$& $-V_{dc}$\\
+%\hline
+%
+% $0$& $0$& $1$& $+V_{dc}$& $-V_{dc}$& $0$\\
+%\hline
+%
+%$0$& $1$& $0$& $+V_{dc}$& $0$& $-V_{dc}$\\
+%\hline
+%
+% $0$& $1$& $1$& $0$& $0$& $0$\\
+%\hline
+%
+% $1$& $0$& $0$& $0$& $+V_{dc}$& $-V_{dc}$\\
+%\hline
+%
+% $1$& $0$& $1$& $0$& $0$& $0$\\
+%\hline
+%
+%$1$& $1$& $0$& $0$& $0$& $0$\\
+%\hline
+%
+%$1$& $1$& $1$& $0$& $0$& $0$\\
+%\hline
+%
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+Portanto, no setor $A_+$ é possível controlar as correntes, mas há limitações por não ser possível impor algumas derivadas sobre as correntes. Isto significa que as equações obtidas para o VSR são válidas para o VSR$_\Delta$, desde que sejam respeitadas essas limitações. Ou seja, no setor $A_+$ pode-se utilizar (\ref{eq:eL}) e aplicar apenas as tensões mostradas na Tabela \ref{tab:estados}. A análise das sequências de comandos será realizada no Capítulo~\ref{chapter-modulacao}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Limites Operacionais}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph*{Limite para a Tensão do Barramento CC}
+
+No caso anterior era possível impor quaisquer derivadas sobre as correntes das três fases e nesse caso infere-se da Tabela \ref{tab:estados} que pode-se impor livremente apenas uma derivada por setor de corrente. Para o setor $A_+$, isso é possível apenas na corrente $i_{bc}$ e conclui-se, de forma semelhante ao caso anterior, que a tensão do barramento CC deve ser maior que o pico da tensão de linha para que seja possível se impor quaisquer derivadas sobre $i_{bc}$.
+
+\paragraph*{Limites para o Processamento de Energia}
+
+Para esta análise considera-se inicialmente que o VSR$_\Delta$ opera com correntes senoidais e equilibradas dadas por (\ref{eq:iabc}). E, que as componentes fundamentais das tensões geradas pelo VSR$_\Delta$ sejam cossenoidais com um defasamento $\delta_i$ com relação às correntes conforme (\ref{eq:vabc}).
+
+\begin{equation}
+\label{eq:iabc}
+\begin{array}{c l}
+i_{a}=& I_{pk} \cos\left(\omega_e t\right)\\
+i_{b}=& I_{pk} \cos\left(\omega_e t - \frac{2\pi}{3}\right)\\
+i_{c}=& I_{pk} \cos\left(\omega_e t + \frac{2\pi}{3}\right)\\
+\end{array}
+\end{equation}
+
+Onde:
+\nopagebreak
+
+$I_{pk}$: é o valor de pico da corrente de fase.
+
+\begin{equation}
+\label{eq:vabc}
+\begin{array}{c l}
+v_{a,r}=& V_{r,pk} \cos\left(\omega_e t -\delta_i\right)\\
+v_{b,r}=& V_{r,pk} \cos\left(\omega_e t -\delta_i - \frac{2\pi}{3}\right)\\
+v_{c,r}=& V_{r,pk} \cos\left(\omega_e t -\delta_i+ \frac{2\pi}{3}\right)\\
+\end{array}
+\end{equation}
+
+Onde:
+\nopagebreak
+
+$V_{r,pk}$: é o valor de pico da tensão fundamental de fase do VSR$_\Delta$.
+
+Como as tensões disponíveis nos terminais VSR$_\Delta$ são dadas em valores de linha, reescreve-se (\ref{eq:vabc}) para valores de linha em (\ref{eq:vLabc}).
+
+\begin{equation}
+\label{eq:vLabc}
+\begin{array}{c l}
+v_{ab}=& \sqrt{3} V_{r,pk} \cos\left(\omega_e t  -\delta_i + \frac{\pi}{6}\right)\\
+v_{bc}=& \sqrt{3} V_{r,pk} \cos\left(\omega_e t -\delta_i - \frac{\pi}{2}\right)\\
+v_{ca}=& \sqrt{3} V_{r,pk} \cos\left(\omega_e t -\delta_i+ \frac{5\pi}{6}\right)\\
+\end{array}
+\end{equation}
+
+Considerando a análise para o setor $A_+$ tem-se que as tensões geradas podem estar entre os intervalos dados por (\ref{eq:v-intervalos}). 
+
+\begin{equation}
+\label{eq:v-intervalos}
+\begin{array}{c c c}
+0 &\leq v_{ab} &\leq +V_{dc}\\
+-V_{dc} &\leq v_{bc} &\leq +V_{dc}\\
+-V_{dc} &\leq v_{ca} &\leq 0
+\end{array}
+\end{equation}
+
+Para determinar os intervalos de $\delta_i$ para os quais as desigualdades em (\ref{eq:v-intervalos}) são válidas, deve-se lembrar que o valor da tensão do barramento CC deve ser maior que o valor máximo da tensão de linha. Portanto, os limites positivos e negativos dados pela tensão $V_{dc}$ sempre serão garantidos. 
+
+O intervalo para o qual a tensão $v_{ab}$ é possível ser gerada é o semi-ciclo positivo da senóide, cuja desigualdade é expressa por (\ref{eq:vabr-deltai-01}).
+
+\begin{equation}
+\label{eq:vabr-deltai-01}
+-\dfrac{\pi}{2} \leq \omega_e t - \delta_i + \dfrac{\pi}{6} \leq \dfrac{\pi}{2}
+\end{equation}
+
+Como no setor $A_+$ $\omega_e t$ está entre $-\pi/6$ e $\pi/6$ (ver Fig.~\ref{retificador:setores}), obtém-se como resultado (\ref{eq:vabr-deltai-02}).
+
+\begin{equation}
+\label{eq:vabr-deltai-02}
+-\dfrac{\pi}{2} \leq -\delta_i \leq  \dfrac{\pi}{6}
+\end{equation}
+
+Para a tensão $v_{bc}$ não é necessária a análise, pois qualquer valor pode ser gerado no setor $A_+$. E, para a tensão $v_{ca}$ (semi-ciclo negativo) tem-se como resultado (\ref{eq:vcar-deltai}).
+
+\begin{equation}
+\label{eq:vcar-deltai}
+-\dfrac{\pi}{6} \leq -\delta_i \leq  \dfrac{\pi}{2}
+\end{equation}
+
+Fazendo a intersecção entre os intervalos (\ref{eq:vabr-deltai-02}) e (\ref{eq:vcar-deltai}), obtém-se o intervalo (\ref{eq:deltai}) para o qual é possível operar o VSR$_\Delta$ gerando tensões senoidais trifásicas e equilibradas.
+
+\begin{equation}
+\label{eq:deltai}
+-\dfrac{\pi}{6} \leq \delta_i \leq  \dfrac{\pi}{6}
+\end{equation}
+
+O resultado (\ref{eq:deltai}) significa que para o VSR$_\Delta$ funcionar deve haver circulação de potência ativa e que o mesmo é capaz de processar potência reativa na frequência fundamental da rede, na entrada da ponte de diodos, ao contrário de retificadores unidirecionais monofásicos \cite{Teses-03-06}. Uma das maneiras de interpretar esse resultado é que a potência ativa funciona como elemento de abertura da ponte de diodos e durante a comutação natural da ponte de diodos, que é a cada $60^{\circ}$, a potência reativa pode circular livremente.
+
+%Deve-se ressaltar que embora esta análise tenha sido baseada na análise proposta por \cite{Teses-03-06}, há uma diferença fundamental na análise realizada neste trabalho, pois é considerada que a defasagem $\delta_i$ é entre a corrente e a tensão fundamental gerada pelo retificador. Ao considerar a tensão de entrada para essa análise em \cite{Teses-03-06}, chega-se a conclusões erradas sobre a capacidade de processamento de energia do retificador. O motivo pelo qual esse erro não foi perceptível é que o sistema de controle (técnica de autocontrole) naturalmente operava os retificadores com fator de potência unitário na entrada do retificador ($\delta_i=0$) e quando o controle era feito para operar com fator de potência unitário na tensão de entrada da rede elétrica o sistemas eram de baixa indutância, típico de fontes de alimentação e que não se aplicam a acionamentos elétricos. 
+
+%De fato, em qualquer retificador desde que haja circulação de potência ativa da fonte para carga não há nenhum problema que a defasagem entre tensão de entrada da rede elétrica e a corrente tenda ao limite de $\pm\pi/2$, embora não se deseje operar os conversores nessas situações. O que diferencia o retificador unidirecional trifásico do caso monofásico unidirecional é que no caso unidirecional as correntes só não sofrerão distorção devido à presença da ponte de diodos quando a corrente e a tensão fundamental gerada pelo retificador tiverem defasagem nula, como demonstrado pelo próprio \cite{Teses-03-06}. Já no caso trifásico essa distorção acontece apenas quando os limites da Eq.~\ref{eq:deltai} são violados.
+%
+%Nos resultados de simulação e experimentais que serão apresentados esse conceito exposto será comprovado, confirmando a análise proposta.
+
+\paragraph*{Limites para as Funções de Razão Cíclica}
+
+Aplicam-se os mesmos limites para as funções de razão cíclica do VSR.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection[Modelo no Plano \textit{dq0} do VSR Delta]{Modelo no Plano \textit{dq0} do VSR$_\Delta$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+O modelo do $\textrm{VSR}_{\Delta}$ para análise de regime permanente e transitório é praticamente o mesmo do VSR, exceto pela limitação no processamento de potência ativa. Essa limitação pode ser inserida no circuito elétrico equivalente no plano $dq0$ inserindo diodos no circuito de eixo em quadratura e no lado CC, conforme ilustrado na Fig.~\ref{retificador:circuito-dq0-VSRdelta}. As restrições no processamento de energia reativa são características intrínsecas do VSR$_\Delta$ e não são contempladas no modelo $dq0$. Essas restrições devem ser evitadas na etapa de projeto, em que se evita projetar o retificador para operar além da sua capacidade.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/retificador/msip-delta.eps}
+	\caption{Circuito equivalente do GSIP conectado ao VSR no plano $dq0$.}
+	\label{retificador:circuito-dq0-VSRdelta}
+\end{figure}
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Esforços de Corrente do VSR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Neste apêndice são comparados os retificadores com base nos esforços de corrente. Essa comparação visa complementar as comparações entre o VSR e o VSR$_\Delta$ e servir de base para determinação precisa das vantagens da topologia empregada.  Para o cálculo dos esforços do VSR será aplicada a mesma metodologia do Apêndice~\ref{apendice:vsr-delta}. São consideradas duas estratégias clássicas de modulação \cite{Livros-07}: a PWM senoidal e a modulação vetorial. Por fim, será apresentada uma análise comparativa dos esforços de corrente em função dos pontos de operação do WECS determinados no Capítulo~\ref{chapter-gsip-controle}.
+
+
+Para o cálculo dos esforços de corrente considera-se que as correntes de entrada são senoidais e foram definidas em (\ref{eq:iabc2}). Os interruptores controlados VSR são implementados com IGBTs, conforme ilustrado na Fig.~\ref{ap05:vsr}. Supõe-se que a tensão do barramento CC é constante e igual a $V_{dc}$. As funções de razão cíclica foram definidas em (\ref{eq:dabc}) e o modulador da Fig.~\ref{ap05:modulador} gera pulsos complementares para os interruptores com $x=\{a,b,c\}$. O sinal da portadora é triangular.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/ap05/vsr.eps}
+	\caption{Retificador VSR com interruptores do tipo IGBT.}
+	\label{ap05:vsr}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/ap05/modulador.eps}
+	\caption{Modulador do VSR.}
+	\label{ap05:modulador}
+\end{figure}
+
+A seguir são determinadas as expressões para cálculo dos esforços utilizando a estratégia de modulação PWM senoidal e a modulação vetorial.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modulação PWM Senoidal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Na modulação PWM senoidal as funções de razão cíclica definidas em (\ref{eq:dabc}) são aplicadas diretamente no modulador para determinação dos pulsos de comando \cite{Livros-07}. 
+
+Para determinar as expressões dos esforços de corrente deve-se observar a região em destaque da Fig.~\ref{ap05:vsr} e que os esforços só precisam ser calculados para uma fase, pois a operação do circuito é de forma simétrica e equilibrada. Quando a corrente $i_a$ é positiva, se $s_{ap}=1$ a condução se dá pelo diodo de $S_{ap}$. E, se $s_{an}=1$ a condução se dá pelo IGBT de $S_{an}$. Dessa forma, determinam-se os valores médios e eficazes das correntes dos IGBTs a partir de (\ref{eq:isx-avg}) e de (\ref{eq:isx-rms}), respectivamente. 
+
+\begin{equation}
+\label{eq:isx-avg}
+I_{S,avg}\!=\!\dfrac{1}{2\pi}\! \left(\! \int_{y_{i,5_-^B}}^{y_{s,6^B_-}} d_a i_a dy \!+\! \int_{y_{i,6^A_+}}^{y_{s,2^C_-}} d_a i_a dy \! \right) \!= \!I_{pk}\!\left[ \dfrac{1}{2\pi} \!-\! \dfrac{M\cos(\delta_i)}{4\sqrt{3}}  \right]
+\end{equation}
+
+\begin{equation}
+\label{eq:isx-rms}
+I_{S,rms}=I_{pk}\sqrt{ \dfrac{1}{8} - \dfrac{2 M \cos(\delta_i)}{3\pi\sqrt{3}}}
+\end{equation}
+
+E, os valores médios e eficazes das correntes dos diodos a partir de (\ref{eq:idsx-avg}) e de (\ref{eq:idsx-rms}).
+
+\begin{flalign}
+\label{eq:idsx-avg}
+I_{D,avg}&=\dfrac{1}{2\pi} \left[ \int_{y_{i,5^B_-}}^{y_{s,6^B_-}} (1-d_a) i_a dy + \int_{y_{i,6^A_+}}^{y_{s,2^C_-}} (1-d_a) i_a dy \right] \nonumber \\
+& = I_{pk}\left[ \dfrac{1}{2\pi} + \dfrac{M\cos(\delta_i)}{4\sqrt{3}}  \right]
+\end{flalign}
+
+\begin{equation}
+\label{eq:idsx-rms}
+I_{D,rms}=I_{pk}\sqrt{ \dfrac{1}{8} + \dfrac{2 M \cos(\delta_i)}{3\pi\sqrt{3}}}
+\end{equation}
+
+Observa-se que as expressões obtidas são válidas tanto para a operação como retificador quanto como inversor.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modulação Vetorial}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Esta estratégia de modulação é tratada em detalhes em \cite{Livros-07,Livros-LIPO}. A modulação vetorial empregada pode ser interpretada como a injeção de um sinal composto de componentes harmônicas ímpares e múltiplas de três nas funções de razão cíclica da modulação PWM senoidal. No entanto, a abordagem analítica utilizando essa interpretação pode dificultar os cálculos e requerer o uso de expressões aproximadas para as funções de razão cíclica. Para a determinação das expressões analíticas exatas dessa estratégia de modulação aplica-se o mesmo procedimento do Capítulo~\ref{chapter-modulacao} nos vetores de cada setor, cujo resultado é apresentado na Tabela~\ref{tab:svm} em função das variáveis do plano $\alpha\beta$ e dos setores de tensão. 
+
+\begin{table}[!htb]
+\caption{Funções de razão cíclica em função das variáveis do plano $\alpha\beta$}
+\label{tab:svm}
+
+\centering
+
+\begin{center}
+\begin{tabular}{c  | c  | c  | c  }
+\hline
+Setor de & \multicolumn{3}{|c}{Funções de Razão Cíclica} \\
+\cline{2-4}
+Tensão & $d_{a}$ & $d_{b}$ & $d_{c}$\\
+\hline
+\hline
+&  & & \\
+$S_1$ e $S_3$ & $\!\!\dfrac{1}{2}\!\!\! \left(\!\! 1 \!\!+\!\! \dfrac{3}{2} d^*_{\alpha} \!\!+\!\! \dfrac{\sqrt{3}}{2}d^*_{\beta} \!\!\right)\!\!$ & $\!\!\dfrac{1}{2}\!\!\! \left(\!\! 1 \!\!-\!\! \dfrac{3}{2} d^*_{\alpha} \!\!+\!\! \dfrac{3\sqrt{3}}{2}d^*_{\beta}\!\! \right)\!\!$ & $\!\!\dfrac{1}{2}\!\!\!\left(\!\! 1 \!\!-\!\! \dfrac{3}{2} d^*_{\alpha} \!\!-\!\! \dfrac{\sqrt{3}}{2}d^*_{\beta} \!\!\right)\!\!$  \\
+&  & & \\
+\hline
+
+&  & & \\
+$S_2$ e $S_5$ & $\dfrac{1}{2}\left( 1 + {3}d^*_{\alpha}\right)$ & $\dfrac{1}{2}\left( 1 + \sqrt{3}d^*_{\beta}\right)$ & $\dfrac{1}{2}\left( 1 - \sqrt{3}d^*_{\beta}\right)$  \\
+&  & & \\
+\hline
+
+&  & & \\
+$S_3$ e $S_6$ & $\!\!\dfrac{1}{2}\!\!\! \left(\!\! 1 \!\!+\!\! \dfrac{3}{2} d^*_{\alpha} \!\!-\!\! \dfrac{\sqrt{3}}{2}d^*_{\beta} \!\!\right)\!\!$ & $\!\!\dfrac{1}{2} \!\!\!\left(\!\! 1 \!\!-\!\! \dfrac{3}{2} d^*_{\alpha} \!\!+\!\! \dfrac{\sqrt{3}}{2}d^*_{\beta}\!\! \right)\!\!$ & $\!\!\dfrac{1}{2}\!\!\! \left(\!\! 1 \!\!-\!\! \dfrac{3}{2} d^*_{\alpha} \!\!-\!\! \dfrac{3\sqrt{3}}{2}d^*_{\beta}\!\! \right)\!\!$  \\
+&  & & \\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+O cálculo dos esforços é feito da mesma forma que para a modulação PWM senoidal. No entanto, deve-se observar que, como as funções de modulações são contínuas por partes, é necessário dividir o processo de integração entre os setores de tensão. Dessa forma, a integração irá depender do sentido das correntes e da defasagem $\delta_i$ entre as correntes de entrada e as tensões fundamentais sintetizadas pelo VSR. Entretanto,  os resultados podem ser simplificados devido à simetria de quarto de onda das correntes e das funções de razão cíclica. 
+
+Primeiramente, faz-se a análise para a condição em que o VSR opera como retificador e com $|\delta_i|\leq\pi/6$. Os valores médios e eficazes das correntes dos IGBTs podem ser determinados a partir de (\ref{eq:isx-avg-svm1}) e de (\ref{eq:isx-rms-svm1}), respectivamente. E, os valores médios e eficazes das correntes dos diodos a partir de (\ref{eq:idsx-avg-svm1}) e de (\ref{eq:idsx-rms-svm1}). No caso em que a operação se dá como inversor é possível empregar as mesmas expressões, mas aplicam-se os esforços calculados para os IGBTs nos diodos e vice-versa. Nesse caso o ângulo da corrente é redefinido como sendo o ângulo entre a corrente no sentido oposto e a tensão fundamental.
+
+\begin{flalign}
+\label{eq:isx-avg-svm1}
+I_{S,avg}&=\dfrac{1}{2\pi} \left( \int_{y_{i,5^B_-}}^{y_{s,5^B_-}} d_{a,S_5} i_a dy + \int_{y_{i,6^B_-}}^{2\pi+y_{s,6^A_+}} d_{a,S_6} i_a dy + \right. \nonumber \\
+& \left. + \int_{y_{i,1^A_+}}^{y_{s,1^C_-}} d_{a,S_1} i_a dy + \int_{y_{i,2^C_-}}^{y_{s,2^C_-}} d_{a,S_2} i_a dy \right) \nonumber \\
+& = I_{pk}\left[ \dfrac{1}{2\pi} - \dfrac{M\cos(\delta_i)}{4\sqrt{3}}  \right]
+\end{flalign}
+
+\pagebreak
+%\clearpage
+
+\begin{equation}
+\label{eq:isx-rms-svm1}
+I_{S,rms}\!\!=\!\!I_{pk}\sqrt{ \!\dfrac{1}{8} \!-\! \dfrac{2 M \cos(\delta_i)}{3\pi\sqrt{3}} \!-\! \dfrac{M}{24\pi\sqrt{3}}[8\cos(\delta_i)\!-\!3\sqrt{3}\!-\!2\sqrt{3}\cos(2\delta_i)]\!\!}
+\end{equation}
+
+\begin{equation}
+\label{eq:idsx-avg-svm1}
+I_{D,avg} = I_{pk}\left[ \dfrac{1}{2\pi} + \dfrac{M\cos(\delta_i)}{4\sqrt{3}} \right]
+\end{equation}
+
+\begin{equation}
+\label{eq:idsx-rms-svm1}
+I_{D,rms}\!\!=\!\!I_{pk}\sqrt{\! \dfrac{1}{8} \!+\! \dfrac{2 M \cos(\delta_i)}{3\pi\sqrt{3}} \!+ \!\dfrac{M}{24\pi\sqrt{3}}[8\cos(\delta_i)\!-\!3\sqrt{3}\!-\!2\sqrt{3}\cos(2\delta_i)] \!\!}
+\end{equation}
+
+Por fim, faz-se a análise para a condição em que o VSR opera como retificador e com $\pi/6\leq|\delta_i|\leq\pi/2$. Os valores médios e eficazes das correntes dos IGBTs podem ser determinados a partir de (\ref{eq:isx-avg-svm2}) e de (\ref{eq:isx-rms-svm2}), respectivamente. E, os valores médios e eficazes das correntes dos diodos a partir de (\ref{eq:idsx-avg-svm2}) e de (\ref{eq:idsx-rms-svm2}). Observa-se que as mesmas considerações feitas anteriormente são válidas para a operação como inversor, em que o módulo nas expressões (\ref{eq:isx-rms-svm2}) e (\ref{eq:idsx-rms-svm2}) foi adicionado com o intuito de generalizar tais expressões.
+
+\begin{flalign}
+\label{eq:isx-avg-svm2}
+I_{S,avg}&=\dfrac{1}{2\pi} \left( \int_{y_{i,5^B_-}}^{y_{s,4^C_+}} d_{a,S_4} i_a dy + \int_{y_{i,5^C_+}}^{y_{s,5^B_-}} d_{a,S_5} i_a dy +  \right. \nonumber \\
+&  \left. + \int_{y_{i,6^B_-}}^{2\pi+y_{s,6^A_+}} d_{a,S_6} i_a dy + \int_{y_{i,1^A_+}}^{y_{s,2^C_-}} d_{a,S_1} i_a dy \right) \nonumber \\
+& = I_{pk}\left[ \dfrac{1}{2\pi} - \dfrac{M\cos(\delta_i)}{4\sqrt{3}}  \right]
+\end{flalign}
+
+\begin{equation}
+\label{eq:isx-rms-svm2}
+I_{S,rms}\!\!=\!\!I_{pk}\sqrt{\! \dfrac{1}{8}\! -\! \dfrac{M}{24\pi}\!\left[ 3\!+\!8\cos\left(|\delta_i|\!+\!\frac{\pi}{6}\right) \!-\!2\cos\left(2|\delta_i|\!+\!\frac{\pi}{3}\right) \right]\!}
+\end{equation}
+
+\begin{equation}
+\label{eq:idsx-avg-svm2}
+I_{D,avg}= I_{pk}\left[ \dfrac{1}{2\pi} + \dfrac{M\cos(\delta_i)}{4\sqrt{3}}  \right]
+\end{equation}
+
+\begin{equation}
+\label{eq:idsx-rms-svm2}
+I_{D,rms}\!\!=\!\!I_{pk}\sqrt{\! \dfrac{1}{8} \!+ \!\dfrac{M}{24\pi}\!\left[ 3\!+\!8\cos\left(|\delta_i|\!+\!\frac{\pi}{6}\right) \!-\!2\!\cos\left(2|\delta_i|\!+\!\frac{\pi}{3}\right) \right]}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Análise Comparativa entre os Retificadores}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Comparativo Geral}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+É interessante observar que os valores médios das correntes nos IGBTs são iguais em todos os casos, inclusive iguais aos valores médios para os MOSFETs do VSR$_\Delta$ na estratégia SVM~I. Isso acontece devido às etapas de acumulação de energia ou etapas $boost$ permanecerem inalteradas nessas estratégias de modulação. No caso da estratégia SVM~II a etapa é alterada pela inserção de um terceiro interruptor em paralelo. Observa-se que as etapas se dão em momentos diferentes e, portanto, os valores eficazes das correntes são diferentes. 
+
+No caso dos diodos de retificação, o valor médio da corrente não é o mesmo quando comparados os esforços no VSR e no VSR$_\Delta$. Isso se deve à passagem da corrente nos diodos durante a etapa de acumulação de energia no VSR e, portanto, esperam-se maiores valores de correntes nestes componentes. No VSR$_\Delta$ os diodos de retificação estão em condução apenas nas etapas de transferência de energia.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Comparativo no WECS deste Trabalho}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Nas Fig.~\ref{ap05:id-avg}, Fig.~\ref{ap05:id-rms} e Fig.~\ref{ap05:is-rms} estão ilustrados os esforços de corrente no VSR e no VSR$_\Delta$ em função dos pontos de operação do WECS\footnote{O sobrescrito VSR é utilizado para denotar os esforços de corrente quando para as duas estratégias de modulação têm os mesmos valores analíticos. O mesmo se aplica ao VSR$_\Delta$. Os sobrescritos SPWM e SVM denota a modulação PWM senoidal e a vetorial do VSR, respectivamente.}. 
+
+\begin{figure}[!htb]
+	\centering
+	\mbox{
+	
+	\subfigure[]{
+	\label{ap05:id-avg}
+	\includegraphics[scale=\escalafig]{Figuras/ap05/id_avg.eps}}
+	
+	\subfigure[]{
+	\label{ap05:id-rms}
+	\includegraphics[scale=\escalafig]{Figuras/ap05/id_rms.eps}}}
+	\caption[Valores das correntes nos diodos do VSR e do VSR$_\Delta$.]{Valores das correntes nos diodos de retificação do VSR e do VSR$_\Delta$: (a) médios e (b) eficazes.}
+	
+\end{figure}
+
+Observa-se na Fig.~\ref{ap05:id-avg}, como esperado, uma elevação do valor médio da corrente nos diodos de retificação do VSR. Essa elevação se dá também nos valores eficazes das correntes, conforme observado na Fig.~\ref{ap05:id-rms}. Embora seja difícil de se observar, os esforços do VSR são ligeiramente maiores na estratégia de modulação PWM senoidal.
+
+Os esforços nos interruptores controlados estão ilustrados na Fig. \ref{ap05:is-rms}. Nota-se a redução dos esforços com o emprego do VSR$_\Delta$, principalmente se for empregada a estratégia de modulação vetorial proposta neste trabalho. Com relação aos esforços do VSR, observa-se que os esforços da modulação vetorial são ligeiramente maiores. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/ap05/is_rms.eps}
+	\caption{Valores eficazes das correntes nos interruptores controlados do VSR e do VSR$_\Delta$.}
+	\label{ap05:is-rms}
+\end{figure}
+
+Com o intuito de verificar o aumento dos esforços com a variação da potência de entrada dos retificadores, é a apresentada na Fig.~\ref{ap05:esforcos} o valor percentual de cada corrente tomando como bases os valores das correntes para a estratégia de modulação PWM senoidal do VSR. São comparadas a estratégia SVM~II e a modulação PWM senoidal. Nota-se que há uma redução significativa dos esforços de corrente para a modulação SVM~II, chegando a valores na potência nominal de cerca de 35\% no valor médio da corrente e 20\% no valor eficaz da corrente dos diodos e 15\% no valor eficaz da corrente dos interruptores controlados. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=\escalafig]{Figuras/ap05/esforcos.eps}
+	\caption{Variação percentual das correntes.}
+	\label{ap05:esforcos}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Célula de Comutação de Múltiplos Estados}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+fhsahfjsahfas
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusão}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Neste capítulo foram apresentados os principais modelos para análise em regime permanente e em regime transitório dos componentes do WECS. Como o objetivo deste trabalho é o controle de conversores estáticos conectados ao GSIP, pode-se considerar que o detalhamento apresentado sobre a turbina eólica é suficiente, pois com este é possível determinar os pontos de operação, prever o comportamento dinâmico e caracterizar a influência do controle aerodinâmico no sistema. A justificativa de escolha do GSIP é apresentada no contexto da geração eólica; seus aspectos construtivos e suas influências nos parâmetros internos do gerador; o modelo dinâmico e estático; as suas restrições operacionais; e, seu modelo ao conectá-lo com o retificador ativo trifásico. Foi apresentada uma topologia de retificador ativo trifásico para que se possa operar o GSIP com alto desempenho e baixas perdas. Seu modelo dinâmico e as restrições à sua operação foram determinados \cite{Teses-03-06,Artigos-03-14,Artigos-03-15}.
+
+Com base no equacionamento desenvolvido e nas restrições operacionais apresentadas, foi desenvolvida uma metodologia de dimensionamento do WECS. Esta metodologia apresenta de maneira simples a partir de curvas de torque-velocidade as características dos elementos do WECS. A característica fictícia de torque-velocidade do conversor foi determinada a partir de seus parâmetros elétricos e suas relações com os parâmetros eletromecânicos do GSIP. Dessa forma, obteve-se uma representação única das limitações e das regiões de operação dos componentes do WECS.
